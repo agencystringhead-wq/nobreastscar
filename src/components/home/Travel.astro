@@ -1,0 +1,44 @@
+---
+import home from '../../data/home.json';
+
+const t = home.travel;
+---
+
+<section class="bg-butter">
+  <div class="container-site py-24 max-md:py-14 flex flex-wrap gap-14">
+    <div class="flex-[1_1_460px] min-w-0">
+      <div class="eyebrow text-[#8A3A26] mb-3.5">{t.eyebrow}</div>
+      <h2 class="text-[clamp(1.9rem,4vw,2.875rem)] mb-5">{t.title}</h2>
+      <p class="m-0 mb-7 text-[#4A3B2A] text-[18px]">{t.text}</p>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3.5 mb-[30px]">
+        {
+          t.cards.map((c) => (
+            <div class="bg-cream rounded-[8px] p-5">
+              <div class="eyebrow text-[#8A3A26]">{c.label}</div>
+              <div class="font-display text-[21px] mt-1 leading-snug">{c.title}</div>
+              <div class="text-ink-soft text-[14px] mt-1">{c.text}</div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href={t.primaryCta.href} class="btn btn-primary">{t.primaryCta.label}</a>
+        <a href={t.secondaryCta.href} class="btn border-plum text-plum hover:bg-plum hover:text-cream">{t.secondaryCta.label}</a>
+      </div>
+    </div>
+    <div class="flex-[1_1_400px] min-w-0 flex flex-col gap-3.5">
+      <div class="bg-plum text-cream rounded-[8px] p-7 max-sm:p-5">
+        <h3 class="eyebrow text-on-plum-pink mb-3.5">{t.pack.heading}</h3>
+        <ul class="list-none m-0 p-0 flex flex-col gap-2.5">
+          {t.pack.items.map((item) => <li class="flex gap-3"><span aria-hidden="true" class="text-coral font-bold">✓</span>{item}</li>)}
+        </ul>
+      </div>
+      <div class="bg-cream rounded-[8px] p-6">
+        <h3 class="eyebrow text-[#8A3A26] mb-3">{t.hotels.heading}</h3>
+        <ul class="list-none m-0 p-0 flex flex-wrap gap-2 text-[14px]">
+          {t.hotels.items.map((h) => <li class="bg-blush rounded-full px-3 py-1.5">{h}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

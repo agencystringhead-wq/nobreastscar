@@ -133,6 +133,8 @@
     text-transform: uppercase;
     font-weight: 700;
     line-height: 1.4;
+    font-family: var(--font-body);
+    font-variation-settings: normal;
   }
   .skip-link {
     position: absolute;

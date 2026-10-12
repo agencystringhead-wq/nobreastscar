@@ -1,0 +1,34 @@
+---
+import home from '../../data/home.json';
+import Placeholder from '../Placeholder.astro';
+
+type Tone = 'blush' | 'mint' | 'plum' | 'butter' | 'teal';
+const tones: Record<Tone, { card: string; img: string; text: string; sub: string }> = {
+  blush: { card: 'bg-blush text-ink', img: 'bg-blush-2 text-ink-soft', text: '', sub: 'text-ink-soft' },
+  mint: { card: 'bg-mint text-ink', img: 'bg-[#A9D2C7] text-teal', text: '', sub: 'text-[#2E4A47]' },
+  plum: { card: 'bg-plum-2 text-cream', img: 'bg-[#57345F] text-on-plum', text: '', sub: 'text-on-plum' },
+  butter: { card: 'bg-butter text-ink', img: 'bg-[#EED597] text-ink-soft', text: '', sub: 'text-ink-soft' },
+  teal: { card: 'bg-teal text-cream', img: 'bg-[#2F6F6A] text-mint', text: '', sub: 'text-mint' },
+};
+---
+
+<section class="bg-cream">
+  <ul class="container-site m-0 list-none pt-[72px] pb-6 max-md:pt-12 grid grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-4">
+    {
+      home.tiles.map((t) => {
+        const tone = tones[t.tone as Tone];
+        return (
+          <li class="fade-up flex">
+            <a href={t.href} class:list={['no-underline rounded-[8px] overflow-hidden flex flex-col min-h-[300px] w-full hover:text-inherit', tone.card]}>
+              <Placeholder label={t.placeholder} class:list={['flex-1 min-h-[180px]', tone.img]} />
+              <div class="py-4 px-[18px]">
+                <div class="font-display text-[22px]">{t.title}</div>
+                <div class:list={['text-[14px]', tone.sub]}>{t.text}</div>
+              </div>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>

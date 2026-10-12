@@ -1,0 +1,25 @@
+---
+import home from '../../data/home.json';
+
+const t = home.timeline;
+---
+
+<section class="bg-teal text-cream">
+  <div class="container-site py-24 max-md:py-14">
+    <div class="eyebrow text-mint mb-3.5">{t.eyebrow}</div>
+    <h2 class="mb-12 [&_em]:text-butter">{t.titleBefore} <em>{t.titleEm}</em></h2>
+    <ol class="fade-up list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] border-t-2 border-[#4F8C85] max-md:border-t-0 max-md:border-l-2 max-md:pl-6 max-md:gap-8">
+      {
+        t.steps.map((s) => (
+          <li class="relative pt-6 pr-[22px] max-md:pt-0 max-md:pr-0">
+            <span aria-hidden="true" class="absolute -top-[9px] left-0 size-4 rounded-full bg-butter max-md:top-1 max-md:-left-[33px]"></span>
+            <div class="eyebrow text-mint">{s.when}</div>
+            <h3 class="font-display text-[23px] my-1.5 leading-snug">{s.title}</h3>
+            <p class="m-0 text-[#D7EAE5] text-[15px]">{s.text}</p>
+            <a href={s.href} class="text-butter hover:text-cream text-[14px] font-bold inline-block mt-2.5 py-1">{s.linkLabel} →</a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

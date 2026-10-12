@@ -1,0 +1,122 @@
+---
+import home from '../../data/home.json';
+
+const g = home.gallery;
+---
+
+<section class="bg-plum-2 text-cream" data-gallery>
+  <div class="container-site py-24 max-md:py-14">
+    <div class="flex flex-wrap justify-between items-end gap-6 mb-8">
+      <div class="max-w-[640px]">
+        <div class="eyebrow text-on-plum-pink mb-3.5">{g.eyebrow}</div>
+        <h2 class="mb-[18px] text-cream">{g.titleBefore} <em>{g.titleEm}</em></h2>
+        {g.paragraphs.map((p, idx) => <p class:list={['m-0 text-on-plum text-[18px]', idx === 0 && 'mb-2']}>{p}</p>)}
+      </div>
+      <button
+        type="button"
+        class="font-bold bg-cream text-plum border-0 rounded-full px-[26px] py-3.5 cursor-pointer min-h-[48px] hover:bg-blush"
+        aria-pressed="false"
+        data-reveal-toggle
+        data-show-label={g.showLabel}
+        data-hide-label={g.hideLabel}
+      >
+        <span data-reveal-label>{g.showLabel}</span>
+      </button>
+    </div>
+
+    <div role="group" aria-label={g.filterLabel} class="flex flex-wrap gap-2.5 mb-7">
+      {
+        g.filters.map((f, idx) => (
+          <button
+            type="button"
+            class="text-[15px] font-semibold cursor-pointer rounded-full px-[18px] py-2.5 min-h-[44px] border-[1.5px] border-[#7E6383] bg-transparent text-cream aria-pressed:border-coral aria-pressed:bg-coral aria-pressed:text-plum"
+            aria-pressed={idx === 0 ? 'true' : 'false'}
+            data-filter={f.key}
+          >
+            {f.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <p class="sr-only" role="status" aria-live="polite" data-gallery-status></p>
+
+    <!-- Hard-coded featured cards for now. Phase 2 switches this to the caseStudies collection. -->
+    <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-4 gallery-grid" data-gallery-grid data-revealed="false">
+      {
+        g.cards.map((c) => (
+          <li class="flex" data-category={c.category}>
+            <a href={c.href} class="no-underline text-cream hover:text-cream bg-plum rounded-[8px] overflow-hidden flex flex-col w-full">
+              <div class="aspect-[16/10] relative overflow-hidden">
+                <div class="gallery-photo absolute inset-0 flex" data-placeholder>
+                  <div class="flex-1 bg-[#8E6F86] flex items-end p-2.5 text-[12px]">{g.beforePlaceholder}</div>
+                  <div class="flex-1 bg-[#B98C93] flex items-end p-2.5 text-[12px] border-l-2 border-plum text-plum">{g.afterPlaceholder}</div>
+                </div>
+              </div>
+              <div class="py-4 px-[18px]">
+                <div class="text-[11px] tracking-[0.14em] uppercase text-on-plum-pink font-bold">{c.categoryLabel}</div>
+                <div class="font-display text-[20px] leading-[1.3] mt-1">{c.title}</div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-4 mb-0 text-on-plum-soft text-[14px]" data-blur-notice>{g.blurNotice}</p>
+
+    <div class="mt-8 flex flex-wrap gap-3 items-center">
+      <a href={g.cta.href} class="btn btn-primary">{g.cta.label}</a>
+      <span class="text-on-plum-soft text-[14px]">{g.note}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-photo {
+    filter: blur(16px);
+    transition: filter 300ms ease;
+  }
+  [data-revealed='true'] .gallery-photo {
+    filter: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-photo {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Filter + blur reveal. Nothing is stored: reloading the page blurs everything again (SPEC §5.6).
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((root) => {
+    const grid = root.querySelector<HTMLElement>('[data-gallery-grid]')!;
+    const items = Array.from(grid.querySelectorAll<HTMLElement>('li[data-category]'));
+    const filters = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+    const toggle = root.querySelector<HTMLButtonElement>('[data-reveal-toggle]')!;
+    const toggleLabel = toggle.querySelector<HTMLElement>('[data-reveal-label]')!;
+    const notice = root.querySelector<HTMLElement>('[data-blur-notice]');
+    const status = root.querySelector<HTMLElement>('[data-gallery-status]');
+
+    filters.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.filter!;
+        filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        let shown = 0;
+        items.forEach((li) => {
+          const match = key === 'all' || li.dataset.category === key;
+          li.hidden = !match;
+          if (match) shown++;
+        });
+        if (status) status.textContent = `Showing ${shown} ${shown === 1 ? 'result' : 'results'}`;
+      });
+    });
+
+    toggle.addEventListener('click', () => {
+      const reveal = toggle.getAttribute('aria-pressed') !== 'true';
+      toggle.setAttribute('aria-pressed', String(reveal));
+      grid.dataset.revealed = String(reveal);
+      toggleLabel.textContent = reveal ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!;
+      if (notice) notice.hidden = reveal;
+    });
+  });
+</script>
