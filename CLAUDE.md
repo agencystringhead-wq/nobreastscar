@@ -1,0 +1,24 @@
+# nobreastscar.com rebuild (Astro)
+
+A fresh Astro website for nobreastscar.com: Richmond Breast Enhancement Center, Medical Director Dr. Gregory Lynam. It replaces the current WordPress site. The content and page URLs stay the same; the design, code and image files are all new.
+
+## Read these before writing code
+1. `docs/SPEC.md`: the full build spec, which is the source of truth.
+2. `design/homepage-design.html` and `design/homepage-design.png`: the approved homepage design. Match its layout, colors, type and section order. It's a static mockup; rebuild it as Astro components and don't paste it in.
+3. `docs/CONTENT.md`: the facts used on the homepage and which live page each one came from.
+
+## Non-negotiables
+- **Fresh Astro project**, static output, deployed to Cloudflare Pages (`nobreastscar.pages.dev`) from GitHub.
+- **Page URLs identical** to the live site, with a trailing slash. The ~38 pages are in https://nobreastscar.com/page-sitemap.xml and the 27 case studies in https://nobreastscar.com/case-study-sitemap.xml.
+- **Content reused from the live site.** Don't invent claims, stats, prices or testimonials. Anything unknown becomes a visible `[placeholder]`.
+- **WebP only.** Every image in the repo and the build is `.webp`. The one exception is the favicon (`.svg` + `.ico`). A build check enforces this.
+- **Big site-wide footer** with the JotForm (ID `62864268680467`), the full sitemap, every logo and the network sites.
+- **Before/after photos are blurred by default** until the visitor chooses to view them.
+- **No em dashes** in UI copy.
+- **Staging is noindex** (`_headers` + `robots.txt`) until launch day.
+
+## Workflow
+- Work on feature branches, open PRs into `main`, and never commit straight to `main`.
+- No `Co-Authored-By` lines in commits.
+- Cloudflare Pages: build `npm run build`, output `dist`, env `NODE_VERSION=20`.
+- Build in the phases listed in `docs/SPEC.md` §10 and stop for review after each phase.
