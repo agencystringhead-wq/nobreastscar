@@ -1,6 +1,5 @@
 ---
 import home from '../../data/home.json';
-import IncisionDiagram from '../IncisionDiagram.astro';
 
 const e = home.explained;
 ---
@@ -12,7 +11,8 @@ const e = home.explained;
       <h2 class="mb-5 [&_em]:text-brick">{e.titleBefore} <em>{e.titleEm}</em></h2>
       <p class="m-0 mb-6 text-ink-soft text-[18px]">{e.intro}</p>
       <div class="bg-blush rounded-[8px] p-[26px] mb-[26px]">
-        <IncisionDiagram variant="armpit" detailed label={e.diagramLabel} class="w-full h-[220px]" />
+        <h3 class="font-display text-[22px] mb-2 leading-snug">{e.safe.question}</h3>
+        <p class="m-0 text-ink-soft">{e.safe.answer}</p>
       </div>
       <a href={e.link.href} class="font-bold no-underline">{e.link.label} →</a>
     </div>
@@ -31,12 +31,9 @@ const e = home.explained;
           </li>
         ))
       }
-      <li class="bg-plum text-cream rounded-[8px] p-7 max-sm:p-5 flex gap-[22px] max-sm:gap-4">
-        <span aria-hidden="true" class="font-display text-[44px] text-coral leading-none min-w-14 max-sm:min-w-10 max-sm:text-[34px]">!</span>
-        <div>
-          <h3 class="font-display text-[24px] mb-1.5 leading-snug">{e.tradeoff.title}</h3>
-          <p class="m-0 text-on-plum">{e.tradeoff.text}</p>
-        </div>
+      <li class="bg-plum text-cream rounded-[8px] p-7 max-sm:p-5">
+        <h3 class="font-display text-[24px] mb-1.5 leading-snug">{e.downside.title}</h3>
+        <p class="m-0 text-on-plum">{e.downside.text}</p>
       </li>
     </ol>
   </div>

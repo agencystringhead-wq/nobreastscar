@@ -10,7 +10,7 @@ A fresh Astro website for nobreastscar.com: Richmond Breast Enhancement Center, 
 ## Non-negotiables
 - **Fresh Astro project**, static output, deployed to Cloudflare Pages (`nobreastscar.pages.dev`) from GitHub.
 - **Page URLs identical** to the live site, with a trailing slash. The ~38 pages are in https://nobreastscar.com/page-sitemap.xml and the 27 case studies in https://nobreastscar.com/case-study-sitemap.xml.
-- **Content reused from the live site.** Don't invent claims, stats, prices or testimonials. Anything unknown becomes a visible `[placeholder]`.
+- **Live content and images only.** The site uses only content and images that exist on the live nobreastscar.com. Nothing invented: no claims, stats, prices, testimonials, stock photos or illustrations. No placeholder boxes, `[photo]` or `[n]` labels on the finished site. If a section has no real content, change it, merge it or remove it, and keep the approved look (colours, fonts, colour-blocked bands, big footer with the JotForm). `docs/ASSETS.md` lists every real image and the real content per topic.
 - **WebP only.** Every image in the repo and the build is `.webp`. The one exception is the favicon (`.svg` + `.ico`). A build check enforces this.
 - **Big site-wide footer** with the JotForm (ID `62864268680467`), the full sitemap, every logo and the network sites.
 - **Before/after photos are blurred by default** until the visitor chooses to view them.

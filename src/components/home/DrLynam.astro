@@ -1,6 +1,8 @@
 ---
 import home from '../../data/home.json';
-import Placeholder from '../Placeholder.astro';
+import Img from '../Img.astro';
+import portrait from '../../assets/images/doctor/doctor-lynam.webp';
+import signature from '../../assets/images/doctor/nlynam-sign.webp';
 
 const d = home.doctor;
 ---
@@ -8,9 +10,9 @@ const d = home.doctor;
 <section class="bg-cream">
   <div class="container-site py-[104px] max-md:py-14 flex flex-wrap gap-16 max-md:gap-10 items-start">
     <div class="flex-[1_1_340px] max-w-[460px] max-md:max-w-none min-w-0 w-full">
-      <div class="relative aspect-[4/5] bg-blush rounded-[8px] overflow-hidden">
-        <div aria-hidden="true" class="absolute top-0 right-0 w-[55%] h-[40%] bg-coral opacity-25 rounded-bl-[200px]"></div>
-        <Placeholder label={d.photoPlaceholder} class="absolute inset-0 text-ink-soft !text-[13px]" />
+      <!-- The live site's studio portrait (200x270) is shown at its own size so it stays sharp. -->
+      <div class="bg-blush rounded-[8px] p-6 flex justify-center">
+        <Img src={portrait} alt={d.photoAlt} widths={[portrait.width]} sizes={`${portrait.width}px`} class="rounded-[4px] w-[200px] h-auto" />
       </div>
       <div class="mt-4 bg-plum text-cream rounded-[8px] p-[22px]">
         <h3 class="eyebrow text-on-plum-pink mb-2.5">{d.trainingHeading}</h3>
@@ -25,8 +27,8 @@ const d = home.doctor;
       <p class="font-display italic font-light text-[clamp(1.25rem,2.2vw,1.5rem)] leading-[1.5] m-0 mb-[22px]">{d.letter[0]}</p>
       <p class="font-display italic font-light text-[clamp(1.25rem,2.2vw,1.5rem)] m-0 mb-[22px]">{d.letter[1]}</p>
       <p class="m-0 mb-1 text-ink-soft">{d.sincerely}</p>
-      <!-- Signature is a placeholder until the transparent WebP is supplied (SPEC §11.3). -->
-      <div class="font-display italic text-[36px] text-plum mb-7">{d.signaturePlaceholder}</div>
+      <!-- Real signature (a JPG on white on the live site), blended into the cream background. -->
+      <Img src={signature} alt={d.signatureAlt} widths={[signature.width]} sizes={`${signature.width}px`} class="mb-7 w-[220px] h-auto mix-blend-multiply" />
       <a href={d.link.href} class="font-bold no-underline">{d.link.label} →</a>
     </div>
   </div>

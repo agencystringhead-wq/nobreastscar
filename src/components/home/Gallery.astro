@@ -1,7 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import home from '../../data/home.json';
+import Img from '../Img.astro';
 
 const g = home.gallery;
+// Featured studies: the ones the live site lists on its main gallery page, newest first.
+const featured = (await getCollection('caseStudies'))
+  .filter((s) => s.data.galleries.includes('breast-enlargement'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
 ---
 
 <section class="bg-plum-2 text-cream" data-gallery>
@@ -24,38 +31,25 @@ const g = home.gallery;
       </button>
     </div>
 
-    <div role="group" aria-label={g.filterLabel} class="flex flex-wrap gap-2.5 mb-7">
+    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" data-gallery-grid data-revealed="false">
       {
-        g.filters.map((f, idx) => (
-          <button
-            type="button"
-            class="text-[15px] font-semibold cursor-pointer rounded-full px-[18px] py-2.5 min-h-[44px] border-[1.5px] border-[#7E6383] bg-transparent text-cream aria-pressed:border-coral aria-pressed:bg-coral aria-pressed:text-plum"
-            aria-pressed={idx === 0 ? 'true' : 'false'}
-            data-filter={f.key}
-          >
-            {f.label}
-          </button>
-        ))
-      }
-    </div>
-
-    <p class="sr-only" role="status" aria-live="polite" data-gallery-status></p>
-
-    <!-- Hard-coded featured cards for now. Phase 2 switches this to the caseStudies collection. -->
-    <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fill,minmax(min(260px,100%),1fr))] gap-4 gallery-grid" data-gallery-grid data-revealed="false">
-      {
-        g.cards.map((c) => (
-          <li class="flex" data-category={c.category}>
-            <a href={c.href} class="no-underline text-cream hover:text-cream bg-plum rounded-[8px] overflow-hidden flex flex-col w-full">
-              <div class="aspect-[16/10] relative overflow-hidden">
-                <div class="gallery-photo absolute inset-0 flex" data-placeholder>
-                  <div class="flex-1 bg-[#8E6F86] flex items-end p-2.5 text-[12px]">{g.beforePlaceholder}</div>
-                  <div class="flex-1 bg-[#B98C93] flex items-end p-2.5 text-[12px] border-l-2 border-plum text-plum">{g.afterPlaceholder}</div>
-                </div>
+        featured.map((s) => (
+          <li class="flex">
+            <a href={s.data.path} class="no-underline text-cream hover:text-cream bg-plum rounded-[8px] overflow-hidden flex flex-col w-full">
+              <div class="relative overflow-hidden bg-[#8E6F86]">
+                {s.data.thumbnail && (
+                  <Img
+                    src={s.data.thumbnail}
+                    alt={`Before and after photos: ${s.data.title}`}
+                    widths={[280, 420, 570]}
+                    sizes="(min-width: 1240px) 390px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 100vw"
+                    class="gallery-photo block w-full h-auto"
+                  />
+                )}
               </div>
               <div class="py-4 px-[18px]">
-                <div class="text-[11px] tracking-[0.14em] uppercase text-on-plum-pink font-bold">{c.categoryLabel}</div>
-                <div class="font-display text-[20px] leading-[1.3] mt-1">{c.title}</div>
+                {s.data.age && <div class="text-[11px] tracking-[0.14em] uppercase text-on-plum-pink font-bold">Age: {s.data.age}</div>}
+                <div class="font-display text-[19px] leading-[1.3] mt-1">{s.data.title}</div>
               </div>
             </a>
           </li>
@@ -68,16 +62,26 @@ const g = home.gallery;
       <a href={g.cta.href} class="btn btn-primary">{g.cta.label}</a>
       <span class="text-on-plum-soft text-[14px]">{g.note}</span>
     </div>
+    <nav aria-label={g.browseLabel} class="mt-6 flex flex-wrap items-center gap-2.5">
+      <span class="eyebrow text-on-plum-soft mr-1.5">{g.browseLabel}</span>
+      {g.browse.map((b) => <a href={b.href} class="no-underline text-cream hover:text-cream rounded-full px-[18px] py-2.5 min-h-[44px] inline-flex items-center text-[15px] font-semibold border-[1.5px] border-[#7E6383] hover:border-coral">{b.label}</a>)}
+    </nav>
   </div>
 </section>
 
-<style>
+<style is:global>
+  /* Global (not scoped): the <img> is rendered by the Img component, which scoped styles cannot reach.
+     Real patient photos are blurred until the visitor chooses to see them. */
   .gallery-photo {
-    filter: blur(16px);
-    transition: filter 300ms ease;
+    filter: blur(18px);
+    transform: scale(1.12);
+    transition:
+      filter 300ms ease,
+      transform 300ms ease;
   }
   [data-revealed='true'] .gallery-photo {
     filter: none;
+    transform: none;
   }
   @media (prefers-reduced-motion: reduce) {
     .gallery-photo {
@@ -87,35 +91,17 @@ const g = home.gallery;
 </style>
 
 <script>
-  // Filter + blur reveal. Nothing is stored: reloading the page blurs everything again (SPEC §5.6).
+  // Blur reveal. Nothing is stored: reloading the page blurs everything again (SPEC §5).
   document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((root) => {
     const grid = root.querySelector<HTMLElement>('[data-gallery-grid]')!;
-    const items = Array.from(grid.querySelectorAll<HTMLElement>('li[data-category]'));
-    const filters = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-filter]'));
     const toggle = root.querySelector<HTMLButtonElement>('[data-reveal-toggle]')!;
-    const toggleLabel = toggle.querySelector<HTMLElement>('[data-reveal-label]')!;
+    const label = toggle.querySelector<HTMLElement>('[data-reveal-label]')!;
     const notice = root.querySelector<HTMLElement>('[data-blur-notice]');
-    const status = root.querySelector<HTMLElement>('[data-gallery-status]');
-
-    filters.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const key = btn.dataset.filter!;
-        filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-        let shown = 0;
-        items.forEach((li) => {
-          const match = key === 'all' || li.dataset.category === key;
-          li.hidden = !match;
-          if (match) shown++;
-        });
-        if (status) status.textContent = `Showing ${shown} ${shown === 1 ? 'result' : 'results'}`;
-      });
-    });
-
     toggle.addEventListener('click', () => {
       const reveal = toggle.getAttribute('aria-pressed') !== 'true';
       toggle.setAttribute('aria-pressed', String(reveal));
       grid.dataset.revealed = String(reveal);
-      toggleLabel.textContent = reveal ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!;
+      label.textContent = reveal ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!;
       if (notice) notice.hidden = reveal;
     });
   });
