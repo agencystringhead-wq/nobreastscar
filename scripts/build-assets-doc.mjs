@@ -28,6 +28,7 @@ for (const s of studies) {
 
 // ---- hand-written descriptions for the non-case-study images (checked by eye) ----
 const desc = {
+  'hero/hero-woman-arch.webp': 'Derived file, not a live asset: a 4:5 portrait crop (1000x1250) of hero-woman.webp centred on her face and shoulders, made by scripts/make-hero-arch.mjs for the arch-shaped homepage hero.',
   'hero/hero-woman.webp': 'Live homepage hero photo (1400x854): a smiling blonde woman lying on a bed holding a tablet, soft white background with a white fade on the left. It is a CSS background of the first homepage section (`div.et_pb_section_0`, set in an inline style), not an <img>. Source: https://nobreastscar.com/wp-content/uploads/2017/01/hm-bannerimg.jpg. A faded 480px phone variant (nsb-mob-banner.jpg) exists on the live site and is not used.',
   'brand/nbs-logo-top.webp': 'Live header logo: "NoBreastScar.com Breast Enhancement Centers", dark lettering on transparent.',
   'brand/nbs-footer-logo.webp': 'Live footer logo: "NOBREASTSCAR.COM" in gold lettering on transparent. Made for dark backgrounds.',
@@ -91,7 +92,7 @@ for (const [k, v] of Object.entries(travelDesc)) desc[`travel/${k}.webp`] = `${v
 // ---- tables ----
 const dirs = ['hero', 'brand', 'doctor', 'implants', 'logos', 'procedures', 'travel', 'case-studies'];
 const rows = (dir) =>
-  meta
+  [...meta, ...(dir === 'hero' ? [{ file: 'src/assets/images/hero/hero-woman-arch.webp', width: 1000, height: 1250, alt: '', pages: ['/'] }] : [])]
     .filter((m) => m.file.includes(`/images/${dir}/`))
     .map((m) => {
       const key = m.file.replace('src/assets/images/', '');
