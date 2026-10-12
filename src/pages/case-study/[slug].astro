@@ -1,11 +1,8 @@
 ---
 // One patient case study: only facts the live case study states, the featured image uncropped at the top, then every
-// image from the live "Images" section in live order. All photos are blurred until the visitor presses the one
-// "View results" button (and open in a lightbox once revealed). The description is shown once.
+// image from the live "Images" section in live order. Photos are shown clear and open in a lightbox. The description is shown once.
 import PageLayout from '../../layouts/PageLayout.astro';
 import Band from '../../components/Band.astro';
-import BlurReveal from '../../components/BlurReveal.astro';
-import RevealButton from '../../components/RevealButton.astro';
 import CaseCard from '../../components/CaseCard.astro';
 import Lightbox from '../../components/Lightbox.astro';
 import Img from '../../components/Img.astro';
@@ -94,14 +91,13 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
     )
   }
 
-  <BlurReveal controls={false}>
+  <div data-lightbox-group>
     <Band tone="blush" id="photos">
-      <div class="mb-6"><RevealButton /></div>
       <h2 class="sr-only">Featured image</h2>
       <!-- Natural aspect ratio, never cropped: these are before/after composites. -->
-      <div class="blur-frame rounded-[8px] bg-[#8E6F86]">
+      <div class="overflow-hidden rounded-[8px] bg-white">
         <button type="button" data-lightbox data-full={featured.src} data-alt={alt(1)} aria-label={`Open image 1 of ${total}`}>
-          <Img src={featured} alt={alt(1)} loading="eager" widths={[480, 800, 1100, 1240]} sizes="(min-width: 1240px) 1192px, 94vw" class="blur-photo block w-full h-auto" />
+          <Img src={featured} alt={alt(1)} loading="eager" widths={[480, 800, 1100, 1240]} sizes="(min-width: 1240px) 1192px, 94vw" class="block w-full h-auto" />
         </button>
       </div>
     </Band>
@@ -112,9 +108,9 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
           <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">Images</h2>
           <ul class="list-none m-0 p-0 flex flex-col gap-5">
             {more.map((p, i) => (
-              <li class="blur-frame rounded-[8px] bg-[#8E6F86]">
+              <li class="overflow-hidden rounded-[8px] bg-white">
                 <button type="button" data-lightbox data-full={p.src} data-alt={alt(i + 2)} aria-label={`Open image ${i + 2} of ${total}`}>
-                  <Img src={p} alt={alt(i + 2)} widths={[480, 800, 1100, 1240]} sizes="(min-width: 1240px) 1192px, 94vw" class="blur-photo block w-full h-auto" />
+                  <Img src={p} alt={alt(i + 2)} widths={[480, 800, 1100, 1240]} sizes="(min-width: 1240px) 1192px, 94vw" class="block w-full h-auto" />
                 </button>
               </li>
             ))}
@@ -122,7 +118,7 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
         </Band>
       )
     }
-  </BlurReveal>
+  </div>
   <Lightbox />
 
   <Band tone="blush">
@@ -164,11 +160,9 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
   <Fragment slot="related">
     <Band tone="cream">
       <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">More {label.toLowerCase()} cases</h2>
-      <BlurReveal>
-        <ul class="list-none m-0 p-0 grid grid-cols-1 min-[900px]:grid-cols-2 gap-[28px] items-start">
-          {others.map((s) => <li><CaseCard study={s} /></li>)}
-        </ul>
-      </BlurReveal>
+      <ul class="list-none m-0 p-0 grid grid-cols-1 min-[900px]:grid-cols-2 gap-[28px] items-start">
+        {others.map((s) => <li><CaseCard study={s} blur={false} /></li>)}
+      </ul>
     </Band>
   </Fragment>
 </PageLayout>
