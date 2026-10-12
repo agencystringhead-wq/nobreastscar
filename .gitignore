@@ -7,3 +7,5 @@ dist/
 *.log
 .claude/
 .cache/
+Thumbs.db
+desktop.ini
