@@ -3,13 +3,14 @@ import { footerColumns } from '../data/nav';
 import { site } from '../data/site';
 import { credentialLogos, mediaLogos, partnerLogos } from '../data/logos';
 import JotForm from './JotForm.astro';
+import LogoTile from './LogoTile.astro';
+import Img from './Img.astro';
+import maaLogo from '../assets/images/logos/maa.webp';
 import Wordmark from './Wordmark.astro';
 
 const year = new Date().getFullYear();
 const { address } = site;
 
-const tile =
-  'min-h-[76px] bg-cream rounded-[6px] flex items-center justify-center text-center text-[13px] text-ink-soft no-underline hover:text-brick-deep px-3 py-2 focus-visible:outline-coral';
 ---
 
 <footer class="bg-plum text-on-plum text-[15px]">
@@ -83,33 +84,22 @@ const tile =
     <div class="container-site py-16 max-md:py-12 flex flex-col gap-9">
       <div>
         <div class="eyebrow text-on-plum-soft mb-4">Credentials and training</div>
-        <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-3">
-          {
-            credentialLogos.map((logo) => (
-              <li class="flex"><a href={logo.href} target="_blank" rel="noopener" class:list={[tile, 'w-full']}>{logo.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
-            ))
-          }
+        <ul class="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {credentialLogos.map((logo) => <li><LogoTile logo={logo} /></li>)}
         </ul>
       </div>
-      <div class="flex flex-wrap gap-x-12 gap-y-9">
-        <div class="flex-[1_1_260px] min-w-0">
+      <!-- One 8-column grid so every tile in this row is the same width: 2 for "As seen on", 6 for partners. -->
+      <div class="grid grid-cols-1 lg:grid-cols-8 gap-x-3 gap-y-9">
+        <div class="lg:col-span-2">
           <div class="eyebrow text-on-plum-soft mb-4">As seen on</div>
           <ul class="list-none m-0 p-0 grid grid-cols-2 gap-3">
-            {
-              mediaLogos.map((logo) => (
-                <li class="flex"><a href={logo.href} target="_blank" rel="noopener" class:list={[tile, 'w-full']}>{logo.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
-              ))
-            }
+            {mediaLogos.map((logo) => <li><LogoTile logo={logo} /></li>)}
           </ul>
         </div>
-        <div class="flex-[2_1_520px] min-w-0">
+        <div class="lg:col-span-6">
           <div class="eyebrow text-on-plum-soft mb-4">Financing and partners</div>
-          <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-3">
-            {
-              partnerLogos.map((logo) => (
-                <li class="flex"><a href={logo.href} target="_blank" rel="noopener" class:list={[tile, 'w-full']}>{logo.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
-              ))
-            }
+          <ul class="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {partnerLogos.map((logo) => <li><LogoTile logo={logo} /></li>)}
           </ul>
         </div>
       </div>
@@ -131,7 +121,13 @@ const tile =
       <span>
         © {year} {site.director} · All Rights Reserved · <a href="/site-map/" class="text-on-plum-soft">Sitemap</a>
       </span>
-      <span>Website by <a href={site.agency.url} class="text-on-plum" rel="noopener">{site.agency.name}</a></span>
+      <span class="inline-flex items-center gap-2">
+        Website by
+        <a href={site.agency.url} target="_blank" rel="noopener" class="inline-flex items-center bg-cream rounded-[4px] px-2 py-1 min-h-[44px]">
+          <Img src={maaLogo} alt={site.agency.name} widths={[maaLogo.width]} sizes={`${maaLogo.width}px`} class="h-7 w-auto" />
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      </span>
     </div>
   </div>
 </footer>

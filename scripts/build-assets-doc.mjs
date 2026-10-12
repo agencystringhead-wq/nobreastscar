@@ -177,7 +177,7 @@ ${section('brand', 'brand/', 'Logos of the practice itself.')}
 ${section('doctor', 'doctor/', 'The only photos of a person from the practice, plus two stock tiles used on /about/.')}
 ${section('implants', 'implants/', 'The three real implant product images are on the live homepage. The rest are stock lifestyle tiles.')}
 ${section('procedures', 'procedures/', 'Stock tile images on /procedures/.')}
-${section('logos', 'logos/', 'Footer partner and credential logos, and the review source marks.')}
+${section('logos', 'logos/', 'Footer partner and credential logos, and the review source marks. The footer uses cleaned copies made by scripts/process-logos.mjs (asps, abps, realself, vcu, university-of-richmond, wric, fox-richmond, carecredit, aspire, brilliant-distinctions, cosmetassure, stony-point, neograft: 320x120 transparent lossless WebP; maa: trimmed only). Details in scripts/logo-report.json. The originals below are kept as the faithful conversions.')}
 ${section('travel', 'travel/', 'Hotels, restaurants, airlines, car rentals and landmarks for the Travel pages.')}
 ${section('case-studies', 'case-studies/', 'Real patient before/after photos (blur by default), plus a few stock tile images and the gallery banner.')}
 `;

@@ -1,0 +1,44 @@
+---
+// One footer logo: identical cream tile, logo centred, full colour, links where the live site links it.
+import Img from './Img.astro';
+import type { Logo } from '../data/logos';
+
+interface Props {
+  logo: Logo;
+}
+const { logo } = Astro.props;
+const files = import.meta.glob<{ default: ImageMetadata }>('../assets/images/logos/*.webp', { eager: true });
+const image = files[`../assets/images/logos/${logo.file}.webp`].default;
+---
+
+<a
+  href={logo.href}
+  target="_blank"
+  rel="noopener"
+  class="logo-tile h-24 w-full bg-cream rounded-[6px] flex items-center justify-center no-underline"
+>
+  <Img src={image} alt={logo.name} widths={[320]} sizes="(min-width: 1024px) 171px, 160px" class="max-h-[64px] max-w-[80%] w-auto h-auto object-contain" />
+  <span class="sr-only"> (opens in a new tab)</span>
+</a>
+
+<style>
+  .logo-tile {
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+  .logo-tile:hover,
+  .logo-tile:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgb(10 4 14 / 0.4);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-tile {
+      transition: none;
+    }
+    .logo-tile:hover,
+    .logo-tile:focus-visible {
+      transform: none;
+    }
+  }
+</style>

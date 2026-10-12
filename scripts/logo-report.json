@@ -1,0 +1,114 @@
+[
+  {
+    "name": "asps",
+    "org": "American Society of Plastic Surgeons",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/american-society-logo.jpg",
+    "sourceSize": "130x118",
+    "output": "320x120",
+    "note": "background removed (84% of pixels)"
+  },
+  {
+    "name": "abps",
+    "org": "American Board of Plastic Surgery",
+    "source": "https://nobreastscar.com/wp-content/uploads/2016/10/american1.png",
+    "sourceSize": "194x75",
+    "output": "320x120",
+    "note": "background removed (83% of pixels)"
+  },
+  {
+    "name": "realself",
+    "org": "RealSelf",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/realself-logo.jpg",
+    "sourceSize": "154x118",
+    "output": "320x120",
+    "note": "background removed (41% of pixels)"
+  },
+  {
+    "name": "vcu",
+    "org": "VCU",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/virginia-logo.jpg",
+    "sourceSize": "105x118",
+    "output": "320x120",
+    "note": "background removed (28% of pixels)"
+  },
+  {
+    "name": "university-of-richmond",
+    "org": "University of Richmond",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/univercity-of-richmond-logo.jpg",
+    "sourceSize": "84x118",
+    "output": "320x120",
+    "note": "background removed (37% of pixels)"
+  },
+  {
+    "name": "wric",
+    "org": "WRIC",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/wric-logo.jpg",
+    "sourceSize": "100x118",
+    "output": "320x120",
+    "note": "background removed (16% of pixels)"
+  },
+  {
+    "name": "fox-richmond",
+    "org": "Fox Richmond",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/fox-richmond-logo.jpg",
+    "sourceSize": "111x118",
+    "output": "320x120",
+    "note": "background removed (18% of pixels)"
+  },
+  {
+    "name": "carecredit",
+    "org": "CareCredit",
+    "source": "https://nobreastscar.com/wp-content/uploads/2016/10/lastone.png",
+    "sourceSize": "184x75",
+    "output": "320x120",
+    "note": "background removed (87% of pixels)"
+  },
+  {
+    "name": "aspire",
+    "org": "Aspire",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/aspire-logo.png",
+    "sourceSize": "127x75",
+    "output": "320x120",
+    "note": "background removed (83% of pixels)"
+  },
+  {
+    "name": "brilliant-distinctions",
+    "org": "Brilliant Distinctions",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/brillant-logo.png",
+    "sourceSize": "153x75",
+    "output": "320x120",
+    "note": "background removed (84% of pixels)"
+  },
+  {
+    "name": "cosmetassure",
+    "org": "CosmetAssure",
+    "source": "https://nobreastscar.com/wp-content/uploads/2016/10/cosmet.png",
+    "sourceSize": "185x75",
+    "output": "320x120",
+    "note": "background removed (83% of pixels)"
+  },
+  {
+    "name": "stony-point",
+    "org": "Stony Point Surgery Center",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/st-point-logo.png",
+    "sourceSize": "145x75",
+    "output": "320x120",
+    "note": "background removed (80% of pixels)"
+  },
+  {
+    "name": "neograft",
+    "org": "NeoGraft",
+    "source": "https://nobreastscar.com/wp-content/uploads/2016/10/neosoft.png",
+    "sourceSize": "120x75",
+    "output": "320x120",
+    "note": "background removed (81% of pixels)"
+  },
+  {
+    "name": "maa",
+    "org": "Medical Advertising Agency",
+    "source": "https://nobreastscar.com/wp-content/uploads/2026/08/maa-logo-new.webp",
+    "sourceSize": "100x36",
+    "output": "100x36",
+    "note": "background removed (50% of pixels)"
+  }
+]
