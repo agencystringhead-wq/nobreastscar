@@ -4,9 +4,10 @@ seoTitle: "Ready For Breast Augmentation Surgery | No Breast Scar Richmond"
 description: "When you have breast augmentation surgery, the majority of the work will be done by your surgeon. However there are certain steps that you need to take in.."
 path: "/procedures/ready-for-surgery/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures","href":"/procedures/"},{"label":"Ready For Surgery?"}]
-lead: "When you have breast augmentation surgery, the majority of the work will be done by your surgeon. However, there are certain steps that you need to take in order to ensure that you’re properly prepared for your surgery and to reduce the risk of complications."
 cta: {"heading":"Ready to start this life changing process?","text":"Are you ready for breast augmentation? Let’s connect and review your medical history and goals. After that we can get started on your procedure."}
 ---
+
+When you have breast augmentation surgery, the majority of the work will be done by your surgeon. However, there are certain steps that you need to take in order to ensure that you’re properly prepared for your surgery and to reduce the risk of complications.
 
 ## What steps should I take?
 

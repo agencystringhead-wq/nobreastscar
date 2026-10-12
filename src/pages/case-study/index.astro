@@ -1,0 +1,26 @@
+---
+// /case-study/ is an archive on the live site: every case study, newest first. Photos are blurred by default.
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlurReveal from '../../components/BlurReveal.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import { pageByPath, studies } from '../../lib/content';
+
+const page = (await pageByPath('/case-study/'))!;
+const list = await studies();
+const d = page.data;
+const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href: '/gallery/' }, { label: 'Case Studies' }];
+---
+
+<PageLayout
+  title={d.title}
+  seoTitle={d.seoTitle}
+  description="Patient case studies from Dr. Lynam and the No Breast Scar team, each with before and after photos."
+  path={d.path}
+  breadcrumb={crumbs}
+>
+  <BlurReveal>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+      {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
+    </ul>
+  </BlurReveal>
+</PageLayout>

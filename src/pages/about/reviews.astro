@@ -1,0 +1,25 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteCard from '../../components/QuoteCard.astro';
+import data from '../../data/reviews.json';
+import { pageByPath, metaDescription } from '../../lib/content';
+
+const page = (await pageByPath('/about/reviews/'))!;
+const d = page.data;
+const logos = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/logos/*.webp', { eager: true });
+const logoFor = (p: string | null) => (p ? logos[`../../assets/images/logos/${p.split('/').pop()}`]?.default : undefined);
+const tones = ['blush', 'mint', 'butter', 'white'] as const;
+---
+
+<PageLayout title={d.title} seoTitle={d.seoTitle} description={metaDescription(d.description, '')} path={d.path} breadcrumb={d.breadcrumb}>
+  <ul class="list-none m-0 p-0 grid grid-cols-1 gap-5">
+    {
+      data.reviews.map((r, i) => (
+        <li>
+          <QuoteCard label={r.label} text={r.text} logo={logoFor(r.logo)} source={r.source} tone={tones[i % tones.length]} />
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mt-10"><a href="/about/testimonials/" class="font-bold">Read patient testimonials →</a></p>
+</PageLayout>

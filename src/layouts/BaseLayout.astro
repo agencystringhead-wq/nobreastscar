@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/inner.css';
 import UtilityBar from '../components/UtilityBar.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -9,8 +10,10 @@ import { site } from '../data/site';
 interface Props {
   title: string;
   description?: string;
+  /** false on the contact page, which carries the form itself. */
+  footerForm?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, footerForm = true } = Astro.props;
 
 // Canonicals always point at the production domain (SPEC §9).
 const canonical = new URL(Astro.url.pathname, site.productionUrl).href;
@@ -23,7 +26,7 @@ const canonical = new URL(Astro.url.pathname, site.productionUrl).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="canonical" href={canonical} />
+    {!Astro.url.pathname.startsWith("/404") && <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <meta name="theme-color" content="#2A1730" />
@@ -44,7 +47,7 @@ const canonical = new URL(Astro.url.pathname, site.productionUrl).href;
     <main id="main">
       <slot />
     </main>
-    <SiteFooter />
+    <SiteFooter form={footerForm} />
     <MobileActionBar />
     <script>
       // Fade-up on scroll (SPEC §3). Elements opt in with the .fade-up class.

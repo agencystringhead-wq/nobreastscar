@@ -1,0 +1,68 @@
+---
+// /site-map/ generated from both collections, grouped by section.
+import PageLayout from '../layouts/PageLayout.astro';
+import { allPages, studies, pageByPath, metaDescription, galleryLabels, primaryGallery } from '../lib/content';
+
+const page = (await pageByPath('/site-map/'))!;
+const d = page.data;
+const pages = (await allPages()).filter((p) => !['/site-map/'].includes(p.data.path));
+const cases = await studies();
+
+const groupDefs: { title: string; match: (p: string) => boolean }[] = [
+  { title: 'Home', match: (p) => p === '/' },
+  { title: 'Procedures', match: (p) => p.startsWith('/procedures/') },
+  { title: 'Implants', match: (p) => p.startsWith('/implants/') },
+  { title: 'Gallery', match: (p) => p.startsWith('/gallery/') || p === '/case-study/' },
+  { title: 'About', match: (p) => p.startsWith('/about/') },
+  { title: 'Travel', match: (p) => ['/travel/', '/travel/travel-kit/', '/hotels/', '/restaurants/', '/airlines/', '/car-rentals/', '/entertainment-and-landmarks/'].includes(p) },
+  { title: 'Contact', match: (p) => p === '/contact/' },
+];
+const order = (p: string) => (p.split('/').filter(Boolean).length === 1 || p === '/' ? 0 : 1);
+const groups = groupDefs.map((g) => ({
+  title: g.title,
+  items: pages
+    .filter((p) => g.match(p.data.path))
+    .sort((a, b) => order(a.data.path) - order(b.data.path) || a.data.path.localeCompare(b.data.path))
+    .map((p) => ({ href: p.data.path, label: p.data.path === '/' ? 'Home' : p.data.title })),
+}));
+const caseGroups = Object.entries(galleryLabels).map(([key, label]) => ({
+  label,
+  items: cases.filter((c) => primaryGallery(c) === key),
+}));
+---
+
+<PageLayout
+  title={d.title}
+  seoTitle={d.seoTitle}
+  description={metaDescription(d.description, 'Every page and patient case study on No Breast Scar, grouped by section.')}
+  path={d.path}
+  breadcrumb={d.breadcrumb}
+  sidebar={false}
+>
+  <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      groups.map((g) => (
+        <section>
+          <h2 class="font-display text-[26px] mb-3 text-plum">{g.title}</h2>
+          <ul class="list-none m-0 p-0 flex flex-col">
+            {g.items.map((i) => <li><a href={i.href} class="block py-1.5 leading-snug">{i.label}</a></li>)}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <h2 class="font-display text-[clamp(1.75rem,3vw,2.25rem)] mt-14 mb-6 text-plum">Case studies</h2>
+  <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      caseGroups.map((g) => (
+        <section>
+          <h3 class="font-display text-[22px] mb-3 text-plum">{g.label}</h3>
+          <ul class="list-none m-0 p-0 flex flex-col">
+            {g.items.map((c) => <li><a href={c.data.path} class="block py-1.5 leading-snug text-[15px]">{c.data.title}</a></li>)}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</PageLayout>

@@ -4,9 +4,14 @@ seoTitle: "Anesthesia | General Anesthesia | No Breast Scar Richmond"
 description: "Breast augmentation surgery is performed under general anesthesia in most facilities in the United States. Some clinics will perform surgery under local anesthetic if the patient requests this but in the majority of cases, general anesthesia is used."
 path: "/procedures/anesthesia/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures","href":"/procedures/"},{"label":"Anesthesia"}]
-lead: "**Breast augmentation surgery is performed under general anesthesia in most facilities in the United States. Some clinics will perform surgery under local anesthetic if the patient requests this but in the majority of cases, general anesthesia is used.**\n\nBoth local and general anesthetic are safe, providing the person administering it is experienced. The main difference between the two types of anesthesia is that with general anesthetic you’re not aware of what’s happening and with local anesthetic you’re awake but the area where it’s administered, in this case the breasts, are numb and don’t feel any pain or sensation.\n\nIf you have a particular reason you’d rather avoid general anesthetic then you should discuss this with your surgeon."
 cta: {"heading":"Ready to start this life changing process?","text":"We depend on great anesthesiologists to keep all our procedures safe and pain free. Contact our team with any concerns or thoughts about your procedure."}
 ---
+
+**Breast augmentation surgery is performed under general anesthesia in most facilities in the United States. Some clinics will perform surgery under local anesthetic if the patient requests this but in the majority of cases, general anesthesia is used.**
+
+Both local and general anesthetic are safe, providing the person administering it is experienced. The main difference between the two types of anesthesia is that with general anesthetic you’re not aware of what’s happening and with local anesthetic you’re awake but the area where it’s administered, in this case the breasts, are numb and don’t feel any pain or sensation.
+
+If you have a particular reason you’d rather avoid general anesthetic then you should discuss this with your surgeon.
 
 ## Anesthesia FAQ
 

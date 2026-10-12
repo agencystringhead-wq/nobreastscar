@@ -1,0 +1,49 @@
+---
+// Wraps real patient photos. Everything inside is blurred (class "blur-photo" on the <img>) until the visitor
+// presses the button. Nothing is stored: reloading blurs again.
+interface Props {
+  showLabel?: string;
+  hideLabel?: string;
+  notice?: string;
+  class?: string;
+}
+const {
+  showLabel = 'View results',
+  hideLabel = 'Blur photos',
+  notice = 'Photos are blurred. Choose View results to show them.',
+  class: className = '',
+} = Astro.props;
+---
+
+<div data-blur-group data-revealed="false" class={className}>
+  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6">
+    <button
+      type="button"
+      class="btn btn-primary"
+      aria-pressed="false"
+      data-reveal-toggle
+      data-show-label={showLabel}
+      data-hide-label={hideLabel}
+    >
+      <span data-reveal-label>{showLabel}</span>
+    </button>
+    <p class="m-0 text-[14px] text-ink-soft" data-blur-notice>{notice}</p>
+  </div>
+  <slot />
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-blur-group]').forEach((group) => {
+    const toggle = group.querySelector<HTMLButtonElement>('[data-reveal-toggle]');
+    const label = group.querySelector<HTMLElement>('[data-reveal-label]');
+    const notice = group.querySelector<HTMLElement>('[data-blur-notice]');
+    if (!toggle || !label) return;
+    toggle.addEventListener('click', () => {
+      const reveal = toggle.getAttribute('aria-pressed') !== 'true';
+      toggle.setAttribute('aria-pressed', String(reveal));
+      group.dataset.revealed = String(reveal);
+      label.textContent = reveal ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!;
+      if (notice) notice.hidden = reveal;
+    });
+  });
+</script>

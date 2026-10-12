@@ -75,6 +75,14 @@ The live homepage hero photo, found in the theme CSS rather than the page markup
 | `hero/hero-woman.webp` | 1400x854 | Live homepage hero photo (1400x854): a smiling blonde woman lying on a bed holding a tablet, soft white background with a white fade on the left. It is a CSS background of the first homepage section (`div.et_pb_section_0`, set in an inline style), not an <img>. Source: https://nobreastscar.com/wp-content/uploads/2017/01/hm-bannerimg.jpg. A faded 480px phone variant (nsb-mob-banner.jpg) exists on the live site and is not used. | / |
 | `hero/hero-woman-arch.webp` | 1000x1250 | Derived file, not a live asset: a 4:5 portrait crop (1000x1250) of hero-woman.webp centred on her face and shoulders, made by scripts/make-hero-arch.mjs for the arch-shaped homepage hero. | / |
 
+### pages/
+
+Derived from the live site: the testimonial video thumbnail.
+
+| File | Size | What it shows | Live pages |
+|---|---|---|---|
+| `pages/testimonial-video.webp` | 1280x720 | Thumbnail of the YouTube video embedded on /about/testimonials/ (id jz4FTvB-4vc), saved locally by import-content.mjs so the page makes no request to YouTube until play is pressed. | /about/testimonials/ |
+
 ### brand/
 
 Logos of the practice itself.

@@ -4,9 +4,14 @@ seoTitle: "Ideal Implants | Ideal Breast Implants | No Breast Scar Richmond"
 description: "IDEAL Implants are a form of saline implant that have been designed to reduce the problems commonly associated with regular saline implants."
 path: "/implants/ideal-implants/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Ideal Implants"}]
-lead: "**IDEAL Implants are a form of saline implant that have been designed to reduce the problems commonly associated with regular saline implants.**\n\nThe structure of IDEAL implants have been designed so that the movement of the saline inside the implants is more controlled. They are also more contoured, meaning the chances of rippling and folding are reduced – decreasing the like lihood of rupture.\n\n[![](../../../../assets/images/implants/ideal-implant-info.webp)](/files/patient-brochure-digital.pdf)"
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**IDEAL Implants are a form of saline implant that have been designed to reduce the problems commonly associated with regular saline implants.**
+
+The structure of IDEAL implants have been designed so that the movement of the saline inside the implants is more controlled. They are also more contoured, meaning the chances of rippling and folding are reduced – decreasing the like lihood of rupture.
+
+[![](../../../../assets/images/implants/ideal-implant-info.webp)](/files/patient-brochure-digital.pdf)
 
 ## The benefits of IDEAL Implants for surgeons
 

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { sections } from '../data/nav';
+import { site } from '../data/site';
+
+const links = [
+  ...sections.map((s) => ({ label: s.title, href: s.href })),
+  { label: 'Contact', href: '/contact/' },
+  { label: 'Site map', href: '/site-map/' },
+];
+---
+
+<BaseLayout title="Page not found | No Breast Scar" description="That page could not be found.">
+  <section class="bg-plum text-cream">
+    <div class="container-site py-20 max-md:py-12">
+      <div class="eyebrow text-on-plum-pink mb-5">Error 404</div>
+      <h1 class="max-w-[800px]">We can’t find <em>that page.</em></h1>
+      <p class="mt-6 mb-8 text-[19px] text-on-plum max-w-[560px]">The link may be out of date. Try one of the main sections below, or call us on {site.phone}.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/" class="btn btn-primary">Back to the home page</a>
+        <a href="#consult" class="btn btn-ghost">Online Consultation</a>
+      </div>
+    </div>
+  </section>
+  <section class="bg-cream">
+    <div class="container-site py-14">
+      <h2 class="mb-6 text-plum">Main sections</h2>
+      <ul class="list-none m-0 p-0 flex flex-wrap gap-3">
+        {links.map((l) => <li><a href={l.href} class="inline-flex items-center min-h-[48px] px-6 rounded-full bg-blush text-ink font-semibold no-underline hover:bg-blush-2 hover:text-ink">{l.label}</a></li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

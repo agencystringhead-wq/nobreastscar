@@ -1,0 +1,129 @@
+/* Inner pages: long-form prose imported from the live site, and the blur-until-chosen photo frames. */
+
+.prose-nb {
+  max-width: 72ch;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.prose-nb > :first-child {
+  margin-top: 0;
+}
+.prose-nb p {
+  margin: 0 0 1.25rem;
+}
+.prose-nb > p:first-of-type {
+  font-size: 20px;
+  line-height: 1.65;
+}
+.prose-nb h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  margin: 3rem 0 1rem;
+  color: var(--plum);
+}
+.prose-nb h3 {
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+  margin: 2.25rem 0 0.75rem;
+  color: var(--plum);
+}
+.prose-nb h4,
+.prose-nb h5,
+.prose-nb h6 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 1.75rem 0 0.5rem;
+}
+.prose-nb strong {
+  font-weight: 700;
+}
+.prose-nb a {
+  color: var(--brick);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.prose-nb a:hover {
+  color: var(--brick-deep);
+}
+.prose-nb ul,
+.prose-nb ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.5rem;
+}
+.prose-nb ul {
+  list-style: disc;
+}
+.prose-nb ol {
+  list-style: decimal;
+}
+.prose-nb li {
+  margin: 0 0 0.75rem;
+  padding-left: 0.25rem;
+}
+.prose-nb li::marker {
+  color: var(--coral);
+}
+.prose-nb blockquote {
+  margin: 1.75rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 4px solid var(--coral);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+.prose-nb blockquote p {
+  margin: 0 0 0.75rem;
+}
+.prose-nb img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  border-radius: var(--radius);
+  margin: 1.75rem 0;
+}
+.prose-nb hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+.prose-nb table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  font-size: 16px;
+}
+.prose-nb th,
+.prose-nb td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+}
+
+/* Before/after photos: blurred until the visitor chooses to see them. Used by BlurReveal. */
+.blur-frame {
+  overflow: hidden;
+}
+.blur-photo {
+  filter: blur(18px);
+  transform: scale(1.12);
+  transition:
+    filter 300ms ease,
+    transform 300ms ease;
+}
+[data-blur-group][data-revealed='true'] .blur-photo {
+  filter: none;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .blur-photo {
+    transition: none;
+  }
+}
+
+.prose-nb h2 strong,
+.prose-nb h3 strong {
+  font-weight: inherit;
+}

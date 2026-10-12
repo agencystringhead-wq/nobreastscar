@@ -4,9 +4,10 @@ seoTitle: "NoBreastScar Travel Kit | No Breast Scar Richmond"
 description: "If you are travelling to Richmond to have your surgery performed by Dr Lynam, then it’s important that you come prepared and bring the right things with you."
 path: "/travel/travel-kit/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Travel","href":"/travel/"},{"label":"Travel Kit"}]
-lead: "If you are travelling to Richmond to have your surgery performed by Dr Lynam, then it’s important that you come prepared and bring the right things with you. You may decide to recover in Richmond for the first week rather than travelling back home immediately; in fact this would be recommended."
 cta: {"heading":"Ready to start this life changing process?","text":"When performed properly a breast augmentation\nis relatively comfortable and low pain.\nTrust a team with experience and results."}
 ---
+
+If you are travelling to Richmond to have your surgery performed by Dr Lynam, then it’s important that you come prepared and bring the right things with you. You may decide to recover in Richmond for the first week rather than travelling back home immediately; in fact this would be recommended.
 
 -   **Sports bra –** Although you’ll be provided with a sports bra to wear after your surgery, you might have one of your own that you prefer. Be sure to check with Dr Lynam that your bra is suitable for wearing after surgery however.
 -   **Your medication –** You should also bring any medication that you need to take with you. Dr Lynam will be able to advise you if there’s anything that you shouldn’t take while recovering from your surgery. Generally it’s only blood thinners that should be avoided.

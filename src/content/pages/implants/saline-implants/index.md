@@ -4,9 +4,14 @@ seoTitle: "Saline implants | Saline Breast Implants | No Breast Scar Richmond"
 description: "Saline implants are one of the two main types of breast implants that are available for breast augmentation surgery."
 path: "/implants/saline-implants/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Saline implants"}]
-lead: "**Saline breast implants are one of the two main types of implants that are available for breast augmentation surgery.**\n\nWith advancements in technology, there are now more than one type of saline and silicone implants to choose from.\n\nSaline implants come with some unique benefits over silicone implants but also have their drawbacks too. Below are the pros and cons of using saline implants for a breast augmentation."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**Saline breast implants are one of the two main types of implants that are available for breast augmentation surgery.**
+
+With advancements in technology, there are now more than one type of saline and silicone implants to choose from.
+
+Saline implants come with some unique benefits over silicone implants but also have their drawbacks too. Below are the pros and cons of using saline implants for a breast augmentation.
 
 ## Advantages of saline implants
 

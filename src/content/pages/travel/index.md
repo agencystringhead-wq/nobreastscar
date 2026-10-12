@@ -4,9 +4,12 @@ seoTitle: "Travelling to Richmond, VA for Breast Augmentation | No Breast Scar"
 description: "Dr Lynam has performed breast augmentation on many patients who travelled from out of town and is one of the leading surgeons performing breast augmentations in the United States."
 path: "/travel/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Travel"}]
-lead: "**Travelling to Richmond, VA for breast augmentation**\n\nDr. Lynam has performed breast augmentation on many patients who travelled from out of town and is one of the leading surgeons performing breast augmentations in the United States. If you’d like to travel to Dr. Lynam’s surgery for your breast augmentation, then Richmond has many excellent hotels and restaurants to make your visit comfortable and relaxing."
 cta: {"heading":"Ready to start this life changing process?","text":"When performed properly a breast augmentation\nis relatively comfortable and low pain.\nTrust a team with experience and results."}
 ---
+
+**Travelling to Richmond, VA for breast augmentation**
+
+Dr. Lynam has performed breast augmentation on many patients who travelled from out of town and is one of the leading surgeons performing breast augmentations in the United States. If you’d like to travel to Dr. Lynam’s surgery for your breast augmentation, then Richmond has many excellent hotels and restaurants to make your visit comfortable and relaxing.
 
 ## Getting here
 
@@ -76,45 +79,3 @@ If you are travelling to Richmond to have your surgery performed by Dr Lynam, th
 -   **Comfortable clothing –** You should bring plenty of comfortable clothing with you. When you’re recovering from breast augmentation surgery, your breasts will be quite sore and tender at first. Therefore you want to make sure you’re as comfortable as possible so wearing any tight or restrictive clothing should be avoided.
 -   **A friend or family member –** It’s always recommended that you have somebody with you for the first 24 hours after your surgery. This is because during this time you’ll be more prone to accidents and could injure yourself. It’s also necessary to have someone transport you to and from the hospital. If you’re not able to find someone to travel with you to Richmond, then arrangements can be made for an extra fee so somebody is with you for the first 24 hours.
 -   **A laptop or tablet –** If you’re planning to stay in Richmond to recover from your surgery for the first week or so, then you’ll certainly want to bring a laptop or tablet with you, so you can watch Netflix, check your emails, browse the web etc. The first few days in particular should be devoted to resting and recovering so it’s a good idea to have some form of entertainment with you.
-
-### NOBreastScar Travel Kit
-
-![Hotels Guide](../../../assets/images/travel/hotels.webp)
-
-## Hotels
-
-Browse Hotels
-
-[View more](/hotels/)
-
-![Restaurants Guide](../../../assets/images/travel/restaurants.webp)
-
-## Restaurants
-
-Browse Restaurants
-
-[View more](/restaurants/)
-
-![Car Rentals Guide](../../../assets/images/travel/car-rentals.webp)
-
-## Car Rentals
-
-Browse Car Rentals
-
-[View more](/car-rentals/)
-
-![Airlines Guide](../../../assets/images/travel/richmond-airlines.webp)
-
-## Airlines
-
-Browse Airlines
-
-[View more](/airlines/)
-
-![Entertainment and Landmarks Guide](../../../assets/images/travel/memorial.webp)
-
-## Entertainment and Landmarks
-
-Browse Entertainment and Landmarks
-
-[View more](/entertainment-and-landmarks/)

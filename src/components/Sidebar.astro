@@ -1,0 +1,36 @@
+---
+import { sectionOf } from '../data/nav';
+import ConsultCard from './ConsultCard.astro';
+
+interface Props {
+  path: string;
+}
+const { path } = Astro.props;
+const section = sectionOf(path);
+---
+
+<aside class="lg:sticky lg:top-[100px] self-start flex flex-col gap-5" aria-label="In this section">
+  {
+    section && (
+      <nav class="bg-blush rounded-[8px] p-6" aria-label={`${section.title} pages`}>
+        <a href={section.href} class="eyebrow text-brick no-underline hover:text-brick-deep block mb-3" aria-current={path === section.href ? 'page' : undefined}>
+          {section.title}
+        </a>
+        <ul class="list-none m-0 p-0 flex flex-col">
+          {section.links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                aria-current={path === l.href ? 'page' : undefined}
+                class:list={['block py-2 text-[15px] no-underline leading-snug hover:text-brick', path === l.href ? 'font-bold text-plum' : 'text-ink-soft']}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )
+  }
+  <ConsultCard />
+</aside>

@@ -4,9 +4,12 @@ seoTitle: "Teardrop shaped implants vs Round implants | No Breast Scar Richmond"
 description: "One of the major considerations is the type of implants you’ll get. In addition to deciding whether you want saline or silicone implants, you must also think about the shape you want."
 path: "/implants/tear-drop-shaped-vs-round/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Teardrop shaped vs Round"}]
-lead: "**If you want to have breast augmentation surgery then you have some key decisions to make. You’ll first need to decide if you are 100% sure you want the surgery. You’ll also need to make sure you select the right surgeon.**\n\nOne of the major considerations is the type of implants you’ll get. In addition to deciding whether you want saline or silicone implants, you must also think about the shape you want. The two main choices are teardrop implants and round implants."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**If you want to have breast augmentation surgery then you have some key decisions to make. You’ll first need to decide if you are 100% sure you want the surgery. You’ll also need to make sure you select the right surgeon.**
+
+One of the major considerations is the type of implants you’ll get. In addition to deciding whether you want saline or silicone implants, you must also think about the shape you want. The two main choices are teardrop implants and round implants.
 
 ## Teardrop implants
 

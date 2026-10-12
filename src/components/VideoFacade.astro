@@ -1,0 +1,40 @@
+---
+// Privacy-friendly YouTube embed: a local thumbnail and a play button. Nothing is requested from YouTube until the
+// visitor clicks; then the privacy-enhanced domain (youtube-nocookie.com) is loaded in place.
+import Img from './Img.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  thumbnail: ImageMetadata;
+}
+const { id, title, thumbnail } = Astro.props;
+---
+
+<div class="video-facade relative rounded-[8px] overflow-hidden bg-plum aspect-video max-w-[720px]" data-video-id={id} data-video-title={title}>
+  <button type="button" class="group absolute inset-0 w-full h-full cursor-pointer border-0 p-0 bg-transparent" aria-label={`Play video: ${title}`}>
+    <Img src={thumbnail} alt="" widths={[480, 720, 1280]} sizes="(min-width: 768px) 720px, 100vw" class="absolute inset-0 w-full h-full object-cover" />
+    <span class="absolute inset-0 bg-plum/30 group-hover:bg-plum/10 transition-colors"></span>
+    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[76px] rounded-full bg-brick text-white flex items-center justify-center shadow-lg group-hover:bg-brick-deep">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+  </button>
+  <noscript>
+    <a href={`https://www.youtube.com/watch?v=${id}`} class="absolute inset-0 flex items-end p-4 text-cream">Watch on YouTube</a>
+  </noscript>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.video-facade').forEach((box) => {
+    const btn = box.querySelector('button');
+    btn?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${box.dataset.videoId}?autoplay=1&rel=0`;
+      frame.title = box.dataset.videoTitle ?? 'Video';
+      frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      frame.className = 'absolute inset-0 w-full h-full border-0';
+      box.replaceChildren(frame);
+    });
+  });
+</script>

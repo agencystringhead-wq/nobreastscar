@@ -4,9 +4,12 @@ seoTitle: "Textured Implants vs Smooth Implants | No Breast Scar Richmond"
 description: "Choosing the right implants for breast augmentation can be quite a tricky task. There are now several types of implants to choose from, each with different shapes, texture and filling."
 path: "/implants/textured-vs-smooth/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Textured vs Smooth"}]
-lead: "**Choosing the right implants for breast augmentation can be a challenging task. There are several types of implants to choose from, and each one features a different shape, texture, and filling.**\n\nTwo extremely popular types of implants are textured teardrop, or gummy bear implants; and round implants. Teardrop implants are generally made from silicone and have a textured shell whereas round implants can be made from silicone or saline."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**Choosing the right implants for breast augmentation can be a challenging task. There are several types of implants to choose from, and each one features a different shape, texture, and filling.**
+
+Two extremely popular types of implants are textured teardrop, or gummy bear implants; and round implants. Teardrop implants are generally made from silicone and have a textured shell whereas round implants can be made from silicone or saline.
 
 ## Textured implants
 

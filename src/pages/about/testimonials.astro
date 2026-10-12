@@ -1,0 +1,35 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteCard from '../../components/QuoteCard.astro';
+import VideoFacade from '../../components/VideoFacade.astro';
+import data from '../../data/reviews.json';
+import videoThumb from '../../assets/images/pages/testimonial-video.webp';
+import { pageByPath, metaDescription } from '../../lib/content';
+
+const page = (await pageByPath('/about/testimonials/'))!;
+const d = page.data;
+const tones = ['blush', 'mint'] as const;
+---
+
+<PageLayout title={d.title} seoTitle={d.seoTitle} description={metaDescription(d.description, '')} path={d.path} breadcrumb={d.breadcrumb}>
+  <ul class="list-none m-0 p-0 grid grid-cols-1 gap-5">
+    {
+      data.testimonials.map((t, i) => (
+        <li>
+          <QuoteCard label={t.label} text={t.text} tone={tones[i % tones.length]} />
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    data.video && (
+      <section class="mt-12" aria-labelledby="video-heading">
+        <h2 id="video-heading" class="text-[clamp(1.75rem,3vw,2.25rem)] mb-5 text-plum">Patient video</h2>
+        <VideoFacade id={data.video.id} title={data.video.title} thumbnail={videoThumb} />
+        <p class="mt-3 text-[14px] text-ink-soft">The video loads from YouTube only when you press play.</p>
+      </section>
+    )
+  }
+  <p class="mt-10"><a href="/about/reviews/" class="font-bold">Read patient reviews →</a></p>
+</PageLayout>

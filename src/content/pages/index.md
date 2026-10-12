@@ -3,8 +3,18 @@ title: "Thinking About Breast Enhancement?"
 seoTitle: "NoBreastScar.com | Richmond Breast Enhancement Center"
 description: "Thinking About Breast Enhancement? We’re a nationally recognized center located in Richmond, VA for no scar and minimal scar breast enhancement surgery."
 path: "/"
-lead: "![No Breast Scar Logo](../../assets/images/brand/no-breast-scar-logo-1.webp)\n\nWe’re a nationally recognized center for breast enhancement\nlocated in Richmond, VA. Patients travel from all over the world\nfor the quality and beautiful work we perform day in and day out.\n\nYou need both a doctor and an artist for a great breast\naugmentation. We are the national choice for no scar and\nminimal scar breast enhancement surgery. Trust our team\nfor symmetry, balance and a beautiful result."
 ---
+
+![No Breast Scar Logo](../../assets/images/brand/no-breast-scar-logo-1.webp)
+
+We’re a nationally recognized center for breast enhancement
+located in Richmond, VA. Patients travel from all over the world
+for the quality and beautiful work we perform day in and day out.
+
+You need both a doctor and an artist for a great breast
+augmentation. We are the national choice for no scar and
+minimal scar breast enhancement surgery. Trust our team
+for symmetry, balance and a beautiful result.
 
 ## Which Implant Is Right For You?
 

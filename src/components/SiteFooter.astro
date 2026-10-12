@@ -3,11 +3,17 @@ import { footerColumns } from '../data/nav';
 import { site } from '../data/site';
 import { credentialLogos, mediaLogos, partnerLogos } from '../data/logos';
 import JotForm from './JotForm.astro';
+import MapCard from './MapCard.astro';
 import LogoTile from './LogoTile.astro';
 import Img from './Img.astro';
 import maaLogo from '../assets/images/logos/maa.webp';
 import Wordmark from './Wordmark.astro';
 
+interface Props {
+  /** Show the JotForm column. The contact page renders the form itself, so it passes false. */
+  form?: boolean;
+}
+const { form = true } = Astro.props;
 const year = new Date().getFullYear();
 const { address } = site;
 
@@ -34,27 +40,19 @@ const { address } = site;
           <a href={site.phoneHref} class="text-coral no-underline hover:text-cream inline-block mt-1.5 py-1">{site.phone}</a>
         </div>
       </div>
-      <a href={site.mapsUrl} target="_blank" rel="noopener" class="block no-underline rounded-[8px] overflow-hidden text-cream bg-plum-2 hover:text-cream">
-        <svg viewBox="0 0 400 190" role="img" aria-label="Map pin on Stony Point Parkway, Richmond" class="block w-full">
-          <path d="M0 130 C80 110 140 140 220 110 S340 80 400 90" fill="none" stroke="#57345F" stroke-width="10"></path>
-          <path d="M120 0 L170 190 M260 0 L240 190 M0 55 L400 35" fill="none" stroke="#4A2F52" stroke-width="5"></path>
-          <circle cx="232" cy="104" r="22" fill="#EF6B57" opacity="0.3"></circle>
-          <circle cx="232" cy="104" r="8" fill="#EF6B57"></circle>
-          <text x="248" y="90" font-family="Source Sans 3, sans-serif" font-size="13" fill="#FFF8F2">Stony Point Parkway</text>
-        </svg>
-        <div class="px-[18px] py-3.5 flex justify-between">
-          <span>Get directions<span class="sr-only"> (opens in a new tab)</span></span>
-          <span aria-hidden="true" class="text-coral">→</span>
-        </div>
-      </a>
+      <MapCard />
     </div>
 
-    <div id="consult" class="flex-[1_1_460px] min-w-0 scroll-mt-24">
-      <div class="bg-cream text-ink rounded-[8px] p-7 max-sm:p-4 border-t-[6px] border-coral">
-        <h3 class="font-display text-[26px] mb-4">{site.jotformTitle}</h3>
-        <JotForm />
-      </div>
-    </div>
+    {
+      form && (
+        <div id="consult" class="flex-[1_1_460px] min-w-0 scroll-mt-24">
+          <div class="bg-cream text-ink rounded-[8px] p-7 max-sm:p-4 border-t-[6px] border-coral">
+            <h3 class="font-display text-[26px] mb-4">{site.jotformTitle}</h3>
+            <JotForm />
+          </div>
+        </div>
+      )
+    }
   </div>
 
   <!-- 2. Sitemap -->

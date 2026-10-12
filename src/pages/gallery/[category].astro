@@ -1,0 +1,44 @@
+---
+// The three gallery category pages: the live intro text, then the case studies the live page lists, blurred by default.
+import { render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlurReveal from '../../components/BlurReveal.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import { allPages, studies, metaDescription, galleryLabels } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const pages = await allPages();
+  const all = await studies();
+  return Object.keys(galleryLabels).map((category) => ({
+    params: { category },
+    props: {
+      page: pages.find((p) => p.data.path === `/gallery/${category}/`)!,
+      list: all.filter((s) => s.data.galleries.includes(category as 'breast-lift')),
+    },
+  }));
+}
+
+const { page, list } = Astro.props;
+const d = page.data;
+const { Content } = await render(page);
+---
+
+<PageLayout
+  title={d.title}
+  seoTitle={d.seoTitle}
+  description={metaDescription(d.description, page.body ?? '')}
+  path={d.path}
+  breadcrumb={d.breadcrumb}
+  cta={d.cta}
+>
+  <div class="prose-nb">
+    <Content />
+  </div>
+  <section class="mt-10" aria-label="Case studies">
+    <BlurReveal>
+      <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
+      </ul>
+    </BlurReveal>
+  </section>
+</PageLayout>

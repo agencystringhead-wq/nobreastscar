@@ -1,0 +1,62 @@
+---
+// General inner-page layout: plum hero with breadcrumb and H1, prose column (max 72ch), sticky sidebar on wide
+// screens, then the big footer (from BaseLayout). Used for every imported page and, with other content, for the
+// reviews, testimonials, contact and travel pages.
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Sidebar from '../components/Sidebar.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import { site } from '../data/site';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+interface Props {
+  title: string;
+  seoTitle: string;
+  description?: string;
+  path: string;
+  breadcrumb?: Crumb[];
+  cta?: { heading: string; text: string };
+  sidebar?: boolean;
+  /** Extra schema.org objects (for example FAQPage). */
+  jsonLd?: object[];
+  /** false on the contact page, which carries the form itself. */
+  footerForm?: boolean;
+}
+const { title, seoTitle, description, path, breadcrumb, cta, sidebar = true, jsonLd = [], footerForm = true } = Astro.props;
+
+const crumbs: Crumb[] = breadcrumb?.length ? breadcrumb : [{ label: 'No Breast Scar', href: '/' }, { label: title }];
+const abs = (href: string) => new URL(href, site.productionUrl).href;
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    item: abs(c.href ?? path),
+  })),
+};
+---
+
+<BaseLayout title={seoTitle} description={description} footerForm={footerForm}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+    {jsonLd.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+  </Fragment>
+
+  <PageHero title={title} crumbs={crumbs} />
+
+  <div class="bg-cream">
+    <div class:list={['container-site py-14 max-md:py-10 grid gap-12', sidebar && 'lg:grid-cols-[minmax(0,1fr)_300px]']}>
+      <article class="min-w-0">
+        <slot />
+        <slot name="after" />
+        {cta && <CtaBlock heading={cta.heading} text={cta.text} />}
+      </article>
+      {sidebar && <Sidebar path={path} />}
+    </div>
+  </div>
+</BaseLayout>

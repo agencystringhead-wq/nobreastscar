@@ -51,10 +51,15 @@ const pendingFiles = new Map(); // live URL -> /files/<name>
 /** Live absolute link -> site-relative path (keeps trailing slash). External links stay as they are. */
 function localHref(href) {
   if (!href) return href;
+  if (/^tel:/i.test(href)) {
+    // Live links look like tel:\(804\) 226-1923 or tel:(804)%20560-5260. Normalise to digits.
+    const digits = decodeURIComponent(href.slice(4)).replace(/\D/g, '');
+    return 'tel:' + (digits.length === 10 ? '+1' + digits : digits);
+  }
   try {
     const u = new URL(href, LIVE);
-    if (u.hostname.replace(/^www./, '') === 'nobreastscar.com' && u.pathname.startsWith('/wp-content/uploads/')) {
-      if (/.pdf$/i.test(u.pathname)) {
+    if (u.hostname.replace(/^www\./, '') === 'nobreastscar.com' && u.pathname.startsWith('/wp-content/uploads/')) {
+      if (/\.pdf$/i.test(u.pathname)) {
         const name = u.pathname.split('/').pop().toLowerCase();
         pendingFiles.set(u.href, '/files/' + name);
         return '/files/' + name;
@@ -140,6 +145,7 @@ const textOf = ($, el) => $(el).text().replace(/\s+/g, ' ').trim();
 
 // ---------- pages ----------
 
+const GALLERY_CATEGORY = new Set(['/gallery/breast-enlargement/', '/gallery/breast-lift/', '/gallery/breast-lift-with-implants/']);
 const GENERATED = new Set(['/site-map/', '/case-study/', '/gallery/breast-enlargement/', '/gallery/breast-lift/', '/gallery/breast-lift-with-implants/']);
 
 function pageFile(path) {
@@ -214,6 +220,10 @@ async function importPage(url, extras) {
     bodyParts.push(toMarkdown($, $sec, mdFile, url, path));
   }
 
+  let video;
+  const yt = $('#main-content iframe[src*="youtube"]').first().attr('src');
+  if (yt) video = { id: yt.split('/embed/')[1].split(/[?&]/)[0], title: 'Patient testimonial video' };
+
   // Reviews and testimonials: the quotes live in Divi toggles inside the first section. Keep them verbatim.
   if (path === '/about/reviews/' || path === '/about/testimonials/') {
     reviewItems = $(banner)
@@ -256,21 +266,30 @@ async function importPage(url, extras) {
     body = fixTypos(body);
     leadOut = fixTypos(leadOut);
   }
-  if (generated) body = '';
-  // The /contact/ banner holds the address block; keep it as the body.
-  let finalLead = leadOut;
+  // The page body is the banner copy followed by the sections (the template styles the first paragraphs as the intro).
+  let finalBody;
   if (path === '/contact/') {
-    body = leadOut
+    // The /contact/ banner holds the address block; drop the stray copyright line (the footer has it).
+    finalBody = leadOut
       .split('\n')
       .filter((l) => !l.trim().startsWith('©'))
       .join('\n')
       .trim();
-    finalLead = '';
+  } else if (isLegal) {
+    finalBody = body; // the quotes
+  } else if (GALLERY_CATEGORY.has(path)) {
+    // Keep the intro text. Drop the banner caption and the uncensored sample photo: the case studies are listed
+    // from the collection, blurred, instead.
+    finalBody = leadOut.split(/\n\s*Actual Patient/)[0].trim();
+  } else if (generated) {
+    finalBody = '';
+  } else {
+    finalBody = [leadOut, body].filter(Boolean).join('\n\n');
+    // Section landing pages: the live "Choose one of our ... to learn more" tiles are rebuilt from the collection.
+    finalBody = finalBody.replace(/\n+#{2,3} (?:Choose one of our|NOBreastScar Travel Kit)[\s\S]*$/, '').trim();
   }
-  if (path === '/about/reviews/' || path === '/about/testimonials/') {
-    // The banner of these pages repeats the quotes; the quotes are already in the body.
-    finalLead = '';
-  }
+  body = finalBody;
+  const finalLead = '';
 
   const words = (body + ' ' + finalLead).split(/\s+/).filter(Boolean).length;
   if (!generated && path !== '/' && words < 25) warn(path, `very little text imported (${words} words)`);
@@ -288,7 +307,7 @@ async function importPage(url, extras) {
   await mkdir(dirname(mdFile), { recursive: true });
   await writeFile(mdFile, frontmatter(fm) + '\n' + body + '\n');
 
-  return { path, title, words, images: (body.match(/!\[/g) || []).length, reviewItems };
+  return { path, title, words, images: (body.match(/!\[/g) || []).length, reviewItems, video };
 }
 
 // ---------- case studies ----------
@@ -406,7 +425,24 @@ for (const [from, to] of pendingFiles) {
 const reviews = pageResults.find((r) => r.path === '/about/reviews/')?.reviewItems ?? [];
 const testimonials = pageResults.find((r) => r.path === '/about/testimonials/')?.reviewItems ?? [];
 await mkdir(join(root, 'src', 'data'), { recursive: true });
-await writeFile(join(root, 'src', 'data', 'reviews.json'), JSON.stringify({ reviews, testimonials }, null, 2) + '\n');
+// The testimonial page embeds a YouTube video. The site shows a click-to-load facade, so keep the id and a local WebP
+// copy of the video's own thumbnail (no request to YouTube until the visitor clicks play).
+const video = pageResults.find((r) => r.path === '/about/testimonials/')?.video;
+let videoThumb;
+if (video) {
+  for (const name of ['maxresdefault', 'hqdefault']) {
+    const res = await fetch(`https://i.ytimg.com/vi/${video.id}/${name}.jpg`);
+    if (!res.ok) continue;
+    const dest = 'src/assets/images/pages/testimonial-video.webp';
+    await mkdir(join(root, 'src', 'assets', 'images', 'pages'), { recursive: true });
+    const sharp = (await import('sharp')).default;
+    await sharp(Buffer.from(await res.arrayBuffer())).webp({ quality: 82 }).toFile(join(root, dest));
+    videoThumb = dest;
+    break;
+  }
+  if (!videoThumb) warn('/about/testimonials/', 'could not fetch the video thumbnail');
+}
+await writeFile(join(root, 'src', 'data', 'reviews.json'), JSON.stringify({ reviews, testimonials, video: video ? { ...video, thumbnail: videoThumb } : undefined }, null, 2) + '\n');
 
 console.log(`Imported ${pageResults.length} pages and ${csResults.length} case studies`);
 console.log(`Case studies listed per gallery page:`, Object.fromEntries(Object.entries(membership).map(([k, v]) => [k, v.length])));

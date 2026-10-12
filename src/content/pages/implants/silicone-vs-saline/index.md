@@ -4,9 +4,14 @@ seoTitle: "Silicone vs Saline | Breast Implant Types | No Breast Scar Richmond"
 description: "One of the biggest decisions to make when you’re thinking of getting breast augmentation surgery is the type of implants you’re going to get."
 path: "/implants/silicone-vs-saline/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Silicone vs Saline"}]
-lead: "**One of the biggest decisions to make when you’re thinking of getting breast augmentation surgery is the type of implants you’re going to get.**\n\nThe two main types of implants are saline and silicone. It’s a subject of much debate amongst doctors as to which is better and the truth is there is no definitive answer since they each have their pros and cons.\n\nTo help you make an informed decision on which type of implants are best for you, below are the benefits of each."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**One of the biggest decisions to make when you’re thinking of getting breast augmentation surgery is the type of implants you’re going to get.**
+
+The two main types of implants are saline and silicone. It’s a subject of much debate amongst doctors as to which is better and the truth is there is no definitive answer since they each have their pros and cons.
+
+To help you make an informed decision on which type of implants are best for you, below are the benefits of each.
 
 ## Benefits of saline implants
 

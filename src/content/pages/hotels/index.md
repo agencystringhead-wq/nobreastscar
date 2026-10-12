@@ -14,7 +14,7 @@ Check out our Richmond hotel guide to learn all the amazing places to stay in to
 
 [Four Points by Sheraton Richmond](http://www.fourpointsrichmond.com/)
 
-[866-925-7881](tel:866-925-7881)
+[866-925-7881](tel:+18669257881)
 
 “Four Points by Sheraton Richmond is located among beautifully landscaped grounds, walking paths, and serene lakes in southest Virginia.”
 
@@ -22,7 +22,7 @@ Check out our Richmond hotel guide to learn all the amazing places to stay in to
 
 [Doubletree by Hilton Richmond-Midlothian](http://doubletree3.hilton.com/en/hotels/virginia/doubletree-by-hilton-hotel-richmond-midlothian-RICKSDT/index.html)
 
-[855-239-9397](tel:855-239-9397)
+[855-239-9397](tel:+18552399397)
 
 “Our spacious guest rooms, feature a microwave, refrigerator, comfortable Serta beds, an executive work area with ergonomic chairs and complimentary WiFi.”
 
@@ -30,7 +30,7 @@ Check out our Richmond hotel guide to learn all the amazing places to stay in to
 
 [Fairfield Inn & Suites by Marriott Richmond West](http://www.marriott.com/hotels/travel/ricfw-fairfield-inn-and-suites-richmond-midlothian/)
 
-[855-239-9483](tel:855-239-9483)
+[855-239-9483](tel:+18552399483)
 
 “The brand new Fairfield Inn & Suites Richmond-Midlothian is centrally located only minutes from downtown Richmond, Virginia and everywhere in between.”
 
@@ -38,7 +38,7 @@ Check out our Richmond hotel guide to learn all the amazing places to stay in to
 
 [Best Western plus Governer’s Inn](https://www.bestwestern.com/en_US/book/hotel-details.47077.html?iata=00171890&ssob=BLBWI0003G&cid=BLBWI0003G:yext:website:47077)
 
-[866-925-8648](tel:866-925-8648)
+[866-925-8648](tel:+18669258648)
 
 “The Governor’s Inn Hotel mixes the best in hospitality with key locations. From Sportsplex to the Chesterfield Indoor Aquatic Center, it’s dun for the whole family just minutes away from this Best Western Plus.”
 
@@ -46,6 +46,6 @@ Check out our Richmond hotel guide to learn all the amazing places to stay in to
 
 [Quirk Hotel](https://www.destinationhotels.com/quirk-hotel)
 
-[+1 804-340-6040](tel:8043406040)
+[+1 804-340-6040](tel:+18043406040)
 
 “Set in a 1916 downtown department store, this upscale boutique hotel is 2 miles from the Virginia Museum of Fine Arts.”

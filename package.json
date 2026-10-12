@@ -10,6 +10,7 @@
     "dev": "astro dev",
     "check:images": "node scripts/check-image-formats.mjs",
     "check:urls": "node scripts/check-urls.mjs",
+    "check:links": "node scripts/check-links.mjs",
     "fetch:images": "node scripts/fetch-images.mjs",
     "import:content": "node scripts/import-content.mjs",
     "build": "node scripts/check-image-formats.mjs && astro build",
@@ -22,11 +23,13 @@
     "@fontsource/source-sans-3": "^5.3.1",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",
+    "marked": "^18.1.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "cheerio": "^1.2.0",
+    "playwright-core": "^1.64.0",
     "turndown": "^7.2.4",
     "typescript": "^5.9.3"
   }

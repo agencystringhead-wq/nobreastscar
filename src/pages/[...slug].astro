@@ -1,26 +1,86 @@
 ---
-// Phase 2 stand-in: renders every imported page at its live URL so the URL check can pass.
-// Phase 4 replaces this body with PageLayout (hero, sidebar, prose styling, generated gallery grids).
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
+// Every imported page that has no dedicated route: procedure and implant pages, the travel guide pages, the About
+// page and the section landing pages (/procedures/, /implants/, /gallery/, /about/, /travel/).
+import { render } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import ChildCards from '../components/ChildCards.astro';
+import { allPages, excerpt, faqFromBody, metaDescription, type Page } from '../lib/content';
+import { sections, sectionOf } from '../data/nav';
 
 export async function getStaticPaths() {
-  const pages = await getCollection('pages');
+  // getStaticPaths runs outside the component scope, so this list lives inside it.
+  // Pages with their own route file.
+  const OWN_ROUTE = new Set([
+    '/',
+    '/contact/',
+    '/site-map/',
+    '/case-study/',
+    '/about/reviews/',
+    '/about/testimonials/',
+    '/gallery/breast-enlargement/',
+    '/gallery/breast-lift/',
+    '/gallery/breast-lift-with-implants/',
+  ]);
+  const pages = await allPages();
   return pages
-    .filter((p) => p.data.path !== '/')
-    .map((p) => ({
-      params: { slug: p.data.path.replace(/^\/|\/$/g, '') },
-      props: { page: p },
-    }));
+    .filter((p) => !OWN_ROUTE.has(p.data.path))
+    .map((p) => ({ params: { slug: p.data.path.replace(/^\/|\/$/g, '') }, props: { page: p } }));
 }
 
-const { page } = Astro.props;
+const { page } = Astro.props as { page: Page };
+const d = page.data;
 const { Content } = await render(page);
+
+// Landing pages get a card for every child page, built from that page's own title and opening text.
+const landing = sections.find((s) => s.href === d.path);
+const everything = await allPages();
+const travelImages = import.meta.glob<{ default: ImageMetadata }>('../assets/images/travel/*.webp', { eager: true });
+const travelImageFor: Record<string, string> = {
+  '/hotels/': 'hotels',
+  '/restaurants/': 'restaurants',
+  '/car-rentals/': 'car-rentals',
+  '/airlines/': 'richmond-airlines',
+  '/entertainment-and-landmarks/': 'memorial',
+};
+const cards = (landing?.links ?? [])
+  .filter((l) => l.href !== d.path)
+  .map((l) => {
+    const child = everything.find((p) => p.data.path === l.href);
+    const key = travelImageFor[l.href];
+    return {
+      href: l.href,
+      title: child?.data.title ?? l.label,
+      excerpt: child ? excerpt(child.body ?? '', 160) || (child.data.description ?? '') : '',
+      image: key ? travelImages[`../assets/images/travel/${key}.webp`]?.default : undefined,
+    };
+  });
+
+// FAQPage structured data on the implant FAQ page.
+const jsonLd: object[] = [];
+if (d.path === '/implants/implant-faq/') {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqFromBody(page.body ?? '').map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.text } })),
+  });
+}
+const description = metaDescription(d.description, page.body ?? '');
+const hasBody = Boolean(page.body?.trim());
+const section = sectionOf(d.path);
 ---
 
-<BaseLayout title={page.data.seoTitle} description={page.data.description}>
-  <section class="container-site py-16 max-w-[72ch] mx-auto">
-    <h1 class="mb-6 text-plum">{page.data.title}</h1>
-    <Content />
-  </section>
-</BaseLayout>
+<PageLayout
+  title={d.title}
+  seoTitle={d.seoTitle}
+  description={description}
+  path={d.path}
+  breadcrumb={d.breadcrumb}
+  cta={d.cta}
+  jsonLd={jsonLd}
+  sidebar={Boolean(section)}
+>
+  <div class="prose-nb">
+    {hasBody ? <Content /> : <p>{d.description}</p>}
+  </div>
+  {cards.length > 0 && <ChildCards items={cards} heading={landing ? `Explore ${landing.title.toLowerCase()}` : undefined} />}
+</PageLayout>

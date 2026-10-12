@@ -4,9 +4,14 @@ seoTitle: "How long Breast implants last for? | No Breast Scar Richmond"
 description: "One key question that women who opt for breast surgery are always curious about is how long breast implants last for. There isn’t a definitive answer to this question since it will depend on the individual."
 path: "/implants/how-long-do-they-last/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"How long do they last?"}]
-lead: "**If you’re considering getting breast augmentation surgery then you’ll likely have a list of questions then you’ll likely have a list of questions such as: what type of implants are best? Will I be happy with the results? How do I choose the right surgeon? Things like – which type of implants are best? Will I be happy with the results? How do I choose the right surgeon?**\n\nOne key question that women who opt for breast surgery usually ask is, “How long do implants last for?”. Unfortunately, there is no definitive answer to this question since each result is uniquely dependent on the individual.\n\nFor some women, their implants last for 20+ years, whereas other times the implants may need to be replaced after less than 5 years. However, implant manufacturers state that they last for 10 years on average, so this is a good figure to go by."
 cta: {"heading":"Ready to start this life changing process?","text":"Breast implants don’t necessarily last forever. Evaluate your options and choose a solution that works for you. Don’t hesitate to call us with any question or concern."}
 ---
+
+**If you’re considering getting breast augmentation surgery then you’ll likely have a list of questions then you’ll likely have a list of questions such as: what type of implants are best? Will I be happy with the results? How do I choose the right surgeon? Things like – which type of implants are best? Will I be happy with the results? How do I choose the right surgeon?**
+
+One key question that women who opt for breast surgery usually ask is, “How long do implants last for?”. Unfortunately, there is no definitive answer to this question since each result is uniquely dependent on the individual.
+
+For some women, their implants last for 20+ years, whereas other times the implants may need to be replaced after less than 5 years. However, implant manufacturers state that they last for 10 years on average, so this is a good figure to go by.
 
 ## Signs that implants need to be replaced
 

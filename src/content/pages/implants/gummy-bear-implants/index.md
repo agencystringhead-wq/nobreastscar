@@ -4,9 +4,14 @@ seoTitle: "Gummy Bear Implants | No Breast Scar Richmond"
 description: "Gummy bear implants are a relatively new high-strength form of silicone implants that are used in breast augmentation surgery."
 path: "/implants/gummy-bear-implants/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Gummy Bear Implants"}]
-lead: "Gummy bear implants are a relatively new high-strength form of silicone implants that are used in breast augmentation surgery.\n\nThey get their name from the fact that they’re very cohesive, meaning even if you cut them in half, they retain their shape.\n\nGummy bear implants come with some key advantages over regular silicone implants, which is why many women are now opting for them when getting breast augmentation."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+Gummy bear implants are a relatively new high-strength form of silicone implants that are used in breast augmentation surgery.
+
+They get their name from the fact that they’re very cohesive, meaning even if you cut them in half, they retain their shape.
+
+Gummy bear implants come with some key advantages over regular silicone implants, which is why many women are now opting for them when getting breast augmentation.
 
 ## The benefits of gummy bear implants?
 
