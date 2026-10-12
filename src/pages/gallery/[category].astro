@@ -1,10 +1,16 @@
 ---
-// The three gallery category pages: the live intro text, then the case studies the live page lists, blurred by default.
-import { render } from 'astro:content';
+// The three gallery category pages: the live intro, then the case studies the live page lists as a full-width photo
+// grid (blurred by default), then the other galleries.
 import PageLayout from '../../layouts/PageLayout.astro';
+import Band from '../../components/Band.astro';
+import RichBlocks from '../../components/RichBlocks.astro';
 import BlurReveal from '../../components/BlurReveal.astro';
 import CaseCard from '../../components/CaseCard.astro';
+import CardGrid from '../../components/CardGrid.astro';
 import { allPages, studies, metaDescription, galleryLabels } from '../../lib/content';
+import { parseBody } from '../../lib/blocks';
+import { displayTitle } from '../../lib/titles';
+import { resolveImage } from '../../lib/images';
 
 export async function getStaticPaths() {
   const pages = await allPages();
@@ -12,34 +18,57 @@ export async function getStaticPaths() {
   return Object.keys(galleryLabels).map((category) => ({
     params: { category },
     props: {
+      category,
       page: pages.find((p) => p.data.path === `/gallery/${category}/`)!,
       list: all.filter((s) => s.data.galleries.includes(category as 'breast-lift')),
+      counts: Object.fromEntries(Object.keys(galleryLabels).map((c) => [c, all.filter((s) => s.data.galleries.includes(c as 'breast-lift')).length])),
     },
   }));
 }
 
-const { page, list } = Astro.props;
+const { category, page, list, counts } = Astro.props;
 const d = page.data;
-const { Content } = await render(page);
+const { intro } = parseBody(page.body ?? '');
+const firstP = intro.findIndex((b) => b.type === 'p');
+const lead = firstP >= 0 ? (intro[firstP] as any).html.replace(/<\/?strong>/g, '') : undefined;
+const rest = intro.filter((_, i) => i !== firstP);
+
+// Other galleries, with the live tile image from the Gallery landing page.
+const pages = await allPages();
+const tiles = new Map((pages.find((p) => p.data.path === '/gallery/')?.data.tiles ?? []).map((t) => [t.href, t.image]));
+const others = await Promise.all(
+  Object.entries(galleryLabels)
+    .filter(([c]) => c !== category)
+    .map(async ([c, label]) => ({
+      href: `/gallery/${c}/`,
+      title: label + ' Gallery',
+      meta: `${counts[c]} case studies`,
+      image: await resolveImage(tiles.get(`/gallery/${c}/`)),
+    })),
+);
 ---
 
-<PageLayout
-  title={d.title}
-  seoTitle={d.seoTitle}
-  description={metaDescription(d.description, page.body ?? '')}
-  path={d.path}
-  breadcrumb={d.breadcrumb}
-  cta={d.cta}
->
-  <div class="prose-nb">
-    <Content />
-  </div>
-  <section class="mt-10" aria-labelledby="cases-heading">
-    <h2 id="cases-heading" class="sr-only">Case studies</h2>
+<PageLayout title={displayTitle(d.title)} seoTitle={d.seoTitle} description={metaDescription(d.description, page.body ?? '')} path={d.path} breadcrumb={d.breadcrumb} lead={lead} cta={d.cta}>
+  {
+    rest.length > 0 && (
+      <Band tone="cream" tight>
+        <div class="max-w-[720px]">
+          <RichBlocks blocks={rest} />
+        </div>
+      </Band>
+    )
+  }
+  <Band tone="blush" id="cases">
     <BlurReveal>
-      <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+      <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
       </ul>
     </BlurReveal>
-  </section>
+  </Band>
+  <Fragment slot="related">
+    <Band tone="cream">
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">More galleries</h2>
+      <CardGrid items={others} />
+    </Band>
+  </Fragment>
 </PageLayout>

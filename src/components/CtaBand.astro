@@ -1,0 +1,24 @@
+---
+// Full-width coral consult band: "Online Consultation" and the phone number.
+import { site } from '../data/site';
+
+interface Props {
+  heading?: string;
+  /** Optional supporting sentence (the page's own live call-to-action text). */
+  text?: string;
+}
+const { heading = 'No-cost internet consultation', text } = Astro.props;
+---
+
+<section class="bg-coral text-plum">
+  <div class="container-site py-12 max-md:py-10 flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
+    <div class="min-w-0 flex-[1_1_420px]">
+      <h2 class="font-display text-[clamp(1.75rem,3.4vw,2.6rem)] leading-[1.1] m-0 text-plum">{heading}</h2>
+      {text && <p class="mt-3 mb-0 text-[18px] max-w-[60ch]">{text}</p>}
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <a href="#consult" class="btn bg-plum text-cream hover:bg-plum-2 hover:text-cream">Online Consultation</a>
+      <a href={site.phoneHref} class="btn border-plum text-plum hover:bg-plum hover:text-cream">{site.phone}</a>
+    </div>
+  </div>
+</section>

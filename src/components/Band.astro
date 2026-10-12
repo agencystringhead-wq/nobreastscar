@@ -1,0 +1,25 @@
+---
+// A full-width coloured band with the standard 1240px container. Alternating tones give long pages their rhythm.
+interface Props {
+  tone?: 'cream' | 'blush' | 'mint' | 'butter' | 'plum' | 'white';
+  id?: string;
+  class?: string;
+  /** Extra vertical padding for hero-like bands. */
+  tight?: boolean;
+}
+const { tone = 'cream', id, class: className = '', tight = false } = Astro.props;
+const tones = {
+  cream: 'bg-cream text-ink',
+  blush: 'bg-blush text-ink',
+  mint: 'bg-mint text-ink',
+  butter: 'bg-butter text-ink',
+  plum: 'bg-plum text-cream',
+  white: 'bg-white text-ink',
+};
+---
+
+<section id={id} class:list={[tones[tone], tight ? 'py-10 md:py-12' : 'py-14 md:py-20', 'scroll-mt-36', className]}>
+  <div class="container-site">
+    <slot />
+  </div>
+</section>

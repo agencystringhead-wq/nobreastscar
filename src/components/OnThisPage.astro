@@ -1,0 +1,57 @@
+---
+// Sticky "On this page" pill bar under the hero. Shown only when a page has three or more sections.
+interface Props {
+  items: { id: string; label: string }[];
+}
+const { items } = Astro.props;
+---
+
+{
+  items.length >= 3 && (
+    <nav aria-label="On this page" class="sticky top-[73px] z-30 bg-cream/95 backdrop-blur border-b border-line" data-onthispage>
+      <div class="container-site flex items-center gap-4 py-3">
+        <span class="eyebrow text-brick-deep shrink-0 max-sm:hidden">On this page</span>
+        <ul class="list-none m-0 p-0 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {items.map((it) => (
+            <li class="shrink-0">
+              <a href={`#${it.id}`} data-target={it.id} class="otp-link inline-flex items-center min-h-[44px] px-4 rounded-full text-[14px] font-semibold no-underline text-ink-soft bg-blush hover:bg-blush-2 hover:text-ink whitespace-nowrap">
+                {it.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+<style is:global>
+  .otp-link[aria-current='true'] {
+    background: var(--plum);
+    color: var(--cream);
+  }
+</style>
+
+<script>
+  const bar = document.querySelector('[data-onthispage]');
+  if (bar) {
+    const links = Array.from(bar.querySelectorAll<HTMLAnchorElement>('.otp-link'));
+    const map = new Map<Element, HTMLAnchorElement>();
+    links.forEach((l) => {
+      const el = document.getElementById(l.dataset.target!);
+      if (el) map.set(el, l);
+    });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((l) => l.removeAttribute('aria-current'));
+          map.get(e.target)?.setAttribute('aria-current', 'true');
+          map.get(e.target)?.scrollIntoView({ block: 'nearest', inline: 'center' });
+        });
+      },
+      { rootMargin: '-35% 0px -55% 0px' },
+    );
+    map.forEach((_, el) => io.observe(el));
+  }
+</script>

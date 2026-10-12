@@ -1,35 +1,39 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Band from '../../components/Band.astro';
 import QuoteCard from '../../components/QuoteCard.astro';
 import VideoFacade from '../../components/VideoFacade.astro';
 import data from '../../data/reviews.json';
 import videoThumb from '../../assets/images/pages/testimonial-video.webp';
 import { pageByPath, metaDescription } from '../../lib/content';
+import { displayTitle } from '../../lib/titles';
 
 const page = (await pageByPath('/about/testimonials/'))!;
 const d = page.data;
 const tones = ['blush', 'mint'] as const;
 ---
 
-<PageLayout title={d.title} seoTitle={d.seoTitle} description={metaDescription(d.description, '')} path={d.path} breadcrumb={d.breadcrumb}>
-  <ul class="list-none m-0 p-0 grid grid-cols-1 gap-5">
-    {
-      data.testimonials.map((t, i) => (
-        <li>
-          <QuoteCard label={t.label} text={t.text} tone={tones[i % tones.length]} />
-        </li>
-      ))
-    }
-  </ul>
-
+<PageLayout title={displayTitle(d.title)} seoTitle={d.seoTitle} description={metaDescription(d.description, '')} path={d.path} breadcrumb={d.breadcrumb} lead={d.description}>
+  <Band tone="cream">
+    <h2 class="sr-only">Patient testimonials</h2>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+      {
+        data.testimonials.map((t, i) => (
+          <li class="flex [&>figure]:w-full">
+            <QuoteCard label={t.label} text={t.text} tone={tones[i % tones.length]} />
+          </li>
+        ))
+      }
+    </ul>
+  </Band>
   {
     data.video && (
-      <section class="mt-12" aria-labelledby="video-heading">
-        <h2 id="video-heading" class="text-[clamp(1.75rem,3vw,2.25rem)] mb-5 text-plum">Patient video</h2>
+      <Band tone="mint" id="video">
+        <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-6 text-plum">Patient video</h2>
         <VideoFacade id={data.video.id} title={data.video.title} thumbnail={videoThumb} />
-        <p class="mt-3 text-[14px] text-ink-soft">The video loads from YouTube only when you press play.</p>
-      </section>
+        <p class="mt-3 mb-0 text-[14px] text-ink-soft">The video loads from YouTube only when you press play.</p>
+        <p class="mt-8 mb-0"><a href="/about/reviews/" class="font-bold">Read patient reviews →</a></p>
+      </Band>
     )
   }
-  <p class="mt-10"><a href="/about/reviews/" class="font-bold">Read patient reviews →</a></p>
 </PageLayout>

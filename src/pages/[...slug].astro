@@ -1,15 +1,22 @@
 ---
-// Every imported page that has no dedicated route: procedure and implant pages, the travel guide pages, the About
-// page and the section landing pages (/procedures/, /implants/, /gallery/, /about/, /travel/).
-import { render } from 'astro:content';
+// Every imported page without its own route file: procedure and implant pages, the travel guide pages, the About page
+// and the section landing pages. The body is split at each H2 into full-width bands.
 import PageLayout from '../layouts/PageLayout.astro';
-import ChildCards from '../components/ChildCards.astro';
-import { allPages, excerpt, faqFromBody, metaDescription, type Page } from '../lib/content';
-import { sections, sectionOf } from '../data/nav';
+import Band from '../components/Band.astro';
+import SectionView from '../components/SectionView.astro';
+import RichBlocks from '../components/RichBlocks.astro';
+import Accordion from '../components/Accordion.astro';
+import CardGrid from '../components/CardGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { allPages, metaDescription, faqFromBody, type Page } from '../lib/content';
+import { parseBody, type Section } from '../lib/blocks';
+import { displayTitle } from '../lib/titles';
+import { resolveImage, isPhotoShaped } from '../lib/images';
+import { sections as navSections } from '../data/nav';
+import { childCards, relatedCards } from '../lib/related';
 
 export async function getStaticPaths() {
   // getStaticPaths runs outside the component scope, so this list lives inside it.
-  // Pages with their own route file.
   const OWN_ROUTE = new Set([
     '/',
     '/contact/',
@@ -29,33 +36,53 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props as { page: Page };
 const d = page.data;
-const { Content } = await render(page);
+const { intro, sections } = parseBody(page.body ?? '');
 
-// Landing pages get a card for every child page, built from that page's own title and opening text.
-const landing = sections.find((s) => s.href === d.path);
-const everything = await allPages();
-const travelImages = import.meta.glob<{ default: ImageMetadata }>('../assets/images/travel/*.webp', { eager: true });
-const travelImageFor: Record<string, string> = {
-  '/hotels/': 'hotels',
-  '/restaurants/': 'restaurants',
-  '/car-rentals/': 'car-rentals',
-  '/airlines/': 'richmond-airlines',
-  '/entertainment-and-landmarks/': 'memorial',
-};
-const cards = (landing?.links ?? [])
-  .filter((l) => l.href !== d.path)
-  .map((l) => {
-    const child = everything.find((p) => p.data.path === l.href);
-    const key = travelImageFor[l.href];
-    return {
-      href: l.href,
-      title: child?.data.title ?? l.label,
-      excerpt: child ? excerpt(child.body ?? '', 160) || (child.data.description ?? '') : '',
-      image: key ? travelImages[`../assets/images/travel/${key}.webp`]?.default : undefined,
-    };
-  });
+// Hero intro: the page's own first paragraph (bold markers removed). The rest of the intro becomes the first band.
+const firstP = intro.findIndex((b) => b.type === 'p');
+const leadBlock = firstP >= 0 ? (intro[firstP] as any) : null;
+let leadHtml: string | undefined = leadBlock?.html.replace(/<\/?strong>/g, '');
+const introRest = intro.filter((_, i) => i !== firstP);
+if (!leadHtml && !introRest.length) leadHtml = d.description; // pages whose live body is empty (the /gallery/ landing)
 
-// FAQPage structured data on the implant FAQ page.
+// Hero photo: only an image that is part of the intro, and only if it is big enough to look good.
+let heroImage: ImageMetadata | undefined;
+let heroAlt = '';
+const introImage = introRest.find((b) => b.type === 'image') as any;
+if (introImage) {
+  const m = await resolveImage(introImage.src);
+  if (m && isPhotoShaped(m, 380)) {
+    heroImage = m;
+    heroAlt = introImage.alt;
+  }
+}
+const introBlocks = introRest.filter((b) => !(heroImage && b === introImage));
+
+// Bands: the intro remainder, then one band per H2, with consecutive question headings merged into one accordion band.
+type BandSpec = { kind: 'intro'; blocks: typeof introBlocks } | { kind: 'section'; section: Section } | { kind: 'accordion'; items: { id: string; q: string; blocks: Section['blocks'] }[] };
+const bands: BandSpec[] = [];
+if (introBlocks.length) bands.push({ kind: 'intro', blocks: introBlocks });
+for (let i = 0; i < sections.length; i++) {
+  const s = sections[i];
+  if (s.question) {
+    const items = [];
+    while (i < sections.length && sections[i].question) {
+      items.push({ id: sections[i].id, q: sections[i].heading!, blocks: sections[i].blocks });
+      i++;
+    }
+    i--;
+    bands.push({ kind: 'accordion', items });
+  } else bands.push({ kind: 'section', section: s });
+}
+const tones = ['cream', 'blush', 'cream', 'mint', 'cream', 'butter'] as const;
+
+// "On this page": every H2 (accordion groups list each question).
+const onThisPage = sections.map((s) => ({ id: s.id, label: s.heading! }));
+
+const landing = navSections.find((s) => s.href === d.path);
+const cards = landing ? await childCards(landing) : [];
+const related = landing ? null : await relatedCards(d.path);
+
 const jsonLd: object[] = [];
 if (d.path === '/implants/implant-faq/') {
   jsonLd.push({
@@ -65,22 +92,62 @@ if (d.path === '/implants/implant-faq/') {
   });
 }
 const description = metaDescription(d.description, page.body ?? '');
-const hasBody = Boolean(page.body?.trim());
-const section = sectionOf(d.path);
 ---
 
 <PageLayout
-  title={d.title}
+  title={displayTitle(d.title)}
   seoTitle={d.seoTitle}
   description={description}
   path={d.path}
   breadcrumb={d.breadcrumb}
+  lead={leadHtml}
+  image={heroImage}
+  imageAlt={heroAlt}
+  onThisPage={onThisPage}
   cta={d.cta}
   jsonLd={jsonLd}
-  sidebar={Boolean(section)}
 >
-  <div class="prose-nb">
-    {hasBody ? <Content /> : <p>{d.description}</p>}
-  </div>
-  {cards.length > 0 && <ChildCards items={cards} heading={landing ? `Explore ${landing.title.toLowerCase()}` : undefined} />}
+  {
+    cards.length > 0 && (
+      <Band tone="cream">
+        <CardGrid items={cards} />
+      </Band>
+    )
+  }
+
+  {
+    bands.map((b, i) => {
+      const tone = tones[(i + (cards.length ? 1 : 0)) % tones.length];
+      const midCta = bands.length >= 4 && i === 2;
+      return (
+        <>
+          {b.kind === 'intro' && (
+            <Band tone={tone}>
+              <div class="max-w-[720px]">
+                <RichBlocks blocks={b.blocks} />
+              </div>
+            </Band>
+          )}
+          {b.kind === 'section' && <SectionView section={b.section} tone={tone} index={i} />}
+          {b.kind === 'accordion' && (
+            <Band tone={tone}>
+              <Accordion items={b.items} />
+            </Band>
+          )}
+          {midCta && <CtaBand />}
+        </>
+      );
+    })
+  }
+
+  {
+    related && (
+      <Fragment slot="related">
+        <Band tone="blush">
+          <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">{related.title}</h2>
+          <CardGrid items={related.items} />
+        </Band>
+      </Fragment>
+    )
+  }
 </PageLayout>

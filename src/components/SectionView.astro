@@ -1,0 +1,66 @@
+---
+// One H2 section of an imported page, as a full-width band. A section with a single image becomes a two-column block
+// (text and image, alternating sides); several images become a card grid; question headings are handled by the page.
+import Band from './Band.astro';
+import Img from './Img.astro';
+import RichBlocks from './RichBlocks.astro';
+import Accordion from './Accordion.astro';
+import { resolveImage } from '../lib/images';
+import { toParts, type Section } from '../lib/blocks';
+
+interface Props {
+  section: Section;
+  tone: 'cream' | 'blush' | 'mint' | 'butter';
+  index: number;
+}
+const { section, tone, index } = Astro.props;
+const parts = toParts(section.blocks, section.id);
+
+const imageBlocks = section.blocks.filter((b) => b.type === 'image');
+// Exactly one image and no media grid: two-column layout.
+const split = imageBlocks.length === 1 ? ((imageBlocks[0] as any).src as string) : null;
+const splitImage = split ? await resolveImage(split) : undefined;
+const textParts = split ? parts.map((p) => (p.kind === 'blocks' ? { ...p, blocks: p.blocks.filter((b) => b.type !== 'image') } : p)) : parts;
+const imageLeft = index % 2 === 1;
+
+// Media cards (travel guide listings).
+const mediaItems = [] as { image?: ImageMetadata; alt: string; href?: string; blocks: any[] }[];
+for (const p of parts) if (p.kind === 'media') for (const it of p.items) mediaItems.push({ image: await resolveImage(it.image.src), alt: it.image.alt, href: it.image.href, blocks: it.blocks });
+---
+
+<Band tone={tone} id={section.id}>
+  <div class:list={['grid gap-10 items-start', splitImage && 'lg:grid-cols-2 lg:gap-16']}>
+    <div class:list={['min-w-0', splitImage && imageLeft && 'lg:order-2']}>
+      {section.heading && <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-6 text-plum max-w-[24ch]">{section.heading}</h2>}
+      <div class="max-w-[720px]">
+        {
+          textParts.map((p) =>
+            p.kind === 'blocks' ? <RichBlocks blocks={p.blocks} /> : p.kind === 'accordion' ? <Accordion items={p.items} openFirst={false} /> : null,
+          )
+        }
+      </div>
+    </div>
+    {
+      splitImage && (
+        <div class:list={['min-w-0', imageLeft && 'lg:order-1']}>
+          <Img src={splitImage} alt={(imageBlocks[0] as any).alt} widths={[400, 640, 800]} sizes="(min-width: 1024px) 560px, 90vw" class="rounded-[8px] w-full h-auto max-w-[560px]" />
+        </div>
+      )
+    }
+  </div>
+
+  {
+    mediaItems.length > 0 && (
+      <ul class="list-none m-0 mt-10 p-0 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {mediaItems.map((m) => (
+          <li class="bg-white rounded-[8px] overflow-hidden border border-line flex flex-col">
+            {m.image && (m.href ? <a href={m.href} target="_blank" rel="noopener"><Img src={m.image} alt={m.alt} widths={[320, 480, 640]} sizes="(min-width: 1024px) 380px, 90vw" class="w-full h-auto" /></a> : <Img src={m.image} alt={m.alt} widths={[320, 480, 640]} sizes="(min-width: 1024px) 380px, 90vw" class="w-full h-auto" />)}
+            <div class="p-5 text-[16px] [&_p]:m-0 [&_p]:mb-2 [&_p:last-child]:mb-0">
+              <RichBlocks blocks={m.blocks} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Band>

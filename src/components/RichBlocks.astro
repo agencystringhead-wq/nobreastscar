@@ -1,0 +1,74 @@
+---
+// Renders imported content blocks: paragraphs, sub-headings, check-lists, card lists, numbered steps, quotes,
+// scrolling tables and images. Everything shown comes from the live page.
+import Img from './Img.astro';
+import { resolveImage } from '../lib/images';
+import type { Block } from '../lib/blocks';
+
+interface Props {
+  blocks: Block[];
+}
+const { blocks } = Astro.props;
+const images = new Map<string, ImageMetadata | undefined>();
+for (const b of blocks) if (b.type === 'image') images.set(b.src, await resolveImage(b.src));
+const allTitled = (items: { title?: string }[]) => items.length >= 2 && items.every((i) => i.title);
+---
+
+{
+  blocks.map((b) => {
+    if (b.type === 'p') return <p class="m-0 mb-5 text-[18px] leading-[1.75] [overflow-wrap:anywhere]" set:html={b.html} />;
+    if (b.type === 'question') return <p class="m-0 mb-3 font-bold" set:html={b.html} />;
+    if (b.type === 'sub')
+      return (
+        <h3 class="font-display text-[clamp(1.35rem,2.2vw,1.65rem)] leading-[1.2] mt-8 mb-3 text-plum" set:html={b.html} />
+      );
+    if (b.type === 'quote') return <blockquote class="my-6 pl-5 border-l-4 border-coral font-display text-[22px] leading-[1.45]" set:html={b.html} />;
+    if (b.type === 'table')
+      return (
+        <div class="table-wrap my-6 overflow-x-auto rounded-[8px] border border-line bg-white">
+          <div class="prose-table min-w-[480px]" set:html={b.html} />
+        </div>
+      );
+    if (b.type === 'image') {
+      const m = images.get(b.src);
+      if (!m) return null;
+      const img = <Img src={m} alt={b.alt} widths={[480, 720, 960]} sizes="(min-width: 1024px) 720px, 90vw" class="rounded-[8px] w-full h-auto" />;
+      return <figure class="my-6 m-0">{b.href ? <a href={b.href}>{img}</a> : img}</figure>;
+    }
+    if (b.type === 'list') {
+      if (b.ordered)
+        return (
+          <ol class="list-none m-0 mb-6 p-0 flex flex-col gap-3">
+            {b.items.map((it, i) => (
+              <li class="flex gap-4 bg-white/70 border border-line rounded-[8px] p-5">
+                <span aria-hidden="true" class="font-display text-[34px] leading-none text-coral min-w-10">{String(i + 1).padStart(2, '0')}</span>
+                <div class="flex-1 [&_p]:m-0" set:html={it.html} />
+              </li>
+            ))}
+          </ol>
+        );
+      if (allTitled(b.items))
+        return (
+          <ul class="list-none m-0 mb-6 p-0 grid gap-4 sm:grid-cols-2 [&>li:last-child:nth-child(odd)]:sm:col-span-2">
+            {b.items.map((it) => (
+              <li class="bg-white/80 border border-line rounded-[8px] p-6 flex flex-col gap-2">
+                <h4 class="font-display text-[22px] leading-[1.2] m-0 text-plum">{it.title}</h4>
+                {it.rest && <div class="text-[16px] leading-[1.65] text-ink-soft [overflow-wrap:anywhere]" set:html={it.rest} />}
+              </li>
+            ))}
+          </ul>
+        );
+      return (
+        <ul class="list-none m-0 mb-6 p-0 flex flex-col gap-3">
+          {b.items.map((it) => (
+            <li class="flex gap-3">
+              <span aria-hidden="true" class="mt-1 size-6 shrink-0 rounded-full bg-coral/25 text-brick-deep flex items-center justify-center text-[13px] font-bold">✓</span>
+              <span class="flex-1 text-[18px] leading-[1.65] [overflow-wrap:anywhere]" set:html={it.html} />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  })
+}

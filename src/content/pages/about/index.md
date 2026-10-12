@@ -5,6 +5,7 @@ description: "Dr Lynam is a board-certified best breast surgeon in Richmond, VA 
 path: "/about/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"About"}]
 cta: {"heading":"Ready to start this life changing process?","text":"When performed properly a breast augmentation\nis relatively comfortable and low pain.\nTrust a team with experience and results."}
+tiles: [{"href":"/about/reviews/","image":"../../../assets/images/doctor/box-image-1.webp"},{"href":"/about/testimonials/","image":"../../../assets/images/doctor/smiling.webp"}]
 ---
 
 Dr. Gregory T Lynam is a board-certified plastic and maxillofacial surgeon in Richmond, VA.
