@@ -1,0 +1,3 @@
+# STAGING ONLY. Remove this X-Robots-Tag rule on launch day (SPEC §9).
+/*
+  X-Robots-Tag: noindex, nofollow

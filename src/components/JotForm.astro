@@ -1,0 +1,42 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+const formUrl = `https://form.jotform.com/${site.jotformId}`;
+---
+
+<!-- Plain iframe embed. The jsform script is deliberately not loaded (SPEC §6). -->
+<div class={className}>
+  <iframe
+    src={formUrl}
+    title={site.jotformTitle}
+    loading="lazy"
+    allow="geolocation; microphone; camera; fullscreen; payment"
+    width="100%"
+    height="865"
+    scrolling="no"
+    data-jotform={site.jotformId}
+    style="width:100%;height:865px;border:0;display:block"></iframe>
+  <p class="m-0 mt-3 text-[14px] text-ink-soft">
+    Form not loading? Call <a href={site.phoneHref} class="font-bold">{site.phone}</a>
+  </p>
+</div>
+
+<script>
+  // Accept only JotForm's own origin and only the "setHeight:<px>:<formId>" message.
+  window.addEventListener('message', (event) => {
+    if (event.origin !== 'https://form.jotform.com') return;
+    if (typeof event.data !== 'string') return;
+    const match = /^setHeight:(\d{2,5}):(\d+)$/.exec(event.data);
+    if (!match) return;
+    const [, px, formId] = match;
+    document
+      .querySelectorAll<HTMLIFrameElement>(`iframe[data-jotform="${formId}"]`)
+      .forEach((frame) => {
+        if (frame.contentWindow === event.source) frame.style.height = `${px}px`;
+      });
+  });
+</script>

@@ -1,0 +1,13 @@
+---
+import { site } from '../data/site';
+---
+
+<div class="bg-coral text-plum text-[13px] font-semibold">
+  <div class="container-site py-2 flex flex-wrap justify-between items-center gap-x-6 gap-y-1">
+    <span>{site.utilityText}</span>
+    <div class="flex gap-5">
+      <a href={site.phoneHref} class="text-plum no-underline hover:text-plum hover:underline py-1">{site.phone}</a>
+      <a href="/contact/" class="text-plum hover:text-plum py-1">Online Consultation</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+# STAGING ONLY. Replace with the production robots.txt on launch day (SPEC §9).
+User-agent: *
+Disallow: /

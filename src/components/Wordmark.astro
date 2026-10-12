@@ -1,0 +1,21 @@
+---
+interface Props {
+  /** Display size of the "No Breast Scar" text. */
+  size?: 'md' | 'lg';
+  class?: string;
+}
+const { size = 'md', class: className = '' } = Astro.props;
+---
+
+<span class:list={['inline-flex items-baseline gap-[10px] whitespace-nowrap', className]}>
+  <span
+    class:list={[
+      'font-display font-normal tracking-[-0.01em] leading-none',
+      size === 'lg' ? 'text-[32px]' : 'text-[27px]',
+    ]}
+    style="font-variation-settings: 'opsz' 72"
+  >
+    No Breast <span class="italic text-coral">Scar</span>
+  </span>
+  <span class="text-[11px] tracking-[0.16em] uppercase text-on-plum-soft hidden sm:inline">Richmond, VA</span>
+</span>
