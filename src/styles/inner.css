@@ -1,4 +1,4 @@
-/* Inner pages: long-form prose imported from the live site, and the blur-until-chosen photo frames. */
+/* Inner pages: long-form prose imported from the live site, . */
 
 .prose-nb {
   max-width: 72ch;
@@ -100,27 +100,6 @@
   border-bottom: 1px solid var(--line);
   padding: 0.6rem 0.75rem;
   text-align: left;
-}
-
-/* Before/after photos: blurred until the visitor chooses to see them. Used by BlurReveal. */
-.blur-frame {
-  overflow: hidden;
-}
-.blur-photo {
-  filter: blur(18px);
-  transform: scale(1.12);
-  transition:
-    filter 300ms ease,
-    transform 300ms ease;
-}
-[data-blur-group][data-revealed='true'] .blur-photo {
-  filter: none;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .blur-photo {
-    transition: none;
-  }
 }
 
 .prose-nb h2 strong,
