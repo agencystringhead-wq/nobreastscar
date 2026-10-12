@@ -1,0 +1,64 @@
+---
+import home from '../../data/home.json';
+import Placeholder from '../Placeholder.astro';
+
+const i = home.implants;
+const tones: Record<string, { card: string; img: string; age: string; text: string }> = {
+  blush: { card: 'bg-blush', img: 'bg-blush-2 text-ink-soft', age: 'text-brick', text: 'text-ink-soft' },
+  mint: { card: 'bg-mint', img: 'bg-[#A9D2C7] text-teal', age: 'text-teal', text: 'text-[#2E4A47]' },
+  butter: { card: 'bg-butter', img: 'bg-[#EED597] text-ink-soft', age: 'text-[#6B4B00]', text: 'text-ink-soft' },
+};
+---
+
+<section class="bg-cream">
+  <div class="container-site py-24 max-md:py-14">
+    <div class="eyebrow text-brick mb-3.5">{i.eyebrow}</div>
+    <h2 class="mb-2.5">{i.title}</h2>
+    <p class="m-0 mb-10 text-ink-soft text-[18px]">{i.subtitle}</p>
+
+    <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))] gap-[18px]">
+      {
+        i.cards.map((c) => {
+          const t = tones[c.tone];
+          return (
+            <li class="fade-up flex">
+              <a href={c.href} class:list={['no-underline text-ink hover:text-ink rounded-[8px] overflow-hidden flex flex-col w-full', t.card]}>
+                <Placeholder label={c.placeholder} class:list={['aspect-[5/4]', t.img]} />
+                <div class="p-[22px]">
+                  <div class="flex justify-between items-baseline gap-3">
+                    <span class="font-display text-[28px]">{c.title}</span>
+                    <span class:list={['text-[13px] font-bold', t.age]}>{c.age}</span>
+                  </div>
+                  <div class:list={['text-[15px] mt-1.5', t.text]}>{c.text}</div>
+                </div>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <div class="mt-[22px] bg-plum text-cream rounded-[8px] p-8 max-sm:p-6 flex flex-wrap gap-x-12 gap-y-7 items-center">
+      <div class="flex-[1_1_260px] min-w-0">
+        <div class="eyebrow text-on-plum-pink mb-1.5">{i.lifespan.eyebrow}</div>
+        <div class="font-display text-[26px] leading-[1.2]">{i.lifespan.heading}</div>
+        <a href={i.lifespan.link.href} class="text-coral hover:text-cream font-bold no-underline inline-block mt-2.5">{i.lifespan.link.label} →</a>
+      </div>
+      <ul class="flex-[2_1_480px] list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-[18px]">
+        {
+          i.lifespan.stats.map((s) => (
+            <li>
+              <div class="font-display text-[46px] text-coral leading-none">{s.value}</div>
+              <div class="text-on-plum text-[14px] mt-1.5">{s.label}</div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-7 flex flex-wrap items-center gap-2.5">
+      <span class="eyebrow text-ink-soft mr-1.5">{i.compareLabel}</span>
+      {i.compareLinks.map((l) => <a href={l.href} class="no-underline text-ink hover:text-brick-deep bg-blush rounded-full px-[18px] py-[9px] min-h-[44px] inline-flex items-center text-[15px] font-semibold">{l.label}</a>)}
+    </div>
+  </div>
+</section>

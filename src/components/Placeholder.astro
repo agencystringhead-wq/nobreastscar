@@ -1,0 +1,13 @@
+---
+interface Props {
+  /** Visible label, written in [brackets] so unfinished images are obvious. */
+  label: string;
+  class?: string;
+}
+const { label, class: className = '' } = Astro.props;
+---
+
+<!-- Stand-in for an image that is not available yet. Replace with <Img> once Phase 2 supplies the WebP. -->
+<div class:list={['relative', className]} data-placeholder>
+  <span class="absolute left-3 bottom-2.5 text-[12px] leading-tight pr-3">{label}</span>
+</div>

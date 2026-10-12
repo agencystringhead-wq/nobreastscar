@@ -1,0 +1,54 @@
+---
+import home from '../../data/home.json';
+import IncisionDiagram from '../IncisionDiagram.astro';
+
+const c = home.compare;
+const tagTones: Record<string, string> = {
+  coral: 'bg-coral text-plum',
+  mint: 'bg-mint text-teal',
+  butter: 'bg-butter text-[#6B4B00]',
+};
+---
+
+<section class="bg-blush">
+  <div class="container-site py-24 max-md:py-14">
+    <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
+      <div>
+        <div class="eyebrow text-brick mb-3.5">{c.eyebrow}</div>
+        <h2 class="max-w-[700px]">{c.title}</h2>
+      </div>
+      <p class="m-0 text-ink-soft text-[18px] max-w-[360px]">{c.intro}</p>
+    </div>
+    <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[18px]">
+      {
+        c.cards.map((card) => (
+          <li class="fade-up flex">
+            <a
+              href={card.href}
+              class:list={[
+                'no-underline rounded-[8px] p-[30px] max-sm:p-6 flex flex-col gap-4 w-full',
+                card.dark ? 'bg-plum text-cream hover:text-cream' : 'bg-cream text-ink hover:text-ink',
+              ]}
+            >
+              <div class="flex justify-between items-center gap-3">
+                <span class:list={['text-[12px] tracking-[0.14em] uppercase font-bold', card.dark ? 'text-on-plum-pink' : 'text-ink-soft']}>{card.label}</span>
+                <span class:list={['text-[12px] font-bold px-2.5 py-1 rounded-full', tagTones[card.tagTone]]}>{card.tag}</span>
+              </div>
+              <IncisionDiagram variant={card.variant as 'armpit' | 'crease' | 'areola'} dark={card.dark} label={card.diagramLabel} class="w-full h-[150px]" />
+              <h3 class="font-display text-[26px] leading-[1.2]">{card.title}</h3>
+              <dl class="m-0 grid grid-cols-[auto_1fr] gap-x-3.5 gap-y-1.5 text-[15px]">
+                {card.rows.map(([k, v]) => (
+                  <>
+                    <dt class={card.dark ? 'text-on-plum-soft' : 'text-ink-soft'}>{k}</dt>
+                    <dd class="m-0">{v}</dd>
+                  </>
+                ))}
+              </dl>
+              <span class:list={['font-bold mt-auto', card.dark ? 'text-coral' : 'text-brick']}>{c.learnMore} →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

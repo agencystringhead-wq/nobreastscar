@@ -1,0 +1,47 @@
+---
+import home from '../../data/home.json';
+
+const f = home.faq;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: f.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<section class="bg-blush">
+  <div class="container-site py-24 max-md:py-14 flex flex-wrap gap-14">
+    <div class="flex-[1_1_320px] min-w-0">
+      <div class="eyebrow text-brick mb-3.5">{f.eyebrow}</div>
+      <h2 class="mb-[18px]">{f.title}</h2>
+      <a href={f.link.href} class="font-bold no-underline">{f.link.label} →</a>
+    </div>
+    <div class="flex-[2_1_560px] min-w-0 flex flex-col gap-2.5">
+      {
+        f.items.map((item, idx) => (
+          <details class="faq bg-cream rounded-[8px] overflow-hidden" open={idx === 0}>
+            <summary class="px-6 py-[22px] max-sm:px-4 cursor-pointer list-none flex justify-between gap-4 min-h-[44px]">
+              <span class="font-display text-[21px] leading-snug">{item.q}</span>
+              <span aria-hidden="true" class="faq-icon text-[24px] leading-none text-brick transition-transform">+</span>
+            </summary>
+            <div class="px-6 pb-[22px] max-sm:px-4 text-ink-soft">{item.a}</div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</section>
+
+<style>
+  .faq > summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

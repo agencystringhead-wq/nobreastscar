@@ -1,0 +1,260 @@
+{
+  "hero": {
+    "eyebrow": "Richmond Breast Enhancement Center",
+    "titleBefore": "Thinking About",
+    "titleEm": "Breast Enhancement?",
+    "paragraphs": [
+      "We're a nationally recognized center for breast enhancement located in Richmond, VA. Patients travel from all over the world for the quality and beautiful work we perform day in and day out.",
+      "You need both a doctor and an artist for a great breast augmentation. We are the national choice for no scar and minimal scar breast enhancement surgery. Trust our team for symmetry, balance and a beautiful result."
+    ],
+    "primaryCta": { "label": "Online Consultation", "href": "/contact/" },
+    "imagePlaceholder": "[Hero portrait: client to supply]",
+    "card": {
+      "label": "The no-scar technique",
+      "text": "Incision hidden in the armpit. No scars on the breasts."
+    },
+    "facts": [
+      { "value": "3", "label": "incision options: armpit, crease or areola edge" },
+      { "value": "2", "label": "implant families: saline and silicone" },
+      { "value": "caseStudyCount", "label": "patient case studies with before and after photos" },
+      { "value": "$0", "label": "for an internet consultation, wherever you live" }
+    ]
+  },
+
+  "tiles": [
+    { "title": "Procedures", "text": "Armpit, crease or areola", "href": "/procedures/", "tone": "blush", "placeholder": "[photo]" },
+    { "title": "Implants", "text": "Saline, silicone, Ideal, gummy bear", "href": "/implants/", "tone": "mint", "placeholder": "[photo]" },
+    { "title": "Patient Gallery", "text": "Real patients, real results", "href": "/gallery/", "tone": "plum", "placeholder": "[blurred preview]" },
+    { "title": "Travel to Richmond", "text": "Flights, hotels, first week", "href": "/travel/", "tone": "butter", "placeholder": "[photo]" },
+    { "title": "Recovery", "text": "What the first weeks look like", "href": "/procedures/recovery-and-post-op/", "tone": "teal", "placeholder": "[photo]" }
+  ],
+
+  "explained": {
+    "eyebrow": "Our signature procedure",
+    "titleBefore": "The no-scar breast augmentation,",
+    "titleEm": "explained",
+    "intro": "Transaxillary augmentation places the implant through a small incision in the armpit, so there are no scars on the breasts themselves.",
+    "diagramLabel": "Incision hidden in the armpit",
+    "link": { "label": "Read the full guide", "href": "/procedures/no-scar-breast-augmentation-transaxillary/" },
+    "steps": [
+      { "title": "A small incision in the armpit", "text": "The implant goes in through the armpit, away from the breast, where the incision tucks into a natural fold." },
+      { "title": "Guided by an endoscope", "text": "A thin tube with a camera and light on the end lets the surgeon see inside and place each implant precisely." },
+      { "title": "Saline or silicone", "text": "Both can be used. Saline implants are often chosen because they're filled after insertion, which allows a smaller incision." },
+      { "title": "Closed, then left to heal", "text": "The incision is sutured and heals on its own. Depending on the implant, you may be shown how to massage it so it settles properly." }
+    ],
+    "tradeoff": {
+      "title": "The honest trade-off",
+      "text": "Perfect symmetry is harder to achieve through the armpit than with other methods. That's why experience matters, and why it's our specialty."
+    }
+  },
+
+  "compare": {
+    "eyebrow": "Procedures",
+    "title": "Which Breast Enhancement Procedure Fits You?",
+    "intro": "There is no one-size-fits-all solution. Learn all your options…",
+    "learnMore": "Learn more",
+    "cards": [
+      {
+        "variant": "armpit",
+        "dark": true,
+        "label": "Armpit",
+        "tag": "No scar",
+        "tagTone": "coral",
+        "title": "No Scar, Endoscopic (Transaxillary)",
+        "diagramLabel": "Incision in the armpit",
+        "rows": [
+          ["Scar", "None on the breasts"],
+          ["Implant", "Saline or silicone"],
+          ["Note", "Symmetry takes an experienced surgeon"]
+        ],
+        "href": "/procedures/no-scar-breast-augmentation-transaxillary/"
+      },
+      {
+        "variant": "crease",
+        "dark": false,
+        "label": "Breast crease",
+        "tag": "Most common",
+        "tagTone": "mint",
+        "title": "Minimal Scar, Beneath Breast",
+        "diagramLabel": "Incision in the fold beneath the breast",
+        "rows": [
+          ["Scar", "In the fold under the breast"],
+          ["Implant", "Saline keeps the scar smaller"],
+          ["Note", "Long-used, very reliable results"]
+        ],
+        "href": "/procedures/minimal-scar-beneath-breast/"
+      },
+      {
+        "variant": "areola",
+        "dark": false,
+        "label": "Areola edge",
+        "tag": "For certain women",
+        "tagTone": "butter",
+        "title": "Minimal Scar, Periareolar",
+        "diagramLabel": "Incision along the lower edge of the areola",
+        "rows": [
+          ["Scar", "Camouflaged at the areola"],
+          ["Implant", "Saline for the smallest incision"],
+          ["Note", "Can affect breastfeeding"]
+        ],
+        "href": "/procedures/minimal-scar-periaerolar-incision/"
+      }
+    ]
+  },
+
+  "implants": {
+    "eyebrow": "Implants",
+    "title": "Which Implant Is Right For You?",
+    "subtitle": "Work with our team to find the perfect shape and style for your body.",
+    "cards": [
+      { "title": "Silicone", "age": "Age 22+", "text": "Feels more natural. Costs more. MRI checks recommended.", "href": "/implants/silicone-implants/", "tone": "blush", "placeholder": "[Existing photo: Silicon-img]" },
+      { "title": "Saline", "age": "Age 18+", "text": "Costs less. Filled after placement for a smaller incision.", "href": "/implants/saline-implants/", "tone": "mint", "placeholder": "[Existing photo: SALINE-img]" },
+      { "title": "Ideal Implant", "age": "Saline variant", "text": "A saline implant from the IDEAL family of designs.", "href": "/implants/ideal-implants/", "tone": "butter", "placeholder": "[Existing photo: IDEAL-IMPLANT-img]" }
+    ],
+    "lifespan": {
+      "eyebrow": "How long do they last?",
+      "heading": "It varies from woman to woman.",
+      "link": { "label": "See the details", "href": "/implants/how-long-do-they-last/" },
+      "stats": [
+        { "value": "10 yrs", "label": "average lifespan stated by manufacturers" },
+        { "value": "20+", "label": "years for some women's implants" },
+        { "value": "<5", "label": "years before some need replacing" }
+      ]
+    },
+    "compareLabel": "Compare",
+    "compareLinks": [
+      { "label": "Silicone vs Saline", "href": "/implants/silicone-vs-saline/" },
+      { "label": "Teardrop vs Round", "href": "/implants/tear-drop-shaped-vs-round/" },
+      { "label": "Textured vs Smooth", "href": "/implants/textured-vs-smooth/" },
+      { "label": "Choosing the right size", "href": "/implants/choosing-the-right-size/" },
+      { "label": "Choosing the right type", "href": "/implants/choosing-the-right-type/" },
+      { "label": "Gummy Bear Implants", "href": "/implants/gummy-bear-implants/" }
+    ]
+  },
+
+  "gallery": {
+    "eyebrow": "Patient Gallery",
+    "titleBefore": "Real Patients,",
+    "titleEm": "Real Results.",
+    "paragraphs": [
+      "We're proud of our beautiful results and the work we perform here at the Breast Enhancement Center.",
+      "We invite you to visit our complete patient gallery. Trust a team of experts with a proven track record of success"
+    ],
+    "showLabel": "View results",
+    "hideLabel": "Blur photos",
+    "filterLabel": "Filter by category",
+    "filters": [
+      { "key": "all", "label": "All results" },
+      { "key": "breast-enlargement", "label": "Breast Enlargement" },
+      { "key": "breast-lift", "label": "Breast Lift" },
+      { "key": "breast-lift-with-implants", "label": "Breast Lift with Implants" }
+    ],
+    "cards": [
+      { "category": "breast-enlargement", "categoryLabel": "Breast Enlargement", "title": "22-year-old, trans-axillary, 320cc saline", "href": "/case-study/22-year-trans-axillary-320cc-saline-implants/" },
+      { "category": "breast-enlargement", "categoryLabel": "Breast Enlargement", "title": "23-year-old model, 265cc implants", "href": "/case-study/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/" },
+      { "category": "breast-enlargement", "categoryLabel": "Breast Enlargement", "title": "27-year-old, armpit incision, 340cc and 370cc", "href": "/case-study/27-year-old-female-arm-pit-incision-340cc-370cc/" },
+      { "category": "breast-lift", "categoryLabel": "Breast Lift", "title": "29-year-old, breast lift", "href": "/case-study/29-years-women-breast-lift/" },
+      { "category": "breast-lift-with-implants", "categoryLabel": "Breast Lift with Implants", "title": "48-year-old, lift with 275cc saline", "href": "/case-study/48-years-woman-breast-lift-275cc-saline-implants/" },
+      { "category": "breast-lift-with-implants", "categoryLabel": "Breast Lift with Implants", "title": "Breast lift with 371cc silicone", "href": "/case-study/breast-lift-with-371cc-silicone-implants/" }
+    ],
+    "cta": { "label": "Patient Gallery", "href": "/gallery/breast-enlargement/" },
+    "note": "Photos stay blurred until you choose to view them.",
+    "blurNotice": "Photos are blurred. Choose View results to show them.",
+    "beforePlaceholder": "[Before photo]",
+    "afterPlaceholder": "[After photo]"
+  },
+
+  "reviews": {
+    "eyebrow": "Reviews",
+    "title": "In our patients' words",
+    "link": { "label": "All reviews", "href": "/about/reviews/" },
+    "featured": { "text": "Dr. Lynam is an artist when it comes to shaping breasts.", "source": "RealSelf" },
+    "quotes": [
+      { "text": "He is simply the best surgeon for breast augmentation.", "source": "RealSelf", "tone": "blush" },
+      { "text": "I love what I see when I look in the mirror.", "source": "RealSelf", "tone": "mint" },
+      { "text": "The scars are minimal and things are going great.", "source": "Trina D. · Yelp", "tone": "butter" },
+      { "text": "I'm very content with the results of Dr. Lynam's surgery.", "source": "Vitals", "tone": "white" }
+    ]
+  },
+
+  "timeline": {
+    "eyebrow": "Before and after surgery",
+    "titleBefore": "Your surgery,",
+    "titleEm": "step by step",
+    "steps": [
+      { "when": "Night before", "title": "Fast for 8 hours", "text": "No food or drink for at least 8 hours before anesthesia.", "linkLabel": "Ready For Surgery?", "href": "/procedures/ready-for-surgery/" },
+      { "when": "Surgery day", "title": "General anesthesia", "text": "An anesthesiologist watches your heart rate and breathing throughout.", "linkLabel": "Anesthesia", "href": "/procedures/anesthesia/" },
+      { "when": "First 24 hours", "title": "Someone by your side", "text": "You'll be drowsy, so a friend or family member stays with you and drives.", "linkLabel": "Day Of Surgery", "href": "/procedures/day-of-surgery/" },
+      { "when": "First week", "title": "Rest, then back to work", "text": "Take at least a week off. Most desk jobs are fine after that.", "linkLabel": "Recovery and Post Op", "href": "/procedures/recovery-and-post-op/" },
+      { "when": "Following weeks", "title": "Ease back into exercise", "text": "Skip strenuous activity for the first couple of weeks while swelling settles.", "linkLabel": "Exercise Post Op", "href": "/procedures/exercise-post-op/" }
+    ]
+  },
+
+  "travel": {
+    "eyebrow": "Travel Kit",
+    "title": "We're A National Breast Enhancement Center Located in Richmond, Virginia",
+    "text": "Patients visit our center from around the world. Check out our helpful travel guide and simple online consultation. Get started on this life changing journey today.",
+    "cards": [
+      { "label": "Fly in", "title": "Richmond International Airport", "text": "Daily flights from across the country, a short cab ride to Stony Point." },
+      { "label": "Stay", "title": "Your first week in Richmond", "text": "Recover here for the first week rather than heading straight home." }
+    ],
+    "primaryCta": { "label": "Travel", "href": "/travel/" },
+    "secondaryCta": { "label": "Online Consult", "href": "/contact/" },
+    "pack": {
+      "heading": "Pack this",
+      "items": [
+        "A sports bra, checked with Dr. Lynam",
+        "Your usual medication (blood thinners aside)",
+        "Loose, comfortable clothing",
+        "A companion for the first 24 hours",
+        "A laptop or tablet for the rest days"
+      ]
+    },
+    "hotels": {
+      "heading": "Nearby hotels",
+      "items": [
+        "The Berkeley Hotel",
+        "Best Western Plus Governor's Inn",
+        "Crowne Plaza Richmond Downtown",
+        "Red Roof Inn Richmond South",
+        "Quirk Hotel"
+      ]
+    }
+  },
+
+  "doctor": {
+    "eyebrow": "Dr. Lynam",
+    "titleBefore": "A Note From Our Medical Director,",
+    "titleEm": "Dr. Gregory Lynam",
+    "photoPlaceholder": "[Existing photo: dr-lynam]",
+    "trainingHeading": "Training",
+    "training": [
+      "University of Richmond",
+      "Dental and medical degrees, Medical College of Virginia",
+      "General surgery, then plastic surgery training at MCV",
+      "Board-certified plastic and maxillofacial surgeon",
+      "Richmond Magazine, Best Plastic Surgeons, 2010"
+    ],
+    "letter": [
+      "I would like to extend a personal invitation to you to visit our Richmond Breast Enhancement Center. We believe any great breast surgery starts with open and honest communication between you and I. Let's discuss your goals and plan your solution. I am 100% committed to your beautiful results.",
+      "I look forward to meeting you soon!"
+    ],
+    "sincerely": "Sincerely,",
+    "signaturePlaceholder": "[signature]",
+    "link": { "label": "About Dr. Lynam", "href": "/about/" }
+  },
+
+  "faq": {
+    "eyebrow": "Implant FAQ",
+    "title": "Questions women ask us first",
+    "link": { "label": "Every implant question", "href": "/implants/implant-faq/" },
+    "items": [
+      { "q": "Which is better, saline or silicone?", "a": "Neither is better for everyone. Saline costs less and is available from age 18. Silicone feels more natural, costs more and is available from age 22. We help you choose at your consultation." },
+      { "q": "Are breast implants safe?", "a": "Implants are generally very safe. The main concern is rupture, which usually happens after several years and can be corrected with surgery. Saline ruptures are easy to spot; MRI checks are recommended for silicone." },
+      { "q": "What types of implants are there?", "a": "Saline and silicone are the two main types, each with variants such as IDEAL saline implants and more cohesive gummy bear silicone implants." },
+      { "q": "Which implants cost more?", "a": "Silicone implants usually cost more than saline, though prices vary by the specific implant." },
+      { "q": "Are implants only used for augmentation?", "a": "No. They are also used in breast lifts and breast reconstruction." },
+      { "q": "How do I choose the right surgeon?", "a": "Look for board certification, extensive experience with breast augmentation, and before and after photos of previous patients." }
+    ]
+  }
+}
