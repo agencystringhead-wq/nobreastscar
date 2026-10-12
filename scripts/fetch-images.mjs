@@ -46,6 +46,19 @@ function sectionFor(url, firstPage) {
   return 'pages';
 }
 
+// Images that are CSS backgrounds in the WordPress theme, so they never appear as <img>.
+// The homepage hero is set by `div.et_pb_section.et_pb_section_0{background-image:url(...)}` in an inline style.
+// (The theme also swaps in a faded 480px copy, nsb-mob-banner.jpg, on phones. Not used: low resolution and washed out.)
+const EXTRAS = [
+  {
+    src: 'https://nobreastscar.com/wp-content/uploads/2017/01/hm-bannerimg.jpg',
+    section: 'hero',
+    name: 'hero-woman',
+    alt: 'Smiling woman lying on a bed holding a tablet',
+    page: '/',
+  },
+];
+
 const LOSSLESS_SECTIONS = new Set(['logos', 'brand']);
 
 async function download(src) {
@@ -90,6 +103,13 @@ async function main() {
     }
   });
 
+  for (const x of EXTRAS) {
+    const entry = found.get(x.src) ?? { alts: new Set(), pages: new Set() };
+    entry.alts.add(x.alt);
+    entry.pages.add(x.page);
+    found.set(x.src, entry);
+  }
+
   const sources = [...found.keys()].sort();
   console.log(`${sources.length} unique images across ${all.length} pages`);
 
@@ -98,8 +118,9 @@ async function main() {
   const plan = sources.map((src) => {
     const info = found.get(src);
     const firstPage = [...info.pages].sort()[0];
-    const section = sectionFor(src, firstPage);
-    let name = kebab(basename(new URL(src).pathname, extname(new URL(src).pathname)));
+    const extra = EXTRAS.find((x) => x.src === src);
+    const section = extra?.section ?? sectionFor(src, firstPage);
+    let name = extra?.name ?? kebab(basename(new URL(src).pathname, extname(new URL(src).pathname)));
     let rel = `src/assets/images/${section}/${name}.webp`;
     let n = 2;
     while (used.has(rel)) rel = `src/assets/images/${section}/${name}-${n++}.webp`;

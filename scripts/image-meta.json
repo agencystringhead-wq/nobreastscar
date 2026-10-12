@@ -1003,6 +1003,16 @@
     ]
   },
   {
+    "file": "src/assets/images/hero/hero-woman.webp",
+    "source": "https://nobreastscar.com/wp-content/uploads/2017/01/hm-bannerimg.jpg",
+    "width": 1400,
+    "height": 854,
+    "alt": "Smiling woman lying on a bed holding a tablet",
+    "pages": [
+      "/"
+    ]
+  },
+  {
     "file": "src/assets/images/implants/breast-1.webp",
     "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breast-1.jpg",
     "width": 600,
