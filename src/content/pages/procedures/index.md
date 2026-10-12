@@ -5,6 +5,7 @@ description: "Breast augmentation surgery can be performed in a number of differ
 path: "/procedures/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures"}]
 cta: {"heading":"Ready to start this life changing process?","text":"We offer many solutions for any body type or situation. Lets review your case and create a plant for your long term happiness and beauty!"}
+tiles: [{"href":"/procedures/no-scar-breast-augmentation-transaxillary/","image":"../../../assets/images/implants/gallery-box.webp"},{"href":"/procedures/minimal-scar-beneath-breast/","image":"../../../assets/images/procedures/recovering-from-breast-enhancement.webp"},{"href":"/procedures/minimal-scar-periaerolar-incision/","image":"../../../assets/images/implants/breast-1.webp"},{"href":"/procedures/anesthesia/","image":"../../../assets/images/procedures/anestisia.webp"},{"href":"/procedures/ready-for-surgery/","image":"../../../assets/images/case-studies/transaxillary-breast-augmentatnpart-2.webp"},{"href":"/procedures/day-of-surgery/","image":"../../../assets/images/case-studies/implants.webp"},{"href":"/procedures/recovery-and-post-op/","image":"../../../assets/images/doctor/smiling.webp"},{"href":"/procedures/exercise-post-op/","image":"../../../assets/images/implants/breast-img.webp"}]
 ---
 
 **Breast augmentation surgery can be performed in a number of different ways. Not only are there choices as far as implants go, but there are also several ways to perform the surgery itself.**

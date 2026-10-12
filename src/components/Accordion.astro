@@ -1,0 +1,45 @@
+---
+// Question headings become accordions. The first item starts open. A link to #id opens that item.
+import RichBlocks from './RichBlocks.astro';
+import type { Block } from '../lib/blocks';
+
+interface Props {
+  items: { id: string; q: string; blocks: Block[] }[];
+  openFirst?: boolean;
+}
+const { items, openFirst = true } = Astro.props;
+---
+
+<div class="flex flex-col gap-2.5 max-w-[820px]">
+  {
+    items.map((it, i) => (
+      <details id={it.id} class="acc bg-white rounded-[8px] overflow-hidden scroll-mt-40" open={openFirst && i === 0}>
+        <summary class="px-6 py-5 max-sm:px-4 cursor-pointer list-none flex items-center justify-between gap-4 min-h-[56px]">
+          <h3 class="font-display text-[clamp(1.15rem,2vw,1.4rem)] leading-snug m-0 text-plum">{it.q}</h3>
+          <span aria-hidden="true" class="acc-icon text-[26px] leading-none text-brick-deep transition-transform">+</span>
+        </summary>
+        <div class="px-6 pb-6 max-sm:px-4 text-ink-soft [&_p:last-child]:mb-0">
+          <RichBlocks blocks={it.blocks} />
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .acc > summary::-webkit-details-marker {
+    display: none;
+  }
+  .acc[open] .acc-icon {
+    transform: rotate(45deg);
+  }
+</style>
+
+<script>
+  const openFromHash = () => {
+    const el = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (el instanceof HTMLDetailsElement) el.open = true;
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+</script>

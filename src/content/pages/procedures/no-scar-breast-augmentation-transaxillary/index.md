@@ -9,7 +9,7 @@ cta: {"heading":"Ready to start this life changing process?","text":"Our team ha
 
 **Breast augmentation is a form of cosmetic surgery that comes with many different options.** Not only are there different types of implants to choose from but the incisions can be made in different places and the implants can be placed either above or below the chest muscle.
 
-Transaxillary breast augmentation has become increasingly popular in recent years since it enables you to have breast surgery performed without any scars left behind on the actual breasts. any scars left behind on the breasts themselves.
+Transaxillary breast augmentation has become increasingly popular in recent years since it enables you to have breast surgery performed without any scars left behind on the actual breasts.
 
 ## How transaxillary breast augmentation is performed
 

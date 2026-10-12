@@ -1,0 +1,69 @@
+---
+// Facelift-style card grid: a real image (or a coloured tile when the page has none), title and one-line excerpt.
+// Used for section landing pages and for the "More in ..." related band.
+import Img from './Img.astro';
+
+export interface CardItem {
+  href: string;
+  title: string;
+  excerpt?: string;
+  image?: ImageMetadata;
+  /** Small label above the title, for example "10 case studies". */
+  meta?: string;
+}
+interface Props {
+  items: CardItem[];
+}
+const { items } = Astro.props;
+const tiles = ['bg-blush-2', 'bg-mint', 'bg-butter', 'bg-[#E9DCE6]'];
+---
+
+<ul class="list-none m-0 p-0 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    items.map((it, i) => (
+      <li class="flex">
+        <a href={it.href} class="card-link group w-full bg-white rounded-[8px] overflow-hidden no-underline text-ink hover:text-ink flex flex-col border border-line">
+          {it.image ? (
+            <div class="overflow-hidden aspect-[16/10] bg-blush">
+              <Img src={it.image} alt="" widths={[320, 480, 640]} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            </div>
+          ) : (
+            <div class:list={['aspect-[16/10] flex items-end p-5', tiles[i % tiles.length]]}>
+              <span aria-hidden="true" class="font-display text-[44px] leading-none text-plum">→</span>
+            </div>
+          )}
+          <div class="p-6 flex flex-col gap-2 flex-1">
+            {it.meta && <span class="eyebrow text-brick-deep">{it.meta}</span>}
+            <h3 class="font-display text-[clamp(1.35rem,2vw,1.6rem)] leading-[1.2] m-0 text-plum">{it.title}</h3>
+            {it.excerpt && <p class="m-0 text-[15px] leading-[1.6] text-ink-soft">{it.excerpt}</p>}
+            <span class="mt-auto pt-3 font-bold text-brick-deep text-[15px]">Read more →</span>
+          </div>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .card-link {
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease;
+  }
+  .card-link:hover,
+  .card-link:focus-visible {
+    box-shadow: 0 14px 30px rgb(42 23 48 / 0.14);
+    transform: translateY(-3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card-link {
+      transition: none;
+    }
+    .card-link:hover {
+      transform: none;
+    }
+    .card-link :global(img) {
+      transition: none;
+    }
+  }
+</style>

@@ -41,7 +41,7 @@ const jsonLd = {
 <section class="bg-blush">
   <div class="container-site py-24 max-md:py-14 flex flex-wrap gap-14">
     <div class="flex-[1_1_320px] min-w-0">
-      <div class="eyebrow text-brick mb-3.5">{f.eyebrow}</div>
+      <div class="eyebrow text-brick-deep mb-3.5">{f.eyebrow}</div>
       <h2 class="mb-[18px]">{f.title}</h2>
       <a href={f.link.href} class="font-bold no-underline">{f.link.label} →</a>
     </div>
@@ -51,7 +51,7 @@ const jsonLd = {
           <details class="faq bg-cream rounded-[8px] overflow-hidden" open={idx === 0}>
             <summary class="px-6 py-[22px] max-sm:px-4 cursor-pointer list-none flex justify-between gap-4 min-h-[44px]">
               <h3 class="font-display text-[21px] leading-snug m-0">{item.q}</h3>
-              <span aria-hidden="true" class="faq-icon text-[24px] leading-none text-brick transition-transform">+</span>
+              <span aria-hidden="true" class="faq-icon text-[24px] leading-none text-brick-deep transition-transform">+</span>
             </summary>
             <div class="px-6 pb-[22px] max-sm:px-4 text-ink-soft flex flex-col gap-3">
               {item.blocks.map((b) => (b.type === 'ul' ? <ul class="m-0 pl-5 list-disc">{b.items.map((li) => <li>{li}</li>)}</ul> : <p class="m-0">{b.items[0]}</p>))}

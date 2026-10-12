@@ -13,7 +13,7 @@ const tagTones: Record<string, string> = {
   <div class="container-site py-24 max-md:py-14">
     <div class="flex flex-wrap justify-between items-end gap-4 mb-10">
       <div>
-        <div class="eyebrow text-brick mb-3.5">{c.eyebrow}</div>
+        <div class="eyebrow text-brick-deep mb-3.5">{c.eyebrow}</div>
         <h2 class="max-w-[700px]">{c.title}</h2>
       </div>
       <p class="m-0 text-ink-soft text-[18px] max-w-[360px]">{c.intro}</p>
@@ -42,7 +42,7 @@ const tagTones: Record<string, string> = {
                   </>
                 ))}
               </dl>
-              <span class:list={['font-bold mt-auto pt-2', card.dark ? 'text-coral' : 'text-brick']}>{c.learnMore} →</span>
+              <span class:list={['font-bold mt-auto pt-2', card.dark ? 'text-coral' : 'text-brick-deep']}>{c.learnMore} →</span>
             </a>
           </li>
         ))

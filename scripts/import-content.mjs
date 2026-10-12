@@ -24,12 +24,19 @@ const warn = (path, msg) => warnings.push(`${path}: ${msg}`);
 const td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', codeBlockStyle: 'fenced', emDelimiter: '*' });
 td.addRule('dropEmptyLinks', { filter: (n) => n.nodeName === 'A' && !n.textContent.trim() && !n.querySelector('img'), replacement: () => '' });
 
-/** SPEC §1: fix only these obvious typos. Never applied to review or testimonial quotes. */
+/** SPEC §1 typo fixes plus the agreed content fixes. Never applied to review or testimonial quotes. */
 const TYPOS = [
   [/minimial/g, 'minimal'],
   [/Minimial/g, 'Minimal'],
   [/comitted/g, 'committed'],
   [/Tranaxillary/g, 'Transaxillary'],
+  // Content fixes agreed with the client (logged in docs/CONTENT.md):
+  // 1. No "only board-certified" claim (SPEC §1).
+  [/\bthe only board-certified\b/g, 'a board-certified'],
+  // 2. The live transaxillary intro repeats half a sentence.
+  [/(on the actual breasts\.) any scars left behind on the breasts themselves\./g, '$1'],
+  // 3. Hotel name.
+  [/Crown Plaza/g, 'Crowne Plaza'],
 ];
 function fixTypos(s) {
   return TYPOS.reduce((acc, [re, to]) => acc.replace(re, to), s);
@@ -268,6 +275,7 @@ async function importPage(url, extras) {
   }
   // The page body is the banner copy followed by the sections (the template styles the first paragraphs as the intro).
   let finalBody;
+  let tiles = [];
   if (path === '/contact/') {
     // The /contact/ banner holds the address block; drop the stray copyright line (the footer has it).
     finalBody = leadOut
@@ -286,7 +294,11 @@ async function importPage(url, extras) {
   } else {
     finalBody = [leadOut, body].filter(Boolean).join('\n\n');
     // Section landing pages: the live "Choose one of our ... to learn more" tiles are rebuilt from the collection.
-    finalBody = finalBody.replace(/\n+#{2,3} (?:Choose one of our|NOBreastScar Travel Kit)[\s\S]*$/, '').trim();
+    // The live "Choose one of our ... to learn more" tiles pair each child page with an image. Keep that pairing as data
+    // (frontmatter "tiles") so the new card grids can use the same real images.
+    const tileBlock = finalBody.match(/(?:^|\n+)#{2,3} (?:Choose one of our|NOBreastScar Travel Kit)[\s\S]*$/)?.[0] ?? '';
+    tiles = [...tileBlock.matchAll(/!\[[^\]]*\]\(([^)]+)\)[\s\S]*?\[View more\]\(([^)]+)\)/g)].map((m) => ({ href: m[2], image: m[1] }));
+    finalBody = finalBody.replace(/(?:^|\n+)#{2,3} (?:Choose one of our|NOBreastScar Travel Kit)[\s\S]*$/, '').trim();
   }
   body = finalBody;
   const finalLead = '';
@@ -302,6 +314,7 @@ async function importPage(url, extras) {
     breadcrumb: breadcrumb.length ? breadcrumb : undefined,
     lead: finalLead || undefined,
     cta: cta && cta.text ? cta : undefined,
+    tiles: tiles.length ? tiles : undefined,
     generated: generated || undefined,
   };
   await mkdir(dirname(mdFile), { recursive: true });

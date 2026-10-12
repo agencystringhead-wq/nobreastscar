@@ -5,6 +5,7 @@ description: "Dr Lynam has performed breast augmentation on many patients who tr
 path: "/travel/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Travel"}]
 cta: {"heading":"Ready to start this life changing process?","text":"When performed properly a breast augmentation\nis relatively comfortable and low pain.\nTrust a team with experience and results."}
+tiles: [{"href":"/hotels/","image":"../../../assets/images/travel/hotels.webp"},{"href":"/restaurants/","image":"../../../assets/images/travel/restaurants.webp"},{"href":"/car-rentals/","image":"../../../assets/images/travel/car-rentals.webp"},{"href":"/airlines/","image":"../../../assets/images/travel/richmond-airlines.webp"},{"href":"/entertainment-and-landmarks/","image":"../../../assets/images/travel/memorial.webp"}]
 ---
 
 **Travelling to Richmond, VA for breast augmentation**
@@ -37,7 +38,7 @@ North Chesterfield, VA 23235
 
 [https://www.bestwestern.com](https://www.bestwestern.com)
 
-**Crown Plaza Richmond Downtown**
+**Crowne Plaza Richmond Downtown**
 
 If you stay here then you benefit from views of the river, an on-site cafe and a fitness center.
 555 E Canal St, Richmond, VA 23219

@@ -1,10 +1,12 @@
 ---
-// One patient case study: only facts the live case study states, its real photos (blurred until the visitor
-// chooses), its own description, previous/next links within the same gallery and a consult call to action.
+// One patient case study: only facts the live case study states, its real photos (blurred until the visitor chooses),
+// its own description, previous/next links and "More <gallery> cases".
 import PageLayout from '../../layouts/PageLayout.astro';
+import Band from '../../components/Band.astro';
 import BlurReveal from '../../components/BlurReveal.astro';
+import CaseCard from '../../components/CaseCard.astro';
 import Img from '../../components/Img.astro';
-import { studies, primaryGallery, galleryLabels, excerpt, mdBlock, plain, type CaseStudy } from '../../lib/content';
+import { studies, primaryGallery, galleryLabels, excerpt, mdBlock, mdInline, plain, type CaseStudy } from '../../lib/content';
 
 export async function getStaticPaths() {
   const all = await studies();
@@ -12,11 +14,13 @@ export async function getStaticPaths() {
     const gallery = primaryGallery(study);
     const list = all.filter((s) => primaryGallery(s) === gallery);
     const i = list.findIndex((s) => s.id === study.id);
-    return { params: { slug: study.id }, props: { study, gallery, prev: list[i - 1], next: list[i + 1] } };
+    // "More cases": the neighbours in the same gallery, wrapping round.
+    const others = [...list.slice(i + 1), ...list.slice(0, i)].slice(0, 3);
+    return { params: { slug: study.id }, props: { study, gallery, prev: list[i - 1], next: list[i + 1], others } };
   });
 }
 
-const { study, gallery, prev, next } = Astro.props as { study: CaseStudy; gallery: string; prev?: CaseStudy; next?: CaseStudy };
+const { study, gallery, prev, next, others } = Astro.props as { study: CaseStudy; gallery: string; prev?: CaseStudy; next?: CaseStudy; others: CaseStudy[] };
 const d = study.data;
 
 // The body is "## Case description" and "## Procedure details". The live site often repeats the same sentence in both.
@@ -32,8 +36,8 @@ const sectionsMd = Object.fromEntries(
 const caseMd = sectionsMd['case description'] ?? '';
 const procMd = sectionsMd['procedure details'] ?? '';
 const showProc = procMd && plain(procMd) !== plain(caseMd);
+const lead = caseMd ? mdInline(caseMd.split(/\n{2,}/)[0]) : undefined;
 
-// Facts: only what the live case study states.
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const facts = [
   { label: 'Age', value: d.age },
@@ -45,80 +49,96 @@ const facts = [
 const photos = [d.thumbnail, ...d.images].filter((p, i, a): p is NonNullable<typeof p> => Boolean(p) && a.findIndex((q) => q?.src === p?.src) === i);
 const description = d.description || excerpt(caseMd || procMd, 155);
 const galleryHref = `/gallery/${gallery}/`;
-const crumbs = [
-  { label: 'No Breast Scar', href: '/' },
-  { label: 'Gallery', href: '/gallery/' },
-  { label: galleryLabels[gallery], href: galleryHref },
-  { label: d.title },
-];
+const label = galleryLabels[gallery];
+const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href: '/gallery/' }, { label, href: galleryHref }, { label: d.title }];
 ---
 
 <PageLayout
   title={d.title}
+  accent={false}
   seoTitle={d.seoTitle}
   description={description}
   path={d.path}
   breadcrumb={crumbs}
-  sidebar={false}
+  lead={lead}
+  sectionPath="/gallery/"
+  currentHref={galleryHref}
   cta={{ heading: 'Ready to get started?', text: 'Contact Dr. Lynam today.' }}
 >
   {
     facts.length > 0 && (
-      <dl class="m-0 mb-10 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] border-y border-line">
-        {facts.map((f) => (
-          <div class="py-5 pr-5">
-            <dt class="eyebrow text-brick mb-1">{f.label}</dt>
-            <dd class="m-0 font-display text-[26px] leading-tight text-plum">{f.value}</dd>
-          </div>
-        ))}
-      </dl>
+      <Band tone="cream" tight>
+        <dl class="m-0 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-6">
+          {facts.map((f) => (
+            <div>
+              <dt class="eyebrow text-brick-deep mb-1">{f.label}</dt>
+              <dd class="m-0 font-display text-[clamp(1.6rem,3vw,2.25rem)] leading-tight text-plum">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </Band>
     )
   }
 
-  <BlurReveal>
-    <ul class="list-none m-0 p-0 grid grid-cols-1 gap-4">
+  <Band tone="blush">
+    <h2 class="sr-only">Before and after photos</h2>
+    <BlurReveal>
+      <ul class="list-none m-0 p-0 grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {
+          photos.map((p, i) => (
+            <li class:list={['blur-frame rounded-[8px] bg-[#8E6F86]', photos.length % 2 === 1 && i === 0 && 'lg:col-span-2']}>
+              <Img src={p} alt={`Before and after photos, view ${i + 1}: ${d.title}`} widths={[480, 800, 1100]} sizes="(min-width: 1024px) 600px, 100vw" class="blur-photo block w-full h-auto" />
+            </li>
+          ))
+        }
+      </ul>
+    </BlurReveal>
+  </Band>
+
+  <Band tone="cream">
+    <div class="max-w-[720px] prose-nb">
+      <h2>Case description</h2>
+      <Fragment set:html={mdBlock(caseMd)} />
       {
-        photos.map((p, i) => (
-          <li class="blur-frame rounded-[8px] bg-[#8E6F86]">
-            <Img src={p} alt={`Before and after photos, view ${i + 1}: ${d.title}`} widths={[480, 800, 1100]} sizes="(min-width: 1024px) 860px, 100vw" class="blur-photo block w-full h-auto" />
-          </li>
-        ))
+        showProc && (
+          <>
+            <h2>Procedure details</h2>
+            <Fragment set:html={mdBlock(procMd)} />
+          </>
+        )
       }
-    </ul>
-  </BlurReveal>
+    </div>
+    <nav class="mt-10 grid sm:grid-cols-2 gap-4" aria-label="Previous and next case study">
+      {
+        prev ? (
+          <a href={prev.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2">
+            <span class="eyebrow text-brick-deep block mb-1">← Previous case</span>
+            <span class="font-display text-[20px] leading-snug">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a href={next.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2 sm:text-right">
+            <span class="eyebrow text-brick-deep block mb-1">Next case →</span>
+            <span class="font-display text-[20px] leading-snug">{next.data.title}</span>
+          </a>
+        )
+      }
+    </nav>
+    <p class="mt-8 mb-0"><a href={galleryHref} class="font-bold">← Back to the {label} gallery</a></p>
+  </Band>
 
-  <section class="prose-nb mt-12" aria-labelledby="case-desc">
-    <h2 id="case-desc">Case description</h2>
-    <Fragment set:html={mdBlock(caseMd)} />
-    {
-      showProc && (
-        <>
-          <h2>Procedure details</h2>
-          <Fragment set:html={mdBlock(procMd)} />
-        </>
-      )
-    }
-  </section>
-
-  <nav class="mt-12 grid sm:grid-cols-2 gap-4" aria-label="More case studies">
-    {
-      prev ? (
-        <a href={prev.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2">
-          <span class="eyebrow text-brick block mb-1">← Previous case</span>
-          <span class="font-display text-[20px] leading-snug">{prev.data.title}</span>
-        </a>
-      ) : (
-        <span></span>
-      )
-    }
-    {
-      next && (
-        <a href={next.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2 sm:text-right">
-          <span class="eyebrow text-brick block mb-1">Next case →</span>
-          <span class="font-display text-[20px] leading-snug">{next.data.title}</span>
-        </a>
-      )
-    }
-  </nav>
-  <p class="mt-8 mb-0"><a href={galleryHref} class="font-bold">← Back to the {galleryLabels[gallery]} gallery</a></p>
+  <Fragment slot="related">
+    <Band tone="blush">
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">More {label.toLowerCase()} cases</h2>
+      <BlurReveal>
+        <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {others.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
+        </ul>
+      </BlurReveal>
+    </Band>
+  </Fragment>
 </PageLayout>

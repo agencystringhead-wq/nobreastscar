@@ -1,13 +1,14 @@
 ---
 title: "About The Medical Director"
 seoTitle: "Best Breast Surgeon | Dr Lynam | About No Breast Scar Richmond"
-description: "Dr Lynam is the only board-certified best breast surgeon in Richmond, VA who obtained invaluable experience in breast enhancement surgery. We are the national choice for no scar and minimal scar breast enhancement surgery."
+description: "Dr Lynam is a board-certified best breast surgeon in Richmond, VA who obtained invaluable experience in breast enhancement surgery. We are the national choice for no scar and minimal scar breast enhancement surgery."
 path: "/about/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"About"}]
 cta: {"heading":"Ready to start this life changing process?","text":"When performed properly a breast augmentation\nis relatively comfortable and low pain.\nTrust a team with experience and results."}
+tiles: [{"href":"/about/reviews/","image":"../../../assets/images/doctor/box-image-1.webp"},{"href":"/about/testimonials/","image":"../../../assets/images/doctor/smiling.webp"}]
 ---
 
-Dr. Gregory T Lynam is the only board-certified plastic and maxillofacial surgeon in Richmond, VA.
+Dr. Gregory T Lynam is a board-certified plastic and maxillofacial surgeon in Richmond, VA.
 
 ![doctor-lynam](../../../assets/images/doctor/doctor-lynam.webp)Dr. Lynam attended The University of Richmond and obtained a dental and medical degree at the Medical College of Virginia. While attending the Medical College of Virginia, Dr. Lynam entered the plastic surgery training program, prior to which he had spent several years training in general surgery.
 

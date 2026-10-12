@@ -6,6 +6,11 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import MobileActionBar from '../components/MobileActionBar.astro';
 import { site } from '../data/site';
+import { siteGraph } from '../lib/schema';
+// Preload the two fonts used above the fold so text does not swap late.
+import frauncesUrl from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url';
+import frauncesItalicUrl from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-italic.woff2?url';
+import sansUrl from '@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -17,6 +22,16 @@ const { title, description, footerForm = true } = Astro.props;
 
 // Canonicals always point at the production domain (SPEC §9).
 const canonical = new URL(Astro.url.pathname, site.productionUrl).href;
+const ogImage = new URL('/og-default.webp', site.productionUrl).href;
+const ogAlt = 'No Breast Scar, Richmond Breast Enhancement Center';
+// Google Tag Manager runs in production builds only, never in local dev.
+const gtm = import.meta.env.PROD ? site.gtmId : null;
+// The container is requested on the first interaction, or 4 seconds after the page has loaded, whichever comes first,
+// so its ~130 KB of script never competes with the first paint. The gtm.start event is pushed immediately, so GTM's
+// own timing is unchanged. To load it straight away, call load() at once instead of waiting.
+const gtmSnippet = gtm
+  ? `(function(w,d,i){w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var started=false;function load(){if(started)return;started=true;var s=d.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+i;d.head.appendChild(s);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){w.addEventListener(e,load,{once:true,passive:true});});w.addEventListener('load',function(){setTimeout(load,4000);});})(window,document,'${gtm}');`
+  : '';
 ---
 
 <!doctype html>
@@ -28,19 +43,45 @@ const canonical = new URL(Astro.url.pathname, site.productionUrl).href;
     {description && <meta name="description" content={description} />}
     {!Astro.url.pathname.startsWith("/404") && <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#2A1730" />
+    <link rel="preload" href={frauncesUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={frauncesItalicUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sansUrl} as="font" type="font/woff2" crossorigin />
+
+    <!-- Open Graph and Twitter -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
+
+    <!-- Sitewide structured data: MedicalClinic and Physician -->
+    <script type="application/ld+json" set:html={JSON.stringify(siteGraph())} />
+    {gtm && <script is:inline set:html={gtmSnippet} />}
     <script is:inline>
       document.documentElement.classList.add('js');
     </script>
     <slot name="head" />
   </head>
   <body>
+    {gtm && (
+      <noscript>
+        <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
+      </noscript>
+    )}
     <a href="#main" class="skip-link">Skip to content</a>
     <UtilityBar />
     <SiteHeader />

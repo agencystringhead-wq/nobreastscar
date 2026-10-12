@@ -5,7 +5,8 @@ import { join, relative, sep } from 'node:path';
 
 const root = process.cwd();
 const banned = new Set(['.png', '.jpg', '.jpeg', '.gif', '.avif']);
-const allowed = new Set(['public/favicon.svg', 'public/favicon.ico']);
+// apple-touch-icon.png is the one PNG: iOS does not accept WebP for home-screen icons.
+const allowed = new Set(['public/favicon.svg', 'public/favicon.ico', 'public/apple-touch-icon.png']);
 const bad = [];
 
 function walk(dir) {

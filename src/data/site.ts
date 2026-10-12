@@ -15,6 +15,9 @@ export const site = {
   },
   mapsUrl: 'https://maps.google.com/?q=8720+Stony+Point+Parkway+Suite+100+Richmond+VA+23235',
   gtmId: 'GTM-KGR42B5',
+  /** From OpenStreetMap (Nominatim) for 8720 Stony Point Parkway, Richmond, VA 23235. */
+  geo: { latitude: 37.5510712, longitude: -77.5637009 },
+  realSelf: 'https://www.realself.com/find/Virginia/Richmond/Plastic-Surgeon/Gregory-Lynam',
   jotformId: '62864268680467',
   jotformTitle: 'No Scar Contact Form',
   productionUrl: 'https://nobreastscar.com',

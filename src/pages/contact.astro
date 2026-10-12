@@ -2,6 +2,7 @@
 // Contact: NAP from site.ts, the same JotForm component as the footer (the footer's copy is turned off here so the
 // form appears once), and the static map card.
 import PageLayout from '../layouts/PageLayout.astro';
+import Band from '../components/Band.astro';
 import JotForm from '../components/JotForm.astro';
 import MapCard from '../components/MapCard.astro';
 import { site } from '../data/site';
@@ -18,25 +19,28 @@ const { address } = site;
   description={metaDescription(d.description, page.body ?? '')}
   path={d.path}
   breadcrumb={d.breadcrumb}
-  sidebar={false}
   footerForm={false}
+  noPills
+  noEndCta
 >
-  <div class="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-start">
-    <div class="flex flex-col gap-6">
-      <div class="bg-white border border-line rounded-[8px] p-7 max-sm:p-5">
-        <div class="eyebrow text-brick mb-2">NoBreastScar.com</div>
-        <p class="font-display text-[26px] leading-tight m-0 mb-5 text-plum">Medical Director {site.director}</p>
-        <a href={site.phoneHref} class="font-display text-[34px] text-brick no-underline hover:text-brick-deep">{site.phone}</a>
-        <address class="not-italic mt-4 text-[18px] leading-[1.6]">
-          {address.street}<br />{address.suite}, {address.city}, {address.region} {address.zip}
-        </address>
+  <Band tone="cream">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-start">
+      <div class="flex flex-col gap-6">
+        <div class="bg-white border border-line rounded-[8px] p-7 max-sm:p-5">
+          <div class="eyebrow text-brick-deep mb-2">NoBreastScar.com</div>
+          <p class="font-display text-[26px] leading-tight m-0 mb-5 text-plum">Medical Director {site.director}</p>
+          <a href={site.phoneHref} class="font-display text-[34px] text-brick-deep no-underline hover:text-brick">{site.phone}</a>
+          <address class="not-italic mt-4 text-[18px] leading-[1.6]">
+            {address.street}<br />{address.suite}, {address.city}, {address.region} {address.zip}
+          </address>
+        </div>
+        <MapCard />
       </div>
-      <MapCard />
-    </div>
 
-    <div id="consult" class="scroll-mt-28 bg-white border border-line border-t-[6px] border-t-coral rounded-[8px] p-7 max-sm:p-4">
-      <h2 class="font-display text-[26px] mb-4 text-plum">{site.jotformTitle}</h2>
-      <JotForm />
+      <div id="consult" class="scroll-mt-28 bg-white border border-line border-t-[6px] border-t-coral rounded-[8px] p-7 max-sm:p-4">
+        <h2 class="font-display text-[26px] mb-4 text-plum">{site.jotformTitle}</h2>
+        <JotForm />
+      </div>
     </div>
-  </div>
+  </Band>
 </PageLayout>

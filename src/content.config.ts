@@ -18,6 +18,8 @@ const pages = defineCollection({
     lead: z.string().optional(),
     /** The "Ready to start this life changing process?" block that closes many live pages. */
     cta: z.object({ heading: z.string(), text: z.string() }).optional(),
+    /** Section landing pages: the live tile image for each child page (path relative to the .md file). */
+    tiles: z.array(z.object({ href: z.string(), image: z.string() })).optional(),
     /** True when the page body is generated from the case-study collection instead of imported. */
     generated: z.boolean().optional(),
   }),

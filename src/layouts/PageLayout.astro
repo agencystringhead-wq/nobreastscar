@@ -1,11 +1,12 @@
 ---
-// General inner-page layout: plum hero with breadcrumb and H1, prose column (max 72ch), sticky sidebar on wide
-// screens, then the big footer (from BaseLayout). Used for every imported page and, with other content, for the
-// reviews, testimonials, contact and travel pages.
+// Editorial inner-page layout: full-width plum hero (breadcrumb, H1, intro, section pills, optional arch photo), an
+// optional sticky "On this page" bar, the page's bands (slot), a related band (slot "related") and a closing consult
+// band, then the big footer from BaseLayout. No sidebar.
 import BaseLayout from './BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import Sidebar from '../components/Sidebar.astro';
-import CtaBlock from '../components/CtaBlock.astro';
+import OnThisPage from '../components/OnThisPage.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { sectionOf } from '../data/nav';
 import { site } from '../data/site';
 
 interface Crumb {
@@ -13,32 +14,47 @@ interface Crumb {
   href?: string;
 }
 interface Props {
+  /** Display title for the H1 (Title Case, no dashes). */
   title: string;
+  accent?: boolean;
   seoTitle: string;
   description?: string;
   path: string;
   breadcrumb?: Crumb[];
+  /** Intro HTML for the hero. */
+  lead?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  onThisPage?: { id: string; label: string }[];
+  /** Closing band text: the page's own live call to action. */
   cta?: { heading: string; text: string };
-  sidebar?: boolean;
+  noEndCta?: boolean;
   /** Extra schema.org objects (for example FAQPage). */
   jsonLd?: object[];
   /** false on the contact page, which carries the form itself. */
   footerForm?: boolean;
+  /** Hide the section quick links (contact, site map, 404). */
+  noPills?: boolean;
+  /** Take the quick links from this path's section (case studies use the gallery section). */
+  sectionPath?: string;
+  /** Which quick link is the current one (defaults to the page path). */
+  currentHref?: string;
 }
-const { title, seoTitle, description, path, breadcrumb, cta, sidebar = true, jsonLd = [], footerForm = true } = Astro.props;
+const { title, accent = true, seoTitle, description, path, breadcrumb, lead, image, imageAlt, onThisPage = [], cta, noEndCta = false, jsonLd = [], footerForm = true, noPills = false, sectionPath, currentHref } = Astro.props;
 
 const crumbs: Crumb[] = breadcrumb?.length ? breadcrumb : [{ label: 'No Breast Scar', href: '/' }, { label: title }];
 const abs = (href: string) => new URL(href, site.productionUrl).href;
 const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: crumbs.map((c, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: c.label,
-    item: abs(c.href ?? path),
-  })),
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: abs(c.href ?? path) })),
 };
+
+const section = noPills ? undefined : sectionOf(sectionPath ?? path);
+const here = currentHref ?? path;
+const pills = section ? [{ label: section.title, href: section.href, current: here === section.href }, ...section.links.filter((l) => l.href !== section.href).map((l) => ({ label: l.label, href: l.href, current: l.href === here }))] : [];
+// Plain-text version of the CTA copy (it can carry Markdown links or bold).
+const ctaText = cta?.text.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim();
 ---
 
 <BaseLayout title={seoTitle} description={description} footerForm={footerForm}>
@@ -47,16 +63,9 @@ const breadcrumbLd = {
     {jsonLd.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
   </Fragment>
 
-  <PageHero title={title} crumbs={crumbs} />
-
-  <div class="bg-cream">
-    <div class:list={['container-site py-14 max-md:py-10 grid gap-12', sidebar && 'lg:grid-cols-[minmax(0,1fr)_300px]']}>
-      <article class="min-w-0">
-        <slot />
-        <slot name="after" />
-        {cta && <CtaBlock heading={cta.heading} text={cta.text} />}
-      </article>
-      {sidebar && <Sidebar path={path} />}
-    </div>
-  </div>
+  <PageHero title={title} accent={accent} crumbs={crumbs} lead={lead} pills={pills} image={image} imageAlt={imageAlt} />
+  <OnThisPage items={onThisPage} />
+  <slot />
+  <slot name="related" />
+  {!noEndCta && <CtaBand heading={cta?.heading} text={ctaText} />}
 </BaseLayout>
