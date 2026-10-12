@@ -24,12 +24,19 @@ const warn = (path, msg) => warnings.push(`${path}: ${msg}`);
 const td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', codeBlockStyle: 'fenced', emDelimiter: '*' });
 td.addRule('dropEmptyLinks', { filter: (n) => n.nodeName === 'A' && !n.textContent.trim() && !n.querySelector('img'), replacement: () => '' });
 
-/** SPEC §1: fix only these obvious typos. Never applied to review or testimonial quotes. */
+/** SPEC §1 typo fixes plus the agreed content fixes. Never applied to review or testimonial quotes. */
 const TYPOS = [
   [/minimial/g, 'minimal'],
   [/Minimial/g, 'Minimal'],
   [/comitted/g, 'committed'],
   [/Tranaxillary/g, 'Transaxillary'],
+  // Content fixes agreed with the client (logged in docs/CONTENT.md):
+  // 1. No "only board-certified" claim (SPEC §1).
+  [/\bthe only board-certified\b/g, 'a board-certified'],
+  // 2. The live transaxillary intro repeats half a sentence.
+  [/(on the actual breasts\.) any scars left behind on the breasts themselves\./g, '$1'],
+  // 3. Hotel name.
+  [/Crown Plaza/g, 'Crowne Plaza'],
 ];
 function fixTypos(s) {
   return TYPOS.reduce((acc, [re, to]) => acc.replace(re, to), s);

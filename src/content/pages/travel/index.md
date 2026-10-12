@@ -37,7 +37,7 @@ North Chesterfield, VA 23235
 
 [https://www.bestwestern.com](https://www.bestwestern.com)
 
-**Crown Plaza Richmond Downtown**
+**Crowne Plaza Richmond Downtown**
 
 If you stay here then you benefit from views of the river, an on-site cafe and a fitness center.
 555 E Canal St, Richmond, VA 23219

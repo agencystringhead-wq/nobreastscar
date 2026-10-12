@@ -67,7 +67,7 @@ const crumbs = [
       <dl class="m-0 mb-10 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] border-y border-line">
         {facts.map((f) => (
           <div class="py-5 pr-5">
-            <dt class="eyebrow text-brick mb-1">{f.label}</dt>
+            <dt class="eyebrow text-brick-deep mb-1">{f.label}</dt>
             <dd class="m-0 font-display text-[26px] leading-tight text-plum">{f.value}</dd>
           </div>
         ))}
@@ -104,7 +104,7 @@ const crumbs = [
     {
       prev ? (
         <a href={prev.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2">
-          <span class="eyebrow text-brick block mb-1">← Previous case</span>
+          <span class="eyebrow text-brick-deep block mb-1">← Previous case</span>
           <span class="font-display text-[20px] leading-snug">{prev.data.title}</span>
         </a>
       ) : (
@@ -114,7 +114,7 @@ const crumbs = [
     {
       next && (
         <a href={next.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2 sm:text-right">
-          <span class="eyebrow text-brick block mb-1">Next case →</span>
+          <span class="eyebrow text-brick-deep block mb-1">Next case →</span>
           <span class="font-display text-[20px] leading-snug">{next.data.title}</span>
         </a>
       )

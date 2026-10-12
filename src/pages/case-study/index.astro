@@ -18,6 +18,7 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
   path={d.path}
   breadcrumb={crumbs}
 >
+  <h2 class="sr-only">Case studies</h2>
   <BlurReveal>
     <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
       {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}

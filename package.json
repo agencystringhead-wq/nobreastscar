@@ -13,13 +13,15 @@
     "check:links": "node scripts/check-links.mjs",
     "fetch:images": "node scripts/fetch-images.mjs",
     "import:content": "node scripts/import-content.mjs",
-    "build": "node scripts/check-image-formats.mjs && astro build",
+    "build": "node scripts/check-image-formats.mjs && astro build && node scripts/publish-legacy-images.mjs",
+    "check:schema": "node scripts/validate-jsonld.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/source-sans-3": "^5.3.1",
     "@fontsource/source-sans-3": "^5.3.1",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",
@@ -29,6 +31,8 @@
   },
   "devDependencies": {
     "cheerio": "^1.2.0",
+    "fontkit": "^2.0.4",
+    "lighthouse": "^13.5.0",
     "playwright-core": "^1.64.0",
     "turndown": "^7.2.4",
     "typescript": "^5.9.3"

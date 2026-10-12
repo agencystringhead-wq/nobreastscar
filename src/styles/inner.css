@@ -40,13 +40,13 @@
   font-weight: 700;
 }
 .prose-nb a {
-  color: var(--brick);
+  color: var(--brick-deep);
   text-decoration: underline;
   text-underline-offset: 3px;
   overflow-wrap: anywhere;
 }
 .prose-nb a:hover {
-  color: var(--brick-deep);
+  color: #7a2819;
 }
 .prose-nb ul,
 .prose-nb ol {
@@ -127,3 +127,4 @@
 .prose-nb h3 strong {
   font-weight: inherit;
 }
+

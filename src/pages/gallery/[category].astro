@@ -34,7 +34,8 @@ const { Content } = await render(page);
   <div class="prose-nb">
     <Content />
   </div>
-  <section class="mt-10" aria-label="Case studies">
+  <section class="mt-10" aria-labelledby="cases-heading">
+    <h2 id="cases-heading" class="sr-only">Case studies</h2>
     <BlurReveal>
       <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}

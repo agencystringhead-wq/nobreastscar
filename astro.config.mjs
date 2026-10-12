@@ -7,7 +7,8 @@ export default defineConfig({
   site: 'https://nobreastscar.pages.dev',
   output: 'static',
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  // Inline the (small) stylesheet so it is not a render-blocking request.
+  build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
 });
