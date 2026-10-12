@@ -150,13 +150,17 @@
       "We’re proud of our beautiful results and the work we perform here at the Breast Enhancement Center.",
       "We invite you to visit our complete patient gallery. Trust a team of experts with a proven track record of success"
     ],
+    "showLabel": "View results",
+    "hideLabel": "Blur photos",
     "browseLabel": "Browse the gallery",
     "browse": [
       { "label": "Breast Enlargement", "href": "/gallery/breast-enlargement/" },
       { "label": "Breast Lift", "href": "/gallery/breast-lift/" },
       { "label": "Breast Lift with Implants", "href": "/gallery/breast-lift-with-implants/" }
     ],
-    "cta": { "label": "Patient Gallery", "href": "/gallery/" }
+    "cta": { "label": "Patient Gallery", "href": "/gallery/" },
+    "note": "Photos stay blurred until you choose to view them.",
+    "blurNotice": "Photos are blurred. Choose View results to show them."
   },
 
   "reviews": {

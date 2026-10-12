@@ -1,6 +1,7 @@
 ---
 // A case-study card for the gallery grids: the live thumbnail cropped to one consistent 4:3 ratio (centred), the
-// live title, the age and implant line when the case states them, and a "View case" link.
+// live title, the age and implant line when the case states them, and a "View case" link. The thumbnail is a real
+// patient photo, so it is blurred by default: place the card inside <BlurReveal>.
 import Img from './Img.astro';
 import { caseLine, type CaseStudy } from '../lib/content';
 
@@ -14,8 +15,8 @@ const line = caseLine(d);
 ---
 
 <a href={d.path} class="case-card no-underline text-cream hover:text-cream bg-plum rounded-[8px] overflow-hidden flex flex-col w-full h-full">
-  <div class="relative overflow-hidden bg-[#8E6F86] aspect-[4/3]">
-    <Img src={image} alt={`Before and after photos: ${d.title}`} widths={[280, 420, 570]} sizes="(min-width: 1024px) 330px, (min-width: 640px) 45vw, 100vw" class="block w-full h-full object-cover object-center" />
+  <div class="blur-frame relative bg-[#8E6F86] aspect-[4/3]">
+    <Img src={image} alt={`Before and after photos: ${d.title}`} widths={[280, 420, 570]} sizes="(min-width: 1024px) 330px, (min-width: 640px) 45vw, 100vw" class="blur-photo block w-full h-full object-cover object-center" />
   </div>
   <div class="py-4 px-[18px] flex flex-col gap-1 flex-1">
     {line && <div class="text-[12px] tracking-[0.12em] uppercase text-on-plum-pink font-bold">{line}</div>}
