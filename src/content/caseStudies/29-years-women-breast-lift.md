@@ -5,13 +5,12 @@ description: "Breast lift with 325 cc moderate plus saline implants patient case
 path: "/case-study/29-years-women-breast-lift/"
 galleries: ["breast-lift"]
 order: 11
-thumbnail: "../../assets/images/case-studies/29-years-women-breast-lift.webp"
-images: ["../../assets/images/case-studies/29yr-breastlift-1.webp","../../assets/images/case-studies/29-bl.webp"]
+galleryOrder: {"breast-lift":11}
+featured: "../../assets/images/case-studies/29-years-women-breast-lift/featured.webp"
+thumbnail: "../../assets/images/case-studies/29-years-women-breast-lift/featured.webp"
+images: ["../../assets/images/case-studies/29-years-women-breast-lift/image-1.webp","../../assets/images/case-studies/29-years-women-breast-lift/image-2.webp"]
 age: "29"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 ---
 
 ## Case description

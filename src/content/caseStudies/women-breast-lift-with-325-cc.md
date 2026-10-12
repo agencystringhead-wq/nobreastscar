@@ -5,13 +5,12 @@ description: "Breast lift with silicone implants 325 cc patient case study cover
 path: "/case-study/women-breast-lift-with-325-cc/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 9
-thumbnail: "../../assets/images/case-studies/women-breast-lift-with-350cc.webp"
-images: ["../../assets/images/case-studies/breast-lift-350cc-1.webp","../../assets/images/case-studies/breastlift-350cc.webp"]
+galleryOrder: {"breast-enlargement":9,"breast-lift":9,"breast-lift-with-implants":9}
+featured: "../../assets/images/case-studies/women-breast-lift-with-325-cc/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-breast-lift-with-325-cc/featured.webp"
+images: ["../../assets/images/case-studies/women-breast-lift-with-325-cc/image-1.webp","../../assets/images/case-studies/women-breast-lift-with-325-cc/image-2.webp"]
 age: "27-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "325cc"
 ---
 

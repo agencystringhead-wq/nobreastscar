@@ -30,6 +30,11 @@ try {
     const page = await ctx.newPage();
     for (const p of paths) {
       await page.goto(base + p, { waitUntil: 'networkidle', timeout: 45000 }).catch(() => {});
+      // SHOT_REVEAL=1: press every "View results" button first (the photos are blurred by default).
+      if (process.env.SHOT_REVEAL) {
+        for (const b of await page.locator('[data-reveal-toggle]').all()) await b.click().catch(() => {});
+        await page.waitForTimeout(500);
+      }
       await page.evaluate(() => document.querySelectorAll('.fade-up').forEach((e) => e.classList.add('is-visible')));
       // Scroll through the page so lazy images and iframes load before the full-page capture.
       await page.evaluate(async () => {

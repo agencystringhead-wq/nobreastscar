@@ -1,49 +1,40 @@
 ---
-// Wraps real patient photos. Everything inside is blurred (class "blur-photo" on the <img>) until the visitor
-// presses the button. Nothing is stored: reloading blurs again.
+// Wraps real patient photos. Everything inside is blurred (class "blur-photo" on the <img>) until the visitor presses
+// the button. ONE button reveals every photo inside the group; pressing it again blurs them. Nothing is stored:
+// reloading blurs again. With controls={false} the group has no button of its own: place <RevealButton /> inside it.
+import RevealButton from './RevealButton.astro';
+
 interface Props {
   showLabel?: string;
   hideLabel?: string;
   notice?: string;
+  controls?: boolean;
   class?: string;
 }
-const {
-  showLabel = 'View results',
-  hideLabel = 'Blur photos',
-  notice = 'Photos are blurred. Choose View results to show them.',
-  class: className = '',
-} = Astro.props;
+const { showLabel, hideLabel, notice, controls = true, class: className = '' } = Astro.props;
 ---
 
 <div data-blur-group data-revealed="false" class={className}>
-  <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6">
-    <button
-      type="button"
-      class="btn btn-primary"
-      aria-pressed="false"
-      data-reveal-toggle
-      data-show-label={showLabel}
-      data-hide-label={hideLabel}
-    >
-      <span data-reveal-label>{showLabel}</span>
-    </button>
-    <p class="m-0 text-[14px] text-ink-soft" data-blur-notice>{notice}</p>
-  </div>
+  {controls && <div class="mb-6"><RevealButton showLabel={showLabel} hideLabel={hideLabel} notice={notice} /></div>}
   <slot />
 </div>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-blur-group]').forEach((group) => {
-    const toggle = group.querySelector<HTMLButtonElement>('[data-reveal-toggle]');
-    const label = group.querySelector<HTMLElement>('[data-reveal-label]');
-    const notice = group.querySelector<HTMLElement>('[data-blur-notice]');
-    if (!toggle || !label) return;
-    toggle.addEventListener('click', () => {
-      const reveal = toggle.getAttribute('aria-pressed') !== 'true';
-      toggle.setAttribute('aria-pressed', String(reveal));
+    const toggles = Array.from(group.querySelectorAll<HTMLButtonElement>('[data-reveal-toggle]'));
+    const sync = (reveal: boolean) => {
       group.dataset.revealed = String(reveal);
-      label.textContent = reveal ? toggle.dataset.hideLabel! : toggle.dataset.showLabel!;
-      if (notice) notice.hidden = reveal;
-    });
+      toggles.forEach((t) => {
+        t.setAttribute('aria-pressed', String(reveal));
+        const label = t.querySelector<HTMLElement>('[data-reveal-label]');
+        if (label) label.textContent = reveal ? t.dataset.hideLabel! : t.dataset.showLabel!;
+        const notice = t.parentElement?.querySelector<HTMLElement>('[data-blur-notice]');
+        if (notice) notice.hidden = reveal;
+      });
+      // Photos can be opened in the lightbox only while they are revealed.
+      group.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((b) => b.setAttribute('aria-disabled', String(!reveal)));
+    };
+    toggles.forEach((t) => t.addEventListener('click', () => sync(t.getAttribute('aria-pressed') !== 'true')));
+    sync(false);
   });
 </script>

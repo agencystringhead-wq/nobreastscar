@@ -4,13 +4,12 @@ seoTitle: "23 year old active female breast augmentation - No Breast Scar"
 path: "/case-study/23-year-old-active-female-breast-augmentation/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 4
-thumbnail: "../../assets/images/case-studies/23-year-old-breast-augmentation.webp"
-images: ["../../assets/images/case-studies/23-year-old-breast-augmentation-image1-1.webp","../../assets/images/case-studies/23-year-old-breast-augmentation-image2.webp"]
+galleryOrder: {"breast-enlargement":4,"breast-lift":4,"breast-lift-with-implants":4}
+featured: "../../assets/images/case-studies/23-year-old-active-female-breast-augmentation/featured.webp"
+thumbnail: "../../assets/images/case-studies/23-year-old-active-female-breast-augmentation/featured.webp"
+images: ["../../assets/images/case-studies/23-year-old-active-female-breast-augmentation/image-1.webp","../../assets/images/case-studies/23-year-old-active-female-breast-augmentation/image-2.webp"]
 age: "23"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 ---
 
 ## Case description

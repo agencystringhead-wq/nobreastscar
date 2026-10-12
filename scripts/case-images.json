@@ -1,0 +1,1121 @@
+{
+  "generated": "scripts/import-case-images.mjs",
+  "manifest": {
+    "women-breast-lift-with-350cc": {
+      "slug": "women-breast-lift-with-350cc",
+      "title": "Women Breast lift with 350cc",
+      "galleryAge": "30-35",
+      "galleryOrder": {
+        "breast-lift": 10
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-breast-lift-with-350cc/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breast-lift-350cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 19960
+        },
+        {
+          "file": "src/assets/images/case-studies/women-breast-lift-with-350cc/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-350cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26622
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-breast-lift-with-350cc/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/Women-Breast-lift-with-350cc.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17176
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "26-year-moderate-plus-silicone-implants-375cc": {
+      "slug": "26-year-moderate-plus-silicone-implants-375cc",
+      "title": "26 year moderate plus silicone implants 375cc",
+      "galleryAge": "25-30",
+      "galleryOrder": {
+        "breast-lift": 21
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/26-year-moderate-plus-silicone-implants-375cc/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/26yr-375cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26260
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/26-year-moderate-plus-silicone-implants-375cc/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/26-year-moderate-plus-silicone-implants-375cc.gif",
+        "width": 570,
+        "height": 272,
+        "bytes": 17858
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-with-body-lift-and-breast-lift": {
+      "slug": "women-with-body-lift-and-breast-lift",
+      "title": "Women with Body lift and breast lift",
+      "galleryAge": "35-45",
+      "galleryOrder": {
+        "breast-enlargement": 8,
+        "breast-lift": 8,
+        "breast-lift-with-implants": 8
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/bab-2.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26306
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/bab-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 30434
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/image-3.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/body-arm-breast.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 39446
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/body-arm-breast-fi.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 18938
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-breast-lift-with-325-cc": {
+      "slug": "women-breast-lift-with-325-cc",
+      "title": "Women Breast lift with 325 cc",
+      "galleryAge": "27-30",
+      "galleryOrder": {
+        "breast-enlargement": 9,
+        "breast-lift": 9,
+        "breast-lift-with-implants": 9
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-breast-lift-with-325-cc/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breast-lift-350cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 19960
+        },
+        {
+          "file": "src/assets/images/case-studies/women-breast-lift-with-325-cc/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-350cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26622
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-breast-lift-with-325-cc/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/Women-Breast-lift-with-350cc.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17176
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "39-year-women-with-450-cc-mod-plus-silicone-implants": {
+      "slug": "39-year-women-with-450-cc-mod-plus-silicone-implants",
+      "title": "39 year women with 450 cc mod plus silicone implants",
+      "galleryAge": "39",
+      "galleryOrder": {
+        "breast-lift": 12
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/39yr-450cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 18968
+        },
+        {
+          "file": "src/assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/39yr-450cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 30032
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/39-year-women-with-450-cc-mod-plus-silicone-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 18068
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-breast-lift-with-400cc-implants": {
+      "slug": "women-breast-lift-with-400cc-implants",
+      "title": "Women Breast lift with 400cc implants",
+      "galleryAge": "25-30",
+      "galleryOrder": {
+        "breast-lift": 13
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-breast-lift-with-400cc-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-400cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 31622
+        },
+        {
+          "file": "src/assets/images/case-studies/women-breast-lift-with-400cc-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-400cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 31954
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-breast-lift-with-400cc-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/Women-Breast-lift-with-400cc-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 16768
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-with-425cc-saline-implants": {
+      "slug": "women-with-425cc-saline-implants",
+      "title": "Women with 425cc saline implants",
+      "galleryAge": "25-30",
+      "galleryOrder": {
+        "breast-lift": 14
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-with-425cc-saline-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift425cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 29638
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-425cc-saline-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift425cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 30572
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-with-425cc-saline-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/Women-with-425cc-saline-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17854
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "breast-lift-with-371cc-silicone-implants": {
+      "slug": "breast-lift-with-371cc-silicone-implants",
+      "title": "Breast lift with 371cc silicone implants",
+      "galleryAge": "25-30",
+      "galleryOrder": {
+        "breast-lift": 15
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/breast-lift-with-371cc-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift371cc1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 23022
+        },
+        {
+          "file": "src/assets/images/case-studies/breast-lift-with-371cc-silicone-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift371cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 25246
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/breast-lift-with-371cc-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/Breast-lift-with-371cc-silicone-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 16600
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "22-year-with-silicone-300-cc-implants": {
+      "slug": "22-year-with-silicone-300-cc-implants",
+      "title": "22 year with silicone 300 cc implants",
+      "galleryAge": "22",
+      "galleryOrder": {
+        "breast-lift": 16
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/22-year-with-silicone-300-cc-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/implant-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 17590
+        },
+        {
+          "file": "src/assets/images/case-studies/22-year-with-silicone-300-cc-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/implant.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26370
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/22-year-with-silicone-300-cc-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/22-year-with-silicone-300-cc-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17098
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-with-trans-ax-saline-350-cc-with-saline-implants": {
+      "slug": "women-with-trans-ax-saline-350-cc-with-saline-implants",
+      "title": "Women with trans ax saline 350 cc with saline implants",
+      "galleryAge": "18-29",
+      "galleryOrder": {
+        "breast-lift": 17
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/saline-implant-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 20622
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/saline-implant.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 25352
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/Women-with-trans-ax-saline-350-cc-with-saline-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 16078
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "26-year-with-375cc-moderate-plus-silicone-implants": {
+      "slug": "26-year-with-375cc-moderate-plus-silicone-implants",
+      "title": "26 year with 375cc moderate plus silicone implants",
+      "galleryAge": "26",
+      "galleryOrder": {
+        "breast-lift": 18
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/26-year-with-375cc-moderate-plus-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/26yr-375cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26260
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/26-year-with-375cc-moderate-plus-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/26-year-moderate-plus-silicone-implants-375cc.gif",
+        "width": 570,
+        "height": 272,
+        "bytes": 17858
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-with-290cc-moderate-plus-silicone-implants": {
+      "slug": "women-with-290cc-moderate-plus-silicone-implants",
+      "title": "Women with 290cc moderate plus silicone implants",
+      "galleryAge": "27-30",
+      "galleryOrder": {
+        "breast-lift": 19
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/fb-model.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26790
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/fullbreast-model.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26498
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-3.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/full-breast-model.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 27520
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/10/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17410
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "22-year-trans-axillary-320cc-saline-implants": {
+      "slug": "22-year-trans-axillary-320cc-saline-implants",
+      "title": "22 year trans axillary 320cc saline implants",
+      "galleryAge": "18-29",
+      "galleryOrder": {
+        "breast-lift": 20
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/22-year-trans-axillary-320cc-saline-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/22yr-320cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 25870
+        },
+        {
+          "file": "src/assets/images/case-studies/22-year-trans-axillary-320cc-saline-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/22yr-320cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 21110
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/22-year-trans-axillary-320cc-saline-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/22-year-trans-axillary-320cc-saline-implants.gif",
+        "width": 570,
+        "height": 272,
+        "bytes": 16944
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "24-year-who-underwent-saline-breast-enlargement": {
+      "slug": "24-year-who-underwent-saline-breast-enlargement",
+      "title": "24 year who underwent saline breast Enlargement",
+      "galleryAge": "27-30",
+      "galleryOrder": {
+        "breast-lift": 22
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastenlargement.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 16410
+        },
+        {
+          "file": "src/assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/breastenlargement1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 24896
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/24-year-who-underwent-saline-breast-Enlargement.gif",
+        "width": 570,
+        "height": 272,
+        "bytes": 16954
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "women-with-290cc-saline-transaxillary-augment": {
+      "slug": "women-with-290cc-saline-transaxillary-augment",
+      "title": "Women with 290cc saline transaxillary Enlargement",
+      "galleryAge": "25-30",
+      "galleryOrder": {
+        "breast-lift": 23
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/290cc-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 24302
+        },
+        {
+          "file": "src/assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/290cc-be.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 33054
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/10/Women-with-290cc.gif",
+        "width": 570,
+        "height": 272,
+        "bytes": 17818
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "27-year-with-desire-for-fuller-breasts": {
+      "slug": "27-year-with-desire-for-fuller-breasts",
+      "title": "27 year with desire for fuller breasts",
+      "galleryAge": "27-30",
+      "galleryOrder": {
+        "breast-lift": 24
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/27-year-with-desire-for-fuller-breasts/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/fullbreasts-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 32992
+        },
+        {
+          "file": "src/assets/images/case-studies/27-year-with-desire-for-fuller-breasts/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/27yr-full-breasts.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 34484
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/27-year-with-desire-for-fuller-breasts/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/10/27-year-with-desire-for-fuller-breasts.gif",
+        "width": 570,
+        "height": 272,
+        "bytes": 18456
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "23-year-old-model-who-desired-fuller-breasts-with-265cc-implants": {
+      "slug": "23-year-old-model-who-desired-fuller-breasts-with-265cc-implants",
+      "title": "23 year old model who desired fuller breasts with 265cc implants",
+      "galleryAge": "23",
+      "galleryOrder": {
+        "breast-lift": 25
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/fb-model.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26790
+        },
+        {
+          "file": "src/assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/fullbreast-model.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 26498
+        },
+        {
+          "file": "src/assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/image-3.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/10/full-breast-model.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 27520
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/10/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17410
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "29-years-women-breast-lift": {
+      "slug": "29-years-women-breast-lift",
+      "title": "29 years women Breast lift",
+      "galleryAge": "29",
+      "galleryOrder": {
+        "breast-lift": 11
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/29-years-women-breast-lift/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/29yr-breastlift-1.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 28712
+        },
+        {
+          "file": "src/assets/images/case-studies/29-years-women-breast-lift/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2016/11/29-bl.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 22664
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/29-years-women-breast-lift/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2016/11/29-years-women-Breast-lift.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 14474
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "26-year-women-underwent-310cc-saline-implants": {
+      "slug": "26-year-women-underwent-310cc-saline-implants",
+      "title": "26 year women who underwent 310cc saline implants",
+      "galleryAge": "26",
+      "galleryOrder": {
+        "breast-enlargement": 7,
+        "breast-lift": 7,
+        "breast-lift-with-implants": 7
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/26-year-women-underwent-310cc-saline-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/02/26-yo-saline-implants-310cc.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 32306
+        },
+        {
+          "file": "src/assets/images/case-studies/26-year-women-underwent-310cc-saline-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/02/26-yo-saline-implants.jpg",
+          "width": 1100,
+          "height": 500,
+          "bytes": 41580
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/26-year-women-underwent-310cc-saline-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/02/26-yo-wanted-a-full-natural-shape.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 18252
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "48-years-woman-breast-lift-275cc-saline-implants": {
+      "slug": "48-years-woman-breast-lift-275cc-saline-implants",
+      "title": "48 years woman Breast lift with 275cc saline implants",
+      "galleryAge": "48",
+      "galleryOrder": {
+        "breast-enlargement": 6,
+        "breast-lift": 6,
+        "breast-lift-with-implants": 6
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/05/48yrs-275cc-img2.jpg",
+          "width": 1100,
+          "height": 393,
+          "bytes": 21428
+        },
+        {
+          "file": "src/assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/05/48yrs-275cc-img1.jpg",
+          "width": 1100,
+          "height": 406,
+          "bytes": 27036
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/05/nbs-48yrs-275cc.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 19500
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "51-years-woman-325cc-srf-silicone-implants": {
+      "slug": "51-years-woman-325cc-srf-silicone-implants",
+      "title": "51 years woman with 325cc SRF Silicone implants",
+      "galleryAge": "51",
+      "galleryOrder": {
+        "breast-enlargement": 5,
+        "breast-lift": 5,
+        "breast-lift-with-implants": 5
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/51-year-old-with-silicon-implants-image1.jpg",
+          "width": 1100,
+          "height": 306,
+          "bytes": 20136
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/07/51-year-old-woman-silicon-implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 19190
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "23-year-old-active-female-breast-augmentation": {
+      "slug": "23-year-old-active-female-breast-augmentation",
+      "title": "23 year old active female breast augmentation",
+      "galleryAge": "23",
+      "galleryOrder": {
+        "breast-enlargement": 4,
+        "breast-lift": 4,
+        "breast-lift-with-implants": 4
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/23-year-old-active-female-breast-augmentation/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/23-year-old-breast-augmentation-image1-1.jpg",
+          "width": 1100,
+          "height": 407,
+          "bytes": 21394
+        },
+        {
+          "file": "src/assets/images/case-studies/23-year-old-active-female-breast-augmentation/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/23-year-old-breast-augmentation-image2.jpg",
+          "width": 1100,
+          "height": 390,
+          "bytes": 25624
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/23-year-old-active-female-breast-augmentation/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/07/23-year-old-breast-augmentation.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 16622
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "37-years-woman-330cc-silicone-implants": {
+      "slug": "37-years-woman-330cc-silicone-implants",
+      "title": "37 years woman with 330cc silicone implants",
+      "galleryAge": "37",
+      "galleryOrder": {
+        "breast-enlargement": 3,
+        "breast-lift": 3,
+        "breast-lift-with-implants": 3
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/37-years-woman-330cc-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/37year_330cc_breastlift_img2.png",
+          "width": 1100,
+          "height": 429,
+          "bytes": 22902
+        },
+        {
+          "file": "src/assets/images/case-studies/37-years-woman-330cc-silicone-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/37year_330cc_breastlift_image1.png",
+          "width": 1100,
+          "height": 367,
+          "bytes": 19934
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/37-years-woman-330cc-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/07/37year_330cc_breastlift.png",
+        "width": 570,
+        "height": 272,
+        "bytes": 17158
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "woman-breast-augmentation-250cc-silicone-implants": {
+      "slug": "woman-breast-augmentation-250cc-silicone-implants",
+      "title": "Woman Breast augmentation with 250cc silicone implants",
+      "galleryAge": "35-45",
+      "galleryOrder": {
+        "breast-enlargement": 2,
+        "breast-lift": 2,
+        "breast-lift-with-implants": 2
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/breastaugmentation_250cc_silicon_implants_img2.jpg",
+          "width": 1100,
+          "height": 419,
+          "bytes": 15894
+        },
+        {
+          "file": "src/assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/07/breastaugmentation_250cc_silicon_implants_img1.jpg",
+          "width": 1100,
+          "height": 366,
+          "bytes": 20666
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/07/breastaugmentation_250cc_silicon_implants.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 17494
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "27-year-old-female-arm-pit-incision-340cc-370cc": {
+      "slug": "27-year-old-female-arm-pit-incision-340cc-370cc",
+      "title": "27 year old female Arm pit incision with 340cc and 370cc",
+      "galleryAge": "27",
+      "galleryOrder": {
+        "breast-enlargement": 1,
+        "breast-lift": 1,
+        "breast-lift-with-implants": 1
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/12/27-year-old-female-Arm-pit-incision-image1.jpg",
+          "width": 1100,
+          "height": 363,
+          "bytes": 17140
+        },
+        {
+          "file": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/12/27-year-old-female-Arm-pit-incision-image2.jpg",
+          "width": 1100,
+          "height": 393,
+          "bytes": 14698
+        },
+        {
+          "file": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-3.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/12/27-year-old-female-Arm-pit-incision-image3.jpg",
+          "width": 1100,
+          "height": 376,
+          "bytes": 22500
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/12/NBS_27-year-old-female-Arm-pit-incision-with-340cc-and-370cc.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 16848
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    },
+    "38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc": {
+      "slug": "38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc",
+      "title": "38 year female with the newest Natrelle Inspira soft touch implant SSF 365cc",
+      "galleryAge": "38",
+      "galleryOrder": {
+        "breast-enlargement": 0,
+        "breast-lift": 0,
+        "breast-lift-with-implants": 0
+      },
+      "images": [
+        {
+          "file": "src/assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/image-1.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/12/38-year-female-with-the-newest-Natrelle-Inspira-soft-touch-implant-SSF-365cc-image1.jpg",
+          "width": 1100,
+          "height": 379,
+          "bytes": 15834
+        },
+        {
+          "file": "src/assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/image-2.webp",
+          "source": "https://nobreastscar.com/wp-content/uploads/2017/12/38-year-female-with-the-newest-Natrelle-Inspira-soft-touch-implant-SSF-365cc-image2.jpg",
+          "width": 1100,
+          "height": 345,
+          "bytes": 20840
+        }
+      ],
+      "notes": [],
+      "featured": {
+        "file": "src/assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/featured.webp",
+        "source": "https://nobreastscar.com/wp-content/uploads/2017/12/NBS_38-year-female-with-the-newest-Natrelle-Inspira-soft-touch-implant-SSF-365cc.jpg",
+        "width": 570,
+        "height": 272,
+        "bytes": 18978
+      },
+      "thumbnail": {
+        "same": "featured"
+      }
+    }
+  },
+  "sourceToFile": {
+    "https://nobreastscar.com/wp-content/uploads/2016/11/Women-Breast-lift-with-350cc.jpg": "src/assets/images/case-studies/women-breast-lift-with-350cc/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breast-lift-350cc-1.jpg": "src/assets/images/case-studies/women-breast-lift-with-350cc/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-350cc.jpg": "src/assets/images/case-studies/women-breast-lift-with-350cc/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/26-year-moderate-plus-silicone-implants-375cc.gif": "src/assets/images/case-studies/26-year-moderate-plus-silicone-implants-375cc/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/26yr-375cc.jpg": "src/assets/images/case-studies/26-year-moderate-plus-silicone-implants-375cc/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/body-arm-breast-fi.jpg": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/bab-2.jpg": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/bab-1.jpg": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/body-arm-breast.jpg": "src/assets/images/case-studies/women-with-body-lift-and-breast-lift/image-3.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/39-year-women-with-450-cc-mod-plus-silicone-implants.jpg": "src/assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/39yr-450cc-1.jpg": "src/assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/39yr-450cc.jpg": "src/assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/Women-Breast-lift-with-400cc-implants.jpg": "src/assets/images/case-studies/women-breast-lift-with-400cc-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-400cc.jpg": "src/assets/images/case-studies/women-breast-lift-with-400cc-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift-400cc-1.jpg": "src/assets/images/case-studies/women-breast-lift-with-400cc-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/Women-with-425cc-saline-implants.jpg": "src/assets/images/case-studies/women-with-425cc-saline-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift425cc-1.jpg": "src/assets/images/case-studies/women-with-425cc-saline-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift425cc.jpg": "src/assets/images/case-studies/women-with-425cc-saline-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/Breast-lift-with-371cc-silicone-implants.jpg": "src/assets/images/case-studies/breast-lift-with-371cc-silicone-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift371cc1.jpg": "src/assets/images/case-studies/breast-lift-with-371cc-silicone-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastlift371cc.jpg": "src/assets/images/case-studies/breast-lift-with-371cc-silicone-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/22-year-with-silicone-300-cc-implants.jpg": "src/assets/images/case-studies/22-year-with-silicone-300-cc-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/implant-1.jpg": "src/assets/images/case-studies/22-year-with-silicone-300-cc-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/implant.jpg": "src/assets/images/case-studies/22-year-with-silicone-300-cc-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/Women-with-trans-ax-saline-350-cc-with-saline-implants.jpg": "src/assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/saline-implant-1.jpg": "src/assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/saline-implant.jpg": "src/assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.jpg": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/fb-model.jpg": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/fullbreast-model.jpg": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/full-breast-model.jpg": "src/assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-3.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/22-year-trans-axillary-320cc-saline-implants.gif": "src/assets/images/case-studies/22-year-trans-axillary-320cc-saline-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/22yr-320cc.jpg": "src/assets/images/case-studies/22-year-trans-axillary-320cc-saline-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/22yr-320cc-1.jpg": "src/assets/images/case-studies/22-year-trans-axillary-320cc-saline-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/24-year-who-underwent-saline-breast-Enlargement.gif": "src/assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastenlargement.jpg": "src/assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/breastenlargement1.jpg": "src/assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/Women-with-290cc.gif": "src/assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/290cc-1.jpg": "src/assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/290cc-be.jpg": "src/assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/27-year-with-desire-for-fuller-breasts.gif": "src/assets/images/case-studies/27-year-with-desire-for-fuller-breasts/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/fullbreasts-1.jpg": "src/assets/images/case-studies/27-year-with-desire-for-fuller-breasts/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/10/27yr-full-breasts.jpg": "src/assets/images/case-studies/27-year-with-desire-for-fuller-breasts/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/29-years-women-Breast-lift.jpg": "src/assets/images/case-studies/29-years-women-breast-lift/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/29yr-breastlift-1.jpg": "src/assets/images/case-studies/29-years-women-breast-lift/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2016/11/29-bl.jpg": "src/assets/images/case-studies/29-years-women-breast-lift/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/02/26-yo-wanted-a-full-natural-shape.jpg": "src/assets/images/case-studies/26-year-women-underwent-310cc-saline-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/02/26-yo-saline-implants-310cc.jpg": "src/assets/images/case-studies/26-year-women-underwent-310cc-saline-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/02/26-yo-saline-implants.jpg": "src/assets/images/case-studies/26-year-women-underwent-310cc-saline-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/05/nbs-48yrs-275cc.jpg": "src/assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/05/48yrs-275cc-img2.jpg": "src/assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/05/48yrs-275cc-img1.jpg": "src/assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/51-year-old-woman-silicon-implants.jpg": "src/assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/51-year-old-with-silicon-implants-image1.jpg": "src/assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/23-year-old-breast-augmentation.jpg": "src/assets/images/case-studies/23-year-old-active-female-breast-augmentation/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/23-year-old-breast-augmentation-image1-1.jpg": "src/assets/images/case-studies/23-year-old-active-female-breast-augmentation/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/23-year-old-breast-augmentation-image2.jpg": "src/assets/images/case-studies/23-year-old-active-female-breast-augmentation/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/37year_330cc_breastlift.png": "src/assets/images/case-studies/37-years-woman-330cc-silicone-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/37year_330cc_breastlift_img2.png": "src/assets/images/case-studies/37-years-woman-330cc-silicone-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/37year_330cc_breastlift_image1.png": "src/assets/images/case-studies/37-years-woman-330cc-silicone-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/breastaugmentation_250cc_silicon_implants.jpg": "src/assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/breastaugmentation_250cc_silicon_implants_img2.jpg": "src/assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/07/breastaugmentation_250cc_silicon_implants_img1.jpg": "src/assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/NBS_27-year-old-female-Arm-pit-incision-with-340cc-and-370cc.jpg": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/27-year-old-female-Arm-pit-incision-image1.jpg": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/27-year-old-female-Arm-pit-incision-image2.jpg": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-2.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/27-year-old-female-Arm-pit-incision-image3.jpg": "src/assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-3.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/NBS_38-year-female-with-the-newest-Natrelle-Inspira-soft-touch-implant-SSF-365cc.jpg": "src/assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/featured.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/38-year-female-with-the-newest-Natrelle-Inspira-soft-touch-implant-SSF-365cc-image1.jpg": "src/assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/image-1.webp",
+    "https://nobreastscar.com/wp-content/uploads/2017/12/38-year-female-with-the-newest-Natrelle-Inspira-soft-touch-implant-SSF-365cc-image2.jpg": "src/assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/image-2.webp"
+  },
+  "flags": [
+    {
+      "slug": "women-breast-lift-with-325-cc",
+      "title": "Women Breast lift with 325 cc",
+      "issue": "title says 325cc but the image file names say 350cc",
+      "files": [
+        "Women-Breast-lift-with-350cc.jpg",
+        "breast-lift-350cc-1.jpg",
+        "breastlift-350cc.jpg"
+      ]
+    },
+    {
+      "slug": "women-with-425cc-saline-implants",
+      "title": "Women with 425cc saline implants",
+      "issue": "title does not mention a breast lift but the image file names do",
+      "files": [
+        "Women-with-425cc-saline-implants.jpg",
+        "breastlift425cc-1.jpg",
+        "breastlift425cc.jpg"
+      ]
+    },
+    {
+      "slug": "women-with-290cc-moderate-plus-silicone-implants",
+      "title": "Women with 290cc moderate plus silicone implants",
+      "issue": "title says 290cc but the image file names say 265cc",
+      "files": [
+        "23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.jpg",
+        "fb-model.jpg",
+        "fullbreast-model.jpg",
+        "full-breast-model.jpg"
+      ]
+    },
+    {
+      "slug": "37-years-woman-330cc-silicone-implants",
+      "title": "37 years woman with 330cc silicone implants",
+      "issue": "title does not mention a breast lift but the image file names do",
+      "files": [
+        "37year_330cc_breastlift.png",
+        "37year_330cc_breastlift_img2.png",
+        "37year_330cc_breastlift_image1.png"
+      ]
+    },
+    {
+      "slug": "women-breast-lift-with-350cc, women-breast-lift-with-325-cc",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "Women-Breast-lift-with-350cc.jpg"
+      ]
+    },
+    {
+      "slug": "women-breast-lift-with-350cc, women-breast-lift-with-325-cc",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "breast-lift-350cc-1.jpg"
+      ]
+    },
+    {
+      "slug": "women-breast-lift-with-350cc, women-breast-lift-with-325-cc",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "breastlift-350cc.jpg"
+      ]
+    },
+    {
+      "slug": "26-year-moderate-plus-silicone-implants-375cc, 26-year-with-375cc-moderate-plus-silicone-implants",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "26-year-moderate-plus-silicone-implants-375cc.gif"
+      ]
+    },
+    {
+      "slug": "26-year-moderate-plus-silicone-implants-375cc, 26-year-with-375cc-moderate-plus-silicone-implants",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "26yr-375cc.jpg"
+      ]
+    },
+    {
+      "slug": "women-with-290cc-moderate-plus-silicone-implants, 23-year-old-model-who-desired-fuller-breasts-with-265cc-implants",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.jpg"
+      ]
+    },
+    {
+      "slug": "women-with-290cc-moderate-plus-silicone-implants, 23-year-old-model-who-desired-fuller-breasts-with-265cc-implants",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "fb-model.jpg"
+      ]
+    },
+    {
+      "slug": "women-with-290cc-moderate-plus-silicone-implants, 23-year-old-model-who-desired-fuller-breasts-with-265cc-implants",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "fullbreast-model.jpg"
+      ]
+    },
+    {
+      "slug": "women-with-290cc-moderate-plus-silicone-implants, 23-year-old-model-who-desired-fuller-breasts-with-265cc-implants",
+      "issue": "the same live image file is used by 2 case studies",
+      "files": [
+        "full-breast-model.jpg"
+      ]
+    }
+  ],
+  "log": []
+}

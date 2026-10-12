@@ -1,23 +1,28 @@
 ---
-// One patient case study: only facts the live case study states, its real photos (blurred until the visitor chooses),
-// its own description, previous/next links and "More <gallery> cases".
+// One patient case study: only facts the live case study states, the featured image uncropped at the top, then every
+// image from the live "Images" section in live order. All photos are blurred until the visitor presses the one
+// "View results" button (and open in a lightbox once revealed). The description is shown once.
 import PageLayout from '../../layouts/PageLayout.astro';
 import Band from '../../components/Band.astro';
 import BlurReveal from '../../components/BlurReveal.astro';
+import RevealButton from '../../components/RevealButton.astro';
 import CaseCard from '../../components/CaseCard.astro';
+import Lightbox from '../../components/Lightbox.astro';
 import Img from '../../components/Img.astro';
-import { studies, primaryGallery, galleryLabels, excerpt, mdBlock, mdInline, plain, type CaseStudy } from '../../lib/content';
+import { studiesInGallery, primaryGallery, galleryLabels, excerpt, mdBlock, mdInline, plain, statedTiming, studies, type CaseStudy } from '../../lib/content';
 
 export async function getStaticPaths() {
   const all = await studies();
-  return all.map((study) => {
+  const result = [];
+  for (const study of all) {
     const gallery = primaryGallery(study);
-    const list = all.filter((s) => primaryGallery(s) === gallery);
+    const list = await studiesInGallery(gallery);
     const i = list.findIndex((s) => s.id === study.id);
     // "More cases": the neighbours in the same gallery, wrapping round.
     const others = [...list.slice(i + 1), ...list.slice(0, i)].slice(0, 3);
-    return { params: { slug: study.id }, props: { study, gallery, prev: list[i - 1], next: list[i + 1], others } };
-  });
+    result.push({ params: { slug: study.id }, props: { study, gallery, prev: list[i - 1], next: list[i + 1], others } });
+  }
+  return result;
 }
 
 const { study, gallery, prev, next, others } = Astro.props as { study: CaseStudy; gallery: string; prev?: CaseStudy; next?: CaseStudy; others: CaseStudy[] };
@@ -38,15 +43,24 @@ const procMd = sectionsMd['procedure details'] ?? '';
 const showProc = procMd && plain(procMd) !== plain(caseMd);
 const lead = caseMd ? mdInline(caseMd.split(/\n{2,}/)[0]) : undefined;
 
+// Facts: only what the live case study states. "undisclosed" fields are not in the data at all.
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const timing = statedTiming(plain(caseMd + ' ' + procMd));
 const facts = [
   { label: 'Age', value: d.age },
+  { label: 'Gender', value: d.gender },
   { label: 'Implant size', value: d.implantSize },
   { label: 'Implant type', value: d.implantType && cap(d.implantType) },
   { label: 'Technique', value: d.technique && cap(d.technique) },
+  { label: 'Photos taken', value: timing },
 ].filter((f): f is { label: string; value: string } => Boolean(f.value));
 
-const photos = [d.thumbnail, ...d.images].filter((p, i, a): p is NonNullable<typeof p> => Boolean(p) && a.findIndex((q) => q?.src === p?.src) === i);
+// Featured image first (image 1), then the "Images" section in live order.
+const featured = d.featured;
+const more = d.images;
+const total = 1 + more.length;
+const alt = (n: number) => `${d.title}, image ${n}`;
+
 const description = d.description || excerpt(caseMd || procMd, 155);
 const galleryHref = `/gallery/${gallery}/`;
 const label = galleryLabels[gallery];
@@ -72,7 +86,7 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
           {facts.map((f) => (
             <div>
               <dt class="eyebrow text-brick-deep mb-1">{f.label}</dt>
-              <dd class="m-0 font-display text-[clamp(1.6rem,3vw,2.25rem)] leading-tight text-plum">{f.value}</dd>
+              <dd class="m-0 font-display text-[clamp(1.4rem,2.6vw,2rem)] leading-tight text-plum">{f.value}</dd>
             </div>
           ))}
         </dl>
@@ -80,22 +94,38 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
     )
   }
 
-  <Band tone="blush">
-    <h2 class="sr-only">Before and after photos</h2>
-    <BlurReveal>
-      <ul class="list-none m-0 p-0 grid grid-cols-1 lg:grid-cols-2 gap-5">
-        {
-          photos.map((p, i) => (
-            <li class:list={['blur-frame rounded-[8px] bg-[#8E6F86]', photos.length % 2 === 1 && i === 0 && 'lg:col-span-2']}>
-              <Img src={p} alt={`Before and after photos, view ${i + 1}: ${d.title}`} widths={[480, 800, 1100]} sizes="(min-width: 1024px) 600px, 100vw" class="blur-photo block w-full h-auto" />
-            </li>
-          ))
-        }
-      </ul>
-    </BlurReveal>
-  </Band>
+  <BlurReveal controls={false}>
+    <Band tone="blush" id="photos">
+      <div class="mb-6"><RevealButton /></div>
+      <h2 class="sr-only">Featured image</h2>
+      <!-- Natural aspect ratio, never cropped: these are before/after composites. -->
+      <div class="blur-frame rounded-[8px] bg-[#8E6F86]">
+        <button type="button" data-lightbox data-full={featured.src} data-alt={alt(1)} aria-label={`Open image 1 of ${total}`}>
+          <Img src={featured} alt={alt(1)} loading="eager" widths={[480, 800, 1100, 1240]} sizes="(min-width: 1240px) 1192px, 94vw" class="blur-photo block w-full h-auto" />
+        </button>
+      </div>
+    </Band>
 
-  <Band tone="cream">
+    {
+      more.length > 0 && (
+        <Band tone="cream" id="images">
+          <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">Images</h2>
+          <ul class="list-none m-0 p-0 flex flex-col gap-5">
+            {more.map((p, i) => (
+              <li class="blur-frame rounded-[8px] bg-[#8E6F86]">
+                <button type="button" data-lightbox data-full={p.src} data-alt={alt(i + 2)} aria-label={`Open image ${i + 2} of ${total}`}>
+                  <Img src={p} alt={alt(i + 2)} widths={[480, 800, 1100, 1240]} sizes="(min-width: 1240px) 1192px, 94vw" class="blur-photo block w-full h-auto" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </Band>
+      )
+    }
+  </BlurReveal>
+  <Lightbox />
+
+  <Band tone="blush">
     <div class="max-w-[720px] prose-nb">
       <h2>Case description</h2>
       <Fragment set:html={mdBlock(caseMd)} />
@@ -111,7 +141,7 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
     <nav class="mt-10 grid sm:grid-cols-2 gap-4" aria-label="Previous and next case study">
       {
         prev ? (
-          <a href={prev.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2">
+          <a href={prev.data.path} class="block bg-cream rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-white">
             <span class="eyebrow text-brick-deep block mb-1">← Previous case</span>
             <span class="font-display text-[20px] leading-snug">{prev.data.title}</span>
           </a>
@@ -121,7 +151,7 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
       }
       {
         next && (
-          <a href={next.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2 sm:text-right">
+          <a href={next.data.path} class="block bg-cream rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-white sm:text-right">
             <span class="eyebrow text-brick-deep block mb-1">Next case →</span>
             <span class="font-display text-[20px] leading-snug">{next.data.title}</span>
           </a>
@@ -132,7 +162,7 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
   </Band>
 
   <Fragment slot="related">
-    <Band tone="blush">
+    <Band tone="cream">
       <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">More {label.toLowerCase()} cases</h2>
       <BlurReveal>
         <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

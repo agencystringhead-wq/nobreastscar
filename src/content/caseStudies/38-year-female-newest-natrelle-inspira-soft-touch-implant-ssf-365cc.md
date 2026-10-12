@@ -4,13 +4,12 @@ seoTitle: "38 year female with the newest Natrelle Inspira soft touch implant SS
 path: "/case-study/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 0
-thumbnail: "../../assets/images/case-studies/nbs-38-year-female-with-the-newest-natrelle-inspira-soft-touch-implant-ssf-365cc.webp"
-images: ["../../assets/images/case-studies/38-year-female-with-the-newest-natrelle-inspira-soft-touch-implant-ssf-365cc-image1.webp","../../assets/images/case-studies/38-year-female-with-the-newest-natrelle-inspira-soft-touch-implant-ssf-365cc-image2.webp"]
+galleryOrder: {"breast-enlargement":0,"breast-lift":0,"breast-lift-with-implants":0}
+featured: "../../assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/featured.webp"
+thumbnail: "../../assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/featured.webp"
+images: ["../../assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/image-1.webp","../../assets/images/case-studies/38-year-female-newest-natrelle-inspira-soft-touch-implant-ssf-365cc/image-2.webp"]
 age: "38"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "365cc"
 ---
 

@@ -5,13 +5,12 @@ description: "425cc saline implants patient case study cover before and after re
 path: "/case-study/women-with-425cc-saline-implants/"
 galleries: ["breast-lift"]
 order: 14
-thumbnail: "../../assets/images/case-studies/women-with-425cc-saline-implants.webp"
-images: ["../../assets/images/case-studies/breastlift425cc-1.webp","../../assets/images/case-studies/breastlift425cc.webp"]
+galleryOrder: {"breast-lift":14}
+featured: "../../assets/images/case-studies/women-with-425cc-saline-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-with-425cc-saline-implants/featured.webp"
+images: ["../../assets/images/case-studies/women-with-425cc-saline-implants/image-1.webp","../../assets/images/case-studies/women-with-425cc-saline-implants/image-2.webp"]
 age: "25-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "425cc"
 implantType: "saline"
 ---

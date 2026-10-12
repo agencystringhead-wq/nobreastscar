@@ -40,7 +40,13 @@ const caseStudies = defineCollection({
       galleries: z.array(z.enum(['breast-enlargement', 'breast-lift', 'breast-lift-with-implants'])),
       /** Live display order (newest first), taken from /gallery/breast-lift/. */
       order: z.number(),
+      /** Position of this study on each live gallery page that lists it (live order). */
+      galleryOrder: z.record(z.string(), z.number()).optional(),
+      /** The large lead image of the live case study (a before/after composite). Never cropped on the case page. */
+      featured: image(),
+      /** The live gallery card image (the live site uses the featured file). */
       thumbnail: image().optional(),
+      /** Every image in the live "Images" section, in live order. */
       images: z.array(image()),
       age: z.string().optional(),
       gender: z.string().optional(),

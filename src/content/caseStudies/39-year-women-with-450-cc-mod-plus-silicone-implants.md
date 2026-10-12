@@ -5,13 +5,12 @@ description: "450 cc mod plus silicone implants patient case study cover before 
 path: "/case-study/39-year-women-with-450-cc-mod-plus-silicone-implants/"
 galleries: ["breast-lift"]
 order: 12
-thumbnail: "../../assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants.webp"
-images: ["../../assets/images/case-studies/39yr-450cc-1.webp","../../assets/images/case-studies/39yr-450cc.webp"]
+galleryOrder: {"breast-lift":12}
+featured: "../../assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/image-1.webp","../../assets/images/case-studies/39-year-women-with-450-cc-mod-plus-silicone-implants/image-2.webp"]
 age: "39"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "450cc"
 implantType: "silicone"
 ---

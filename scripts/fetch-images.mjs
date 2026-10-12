@@ -9,7 +9,7 @@
 //   scripts/image-meta.json  size, alt text and the live pages each image appears on (feeds docs/ASSETS.md)
 //
 // Originals are never written to disk. Photos: quality 82. Logos and anything with transparency: lossless.
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { dirname, join, basename, extname } from 'node:path';
 import * as cheerio from 'cheerio';
@@ -110,6 +110,13 @@ async function main() {
     found.set(x.src, entry);
   }
 
+  // Case-study photos are imported separately (originals, WebP q85, one folder per case study): see
+  // scripts/import-case-images.mjs. Skip them here and merge its results into the map afterwards.
+  const caseFile = join(root, 'scripts', 'case-images.json');
+  const caseData = existsSync(caseFile) ? JSON.parse(await readFile(caseFile, 'utf8')) : { manifest: {}, sourceToFile: {} };
+  const caseSources = new Set(Object.keys(caseData.sourceToFile));
+  for (const k of [...found.keys()]) if (caseSources.has(k)) found.delete(k);
+
   const sources = [...found.keys()].sort();
   console.log(`${sources.length} unique images across ${all.length} pages`);
 
@@ -155,6 +162,14 @@ async function main() {
       pages: [...info.pages].sort(),
     });
   });
+
+  for (const [src, file] of Object.entries(caseData.sourceToFile)) map['https://' + src.replace(/^https?:\/\//, '')] = file;
+  for (const e of Object.values(caseData.manifest)) {
+    const add = (x) => x?.file && meta.push({ file: x.file, source: x.source, width: x.width, height: x.height, alt: '', pages: ['/case-study/' + e.slug + '/'] });
+    add(e.featured);
+    add(e.thumbnail?.file ? e.thumbnail : null);
+    e.images.forEach(add);
+  }
 
   const sortedMap = Object.fromEntries(Object.entries(map).sort(([a], [b]) => a.localeCompare(b)));
   meta.sort((a, b) => a.file.localeCompare(b.file));
