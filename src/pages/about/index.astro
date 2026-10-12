@@ -1,0 +1,230 @@
+---
+// /about/ has its own template. Every fact comes from the live About page (src/content/pages/about/index.md); the
+// offer cards use the live descriptions of the pages they link to and the review quotes come from the live
+// reviews page. Nothing is added: no "only board-certified" claim, no new credentials.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Band from '../../components/Band.astro';
+import Img from '../../components/Img.astro';
+import LogoTile from '../../components/LogoTile.astro';
+import QuoteCard from '../../components/QuoteCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import drLynam from '../../assets/images/doctor/dr-lynam.webp';
+import reviews from '../../data/reviews.json';
+import { credentialLogos, mediaLogos } from '../../data/logos';
+import { pageByPath, metaDescription, excerpt } from '../../lib/content';
+import { site } from '../../data/site';
+
+const page = (await pageByPath('/about/'))!;
+const d = page.data;
+const abs = (href: string) => new URL(href, site.productionUrl).href;
+const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'About' }];
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: abs(c.href ?? d.path) })),
+};
+
+// The page's own first paragraph.
+const intro = (page.body ?? '').split('\n').find((l) => l.trim() && !l.startsWith('#') && !l.startsWith('!'))!.replace(/\*\*/g, '').trim();
+
+const credentials = [
+  { n: '01', title: 'University of Richmond', text: 'Dr. Lynam attended The University of Richmond.' },
+  { n: '02', title: 'Dental and medical degrees', text: 'Obtained at the Medical College of Virginia.' },
+  { n: '03', title: 'Plastic surgery training', text: 'At the Medical College of Virginia, after several years of general surgery training.' },
+  { n: '04', title: 'Richmond Magazine, 2010', text: 'Voted one of the “Best Plastic Surgeons to take you back 20 years”.' },
+];
+
+const timeline = [
+  { title: 'The University of Richmond', text: 'Dr. Lynam attended The University of Richmond.' },
+  { title: 'Medical College of Virginia', text: 'He obtained a dental and medical degree at the Medical College of Virginia.' },
+  { title: 'General surgery', text: 'He spent several years training in general surgery.' },
+  { title: 'Plastic surgery training program', text: 'While attending the Medical College of Virginia, Dr. Lynam entered the plastic surgery training program.' },
+  { title: 'The entire body', text: 'During his years of training, Dr. Lynam studied procedures for the entire body and obtained invaluable experience in both reconstructive and cosmetic surgery.' },
+];
+
+const certMeans = [
+  { label: 'Exams', text: 'A doctor has trained extensively in the field and has passed a number of written and oral exams.' },
+  { label: 'Ongoing education', text: 'Board certified surgeons must keep up with the latest advancements in their field.' },
+  { label: 'Patient safety', text: 'Best practices in patient safety, communication and ethics must be upheld.' },
+];
+
+// "What we offer": the live page title and the first sentence of each live page's own description.
+const offers = [
+  { label: 'Transaxillary', href: '/procedures/no-scar-breast-augmentation-transaxillary/' },
+  { label: 'Beneath Breast', href: '/procedures/minimal-scar-beneath-breast/' },
+  { label: 'Periareolar', href: '/procedures/minimal-scar-periaerolar-incision/' },
+  { label: 'Implants', href: '/implants/' },
+  { label: 'Gallery', href: '/gallery/' },
+  { label: 'Breast Lift', href: '/gallery/breast-lift/' },
+];
+const offerCards = await Promise.all(
+  offers.map(async (o) => {
+    const p = (await pageByPath(o.href))!;
+    // First full sentence of the live description (never cut mid-sentence).
+    const first = (p.data.description ?? '').match(/^.*?[.!?](?=\s|$)/)?.[0].trim() ?? '';
+    return { ...o, line: first || excerpt(p.data.description ?? '', 200) };
+  }),
+);
+
+const logos = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/logos/*.webp', { eager: true });
+const logoFor = (p: string | null) => (p ? logos[`../../assets/images/logos/${p.split('/').pop()}`]?.default : undefined);
+const quotes = reviews.reviews.slice(0, 3);
+const tones = ['white', 'mint', 'butter'] as const;
+---
+
+<BaseLayout title={d.seoTitle} description={metaDescription(d.description, '')}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  </Fragment>
+
+  <!-- 1. Hero -->
+  <section class="bg-plum text-cream overflow-hidden">
+    <div class="container-site pt-10 pb-14 max-md:pb-10">
+      <Breadcrumb crumbs={crumbs} />
+      <div class="mt-8 grid gap-10 items-center lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
+        <div class="order-2 lg:order-1 min-w-0">
+          <div class="eyebrow text-on-plum-pink mb-4">About</div>
+          <h1 style="max-width: 14ch">Dr. Gregory T. <em>Lynam</em></h1>
+          <p class="mt-4 mb-0 text-[clamp(1.05rem,1.5vw,1.25rem)] font-semibold text-cream">Medical Director · Board-certified plastic and maxillofacial surgeon</p>
+          <p class="mt-5 mb-0 text-[clamp(1.1rem,1.6vw,1.3rem)] leading-[1.6] text-on-plum max-w-[56ch]">{intro}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#consult" class="btn btn-primary">Online Consultation</a>
+            <a href={site.phoneHref} class="btn border-plum-line text-cream hover:border-coral hover:text-cream">{site.phone}</a>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 mx-auto w-[260px] lg:w-[380px] max-w-full">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-[190px_190px_8px_8px] max-lg:rounded-[130px_130px_8px_8px] bg-on-plum-pink">
+            <Img src={drLynam} alt="Dr. Gregory T. Lynam" loading="eager" widths={[260, 380]} sizes="(min-width: 1024px) 380px, 260px" class="absolute inset-0 w-full h-full object-cover object-top" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Credentials strip -->
+  <Band tone="cream" tight>
+    <h2 class="sr-only">Credentials</h2>
+    <ul class="list-none m-0 p-0 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+      {
+        credentials.map((c) => (
+          <li class="bg-white border border-line rounded-[8px] p-5 max-sm:p-4 flex flex-col gap-2">
+            <span class="font-display text-[28px] leading-none text-brick-deep" aria-hidden="true">{c.n}</span>
+            <h3 class="font-display text-[20px] leading-[1.2] m-0 text-plum">{c.title}</h3>
+            <p class="m-0 text-[15px] leading-[1.5] text-ink-soft">{c.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Band>
+
+  <!-- 3. Training and education -->
+  <Band tone="blush" id="training">
+    <div class="max-w-[720px]">
+      <div class="eyebrow text-brick-deep mb-3">Dr. Lynam</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-10 text-plum">Training <em>and education</em></h2>
+      <ol class="list-none m-0 p-0 relative">
+        {
+          timeline.map((t, i) => (
+            <li class="relative pl-10 pb-9 last:pb-0">
+              {i < timeline.length - 1 && <span class="absolute left-[9px] top-5 bottom-0 w-[2px] bg-brick-deep/30" aria-hidden="true" />}
+              <span class="absolute left-0 top-[6px] w-5 h-5 rounded-full bg-brick-deep border-4 border-blush" aria-hidden="true" />
+              <h3 class="font-display text-[22px] leading-[1.25] m-0 text-plum">{t.title}</h3>
+              <p class="mt-1.5 mb-0 text-[17px] leading-[1.6] max-w-[62ch]">{t.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </Band>
+
+  <!-- 4. Board certification -->
+  <Band tone="cream" id="board-certification">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+      <div class="max-w-[720px]">
+        <div class="eyebrow text-brick-deep mb-3">Board certification</div>
+        <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-6 text-plum">Why board certification <em>is important</em></h2>
+        <p class="mt-0 mb-4 text-[18px] leading-[1.65]">Below are some of the reasons why board certification is such a coveted credential in the medical community.</p>
+        <p class="m-0 text-[18px] leading-[1.65]">
+          <strong>A guarantee of standards.</strong> Once a doctor is licensed in the United States, they are able to practice any field. However licensing is not a guarantee that they specialize in the particular field they’re practicing. Experience is extremely important when it comes to cosmetic surgery and board certification lets you know that a doctor has trained extensively in the field they’re practicing and have passed a number of written and oral exams.
+        </p>
+      </div>
+      <aside class="bg-plum text-cream rounded-[8px] p-8 max-sm:p-6" aria-labelledby="cert-means">
+        <h3 id="cert-means" class="font-display text-[26px] leading-[1.2] m-0 mb-6 text-cream">What board certification <em>means</em></h3>
+        <ul class="list-none m-0 p-0 flex flex-col gap-5">
+          {
+            certMeans.map((c) => (
+              <li class="border-t border-plum-line pt-4 first:border-t-0 first:pt-0">
+                <div class="eyebrow text-on-plum-pink mb-1.5">{c.label}</div>
+                <p class="m-0 text-[17px] leading-[1.55] text-on-plum">{c.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </Band>
+
+  <!-- 5. Our approach -->
+  <Band tone="mint" id="approach">
+    <figure class="m-0 mx-auto max-w-[800px] text-center">
+      <div class="eyebrow text-brick-deep mb-5">Our approach</div>
+      <blockquote class="m-0 font-display text-[clamp(1.6rem,3.2vw,2.4rem)] leading-[1.3] text-plum [text-wrap:balance]">
+        “When performed properly a breast augmentation is relatively comfortable and low pain. Trust a team with experience and results.”
+      </blockquote>
+    </figure>
+  </Band>
+
+  <!-- 6. What we offer -->
+  <Band tone="cream" id="offer">
+    <div class="max-w-[720px] mb-10">
+      <div class="eyebrow text-brick-deep mb-3">Breast Enhancement Center</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 text-plum">What we <em>offer</em></h2>
+    </div>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        offerCards.map((o) => (
+          <li class="flex">
+            <a href={o.href} class="no-underline w-full bg-white border border-line rounded-[8px] p-6 flex flex-col gap-2 hover:border-brick-deep transition-colors">
+              <h3 class="font-display text-[24px] leading-[1.2] m-0 text-plum">{o.label}</h3>
+              <p class="m-0 text-[16px] leading-[1.55] text-ink-soft">{o.line}</p>
+              <span class="mt-auto pt-2 font-bold text-brick-deep">Learn more →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Band>
+
+  <!-- 7. Affiliations and recognition -->
+  <Band tone="plum" id="affiliations" tight>
+    <div class="eyebrow text-on-plum-pink mb-5">Affiliations and recognition</div>
+    <ul class="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+      {[...credentialLogos, ...mediaLogos].map((logo) => <li><LogoTile logo={logo} /></li>)}
+    </ul>
+  </Band>
+
+  <!-- 8. Reviews teaser -->
+  <Band tone="blush" id="reviews">
+    <div class="max-w-[720px] mb-10">
+      <div class="eyebrow text-brick-deep mb-3">Patients say</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 text-plum">Reviews <em>and testimonials</em></h2>
+    </div>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+      {
+        quotes.map((r, i) => (
+          <li class="flex [&>figure]:w-full">
+            <QuoteCard label={r.label} text={r.text} logo={logoFor(r.logo)} source={r.source} tone={tones[i % tones.length]} />
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-10 mb-0 flex flex-wrap gap-x-8 gap-y-3 font-bold">
+      <a href="/about/reviews/">Read all reviews →</a>
+      <a href="/about/testimonials/">Read patient testimonials →</a>
+    </p>
+  </Band>
+
+  <!-- 9. Closing coral band, then the footer -->
+  <CtaBand heading={d.cta?.heading} />
+</BaseLayout>
