@@ -129,7 +129,7 @@ Stock tile images on /procedures/.
 
 ### logos/
 
-Footer partner and credential logos, and the review source marks.
+Footer partner and credential logos, and the review source marks. The footer uses cleaned copies made by scripts/process-logos.mjs (asps, abps, realself, vcu, university-of-richmond, wric, fox-richmond, carecredit, aspire, brilliant-distinctions, cosmetassure, stony-point, neograft: 320x120 transparent lossless WebP; maa: trimmed only). Details in scripts/logo-report.json. The originals below are kept as the faithful conversions.
 
 | File | Size | What it shows | Live pages |
 |---|---|---|---|
