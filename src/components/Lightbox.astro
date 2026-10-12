@@ -140,7 +140,7 @@
     document.addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-lightbox]');
       if (!b || b.getAttribute('aria-disabled') === 'true') return;
-      const group = b.closest('[data-blur-group]') ?? document;
+      const group = b.closest('[data-lightbox-group], [data-blur-group]') ?? document;
       items = Array.from(group.querySelectorAll<HTMLButtonElement>('[data-lightbox]'));
       opener = b;
       show(items.indexOf(b));

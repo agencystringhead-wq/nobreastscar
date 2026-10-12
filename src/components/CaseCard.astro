@@ -9,8 +9,10 @@ import { caseLine, type CaseStudy } from '../lib/content';
 
 interface Props {
   study: CaseStudy;
+  /** Blurred by default (listing pages). Pass false where the photos are shown clear, such as a case study page. */
+  blur?: boolean;
 }
-const { study } = Astro.props;
+const { study, blur = true } = Astro.props;
 const d = study.data;
 const image = d.thumbnail ?? d.featured;
 const line = caseLine(d);
@@ -18,8 +20,8 @@ const line = caseLine(d);
 
 <article class="case-card bg-white text-ink rounded-[8px] p-3 flex flex-col w-full border border-line">
   <a href={d.path} tabindex="-1" aria-hidden="true" class="block rounded-[4px] overflow-hidden bg-white">
-    <div class="blur-frame">
-      <Img src={image} alt="" widths={[420, 640, 880, 1100]} sizes="(min-width: 900px) 580px, 94vw" class="blur-photo block w-full h-auto object-contain" />
+    <div class:list={[blur && 'blur-frame']}>
+      <Img src={image} alt="" widths={[420, 640, 880, 1100]} sizes="(min-width: 900px) 580px, 94vw" class:list={[blur && 'blur-photo', 'block w-full h-auto object-contain']} />
     </div>
   </a>
   <div class="px-3 pt-5 pb-4 flex flex-col gap-2">
