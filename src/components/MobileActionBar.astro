@@ -1,0 +1,9 @@
+---
+import { site } from '../data/site';
+---
+
+<!-- Sticky bottom bar, phones only. "Online Consult" scrolls to #consult in the footer. -->
+<div class="md:hidden fixed inset-x-0 bottom-0 z-30 bg-plum border-t border-plum-2 px-3 py-2 pb-[max(8px,env(safe-area-inset-bottom))] grid grid-cols-2 gap-2">
+  <a href={site.phoneHref} class="btn btn-ghost !min-h-[48px] !px-4">Call</a>
+  <a href="#consult" class="btn btn-primary !min-h-[48px] !px-4">Online Consult</a>
+</div>

@@ -1,0 +1,137 @@
+---
+import { footerColumns } from '../data/nav';
+import { site } from '../data/site';
+import { credentialLogos, mediaLogos, partnerLogos } from '../data/logos';
+import JotForm from './JotForm.astro';
+import Wordmark from './Wordmark.astro';
+
+const year = new Date().getFullYear();
+const { address } = site;
+
+const tile =
+  'min-h-[76px] bg-cream rounded-[6px] flex items-center justify-center text-center text-[13px] text-ink-soft no-underline hover:text-brick-deep px-3 py-2 focus-visible:outline-coral';
+---
+
+<footer class="bg-plum text-on-plum text-[15px]">
+  <!-- 1. Get Started + form -->
+  <div class="container-site pt-[104px] pb-[88px] max-md:pt-16 max-md:pb-14 flex flex-wrap gap-14 items-start">
+    <div class="flex-[1_1_400px] min-w-0">
+      <div class="eyebrow text-on-plum-pink mb-4">Internet Consult</div>
+      <h2 class="text-cream text-[clamp(3rem,7vw,4.75rem)] leading-none tracking-[-0.025em] mb-3">Get <em>Started</em></h2>
+      <a href={site.phoneHref} class="inline-block font-display text-[clamp(2rem,5vw,2.625rem)] text-on-plum-pink no-underline hover:text-coral mb-5">{site.phone}</a>
+      <p class="m-0 mb-10 text-[18px] max-w-[440px]">How can we help? Contact our team for a no-cost internet consultation.</p>
+      <div class="border-t border-plum-line pt-7 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-6 mb-8">
+        <div>
+          <div class="eyebrow text-on-plum-soft mb-2">Visit</div>
+          <address class="not-italic text-cream">
+            {address.street}<br />{address.suite}<br />{address.city}, {address.region} {address.zip}
+          </address>
+        </div>
+        <div>
+          <div class="eyebrow text-on-plum-soft mb-2">Medical Director</div>
+          <div class="text-cream">{site.director}</div>
+          <a href={site.phoneHref} class="text-coral no-underline hover:text-cream inline-block mt-1.5 py-1">{site.phone}</a>
+        </div>
+      </div>
+      <a href={site.mapsUrl} target="_blank" rel="noopener" class="block no-underline rounded-[8px] overflow-hidden text-cream bg-plum-2 hover:text-cream">
+        <svg viewBox="0 0 400 190" role="img" aria-label="Map pin on Stony Point Parkway, Richmond" class="block w-full">
+          <path d="M0 130 C80 110 140 140 220 110 S340 80 400 90" fill="none" stroke="#57345F" stroke-width="10"></path>
+          <path d="M120 0 L170 190 M260 0 L240 190 M0 55 L400 35" fill="none" stroke="#4A2F52" stroke-width="5"></path>
+          <circle cx="232" cy="104" r="22" fill="#EF6B57" opacity="0.3"></circle>
+          <circle cx="232" cy="104" r="8" fill="#EF6B57"></circle>
+          <text x="248" y="90" font-family="Source Sans 3, sans-serif" font-size="13" fill="#FFF8F2">Stony Point Parkway</text>
+        </svg>
+        <div class="px-[18px] py-3.5 flex justify-between">
+          <span>Get directions<span class="sr-only"> (opens in a new tab)</span></span>
+          <span aria-hidden="true" class="text-coral">→</span>
+        </div>
+      </a>
+    </div>
+
+    <div id="consult" class="flex-[1_1_460px] min-w-0 scroll-mt-24">
+      <div class="bg-cream text-ink rounded-[8px] p-7 max-sm:p-4 border-t-[6px] border-coral">
+        <h3 class="font-display text-[26px] mb-4">{site.jotformTitle}</h3>
+        <JotForm />
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Sitemap -->
+  <div class="border-t border-plum-line">
+    <div class="container-site py-[72px] max-md:py-12 grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-x-8 gap-y-10">
+      {
+        footerColumns.map((col) => (
+          <nav aria-label={col.heading} class="flex flex-col gap-1">
+            {col.href ? (
+              <a href={col.href} class="eyebrow text-coral no-underline hover:text-cream mb-1.5 py-1">{col.heading}</a>
+            ) : (
+              <span class="eyebrow text-coral mb-1.5 py-1">{col.heading}</span>
+            )}
+            {col.links.map((link) => (
+              <a href={link.href} class="text-on-plum no-underline hover:text-coral hover:underline py-[5px]">
+                {link.footerLabel ?? link.label}
+              </a>
+            ))}
+          </nav>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- 3. Every logo -->
+  <div class="border-t border-plum-line">
+    <div class="container-site py-16 max-md:py-12 flex flex-col gap-9">
+      <div>
+        <div class="eyebrow text-on-plum-soft mb-4">Credentials and training</div>
+        <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-3">
+          {
+            credentialLogos.map((logo) => (
+              <li class="flex"><a href={logo.href} target="_blank" rel="noopener" class:list={[tile, 'w-full']}>{logo.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="flex flex-wrap gap-x-12 gap-y-9">
+        <div class="flex-[1_1_260px] min-w-0">
+          <div class="eyebrow text-on-plum-soft mb-4">As seen on</div>
+          <ul class="list-none m-0 p-0 grid grid-cols-2 gap-3">
+            {
+              mediaLogos.map((logo) => (
+                <li class="flex"><a href={logo.href} target="_blank" rel="noopener" class:list={[tile, 'w-full']}>{logo.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="flex-[2_1_520px] min-w-0">
+          <div class="eyebrow text-on-plum-soft mb-4">Financing and partners</div>
+          <ul class="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-3">
+            {
+              partnerLogos.map((logo) => (
+                <li class="flex"><a href={logo.href} target="_blank" rel="noopener" class:list={[tile, 'w-full']}>{logo.name}<span class="sr-only"> (opens in a new tab)</span></a></li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Network + bottom bar -->
+  <div class="border-t border-plum-line">
+    <div class="container-site py-10 flex flex-wrap justify-between items-center gap-5">
+      <a href="/" class="no-underline text-cream hover:text-cream" aria-label={`${site.name}, home`}>
+        <Wordmark size="lg" class="[&>span:last-child]:!inline" />
+      </a>
+      <div class="text-[14px] text-on-plum-soft flex flex-wrap gap-x-[18px] gap-y-1.5 items-center">
+        <span>Our network of sites devoted to looking and feeling your best:</span>
+        {site.network.map((n) => <a href={n.href} class="text-on-plum py-1">{n.label}</a>)}
+      </div>
+    </div>
+    <div class="container-site pt-5 pb-8 border-t border-plum-2 flex flex-wrap justify-between gap-3 text-[13px] text-on-plum-soft">
+      <span>
+        © {year} {site.director} · All Rights Reserved · <a href="/site-map/" class="text-on-plum-soft">Sitemap</a>
+      </span>
+      <span>Website by <a href={site.agency.url} class="text-on-plum" rel="noopener">{site.agency.name}</a></span>
+    </div>
+  </div>
+</footer>

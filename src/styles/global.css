@@ -1,0 +1,216 @@
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/fraunces/opsz-italic.css';
+@import '@fontsource/source-sans-3/400.css';
+@import '@fontsource/source-sans-3/500.css';
+@import '@fontsource/source-sans-3/600.css';
+@import '@fontsource/source-sans-3/700.css';
+@import 'tailwindcss';
+
+/* Design tokens (SPEC §3). Mapped into Tailwind below so utilities like bg-plum and text-coral work. */
+:root {
+  --plum: #2a1730;
+  --plum-2: #3b2244;
+  --plum-line: #4a2f52;
+  --coral: #ef6b57;
+  --brick: #c2412e;
+  --brick-deep: #9c3222;
+  --cream: #fff8f2;
+  --blush: #fbe3da;
+  --blush-2: #f3c7b9;
+  --mint: #cde6df;
+  --teal: #1f4f4b;
+  --butter: #f6e7b8;
+  --ink: #1e1420;
+  --ink-soft: #5e4f5c;
+  --line: #ead9d0;
+
+  /* Text tints used on dark backgrounds in the approved design */
+  --on-plum: #e9dce6;
+  --on-plum-soft: #cdb8c9;
+  --on-plum-pink: #f6d9d0;
+
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius: 8px;
+  --max: 1240px;
+  --gutter: 24px;
+  --header-h: 72px;
+}
+
+@theme {
+  --color-plum: var(--plum);
+  --color-plum-2: var(--plum-2);
+  --color-plum-line: var(--plum-line);
+  --color-coral: var(--coral);
+  --color-brick: var(--brick);
+  --color-brick-deep: var(--brick-deep);
+  --color-cream: var(--cream);
+  --color-blush: var(--blush);
+  --color-blush-2: var(--blush-2);
+  --color-mint: var(--mint);
+  --color-teal: var(--teal);
+  --color-butter: var(--butter);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-on-plum: var(--on-plum);
+  --color-on-plum-soft: var(--on-plum-soft);
+  --color-on-plum-pink: var(--on-plum-pink);
+
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-sans: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-card: 8px;
+  --container-site: 1240px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  a {
+    color: var(--brick);
+  }
+  a:hover {
+    color: var(--brick-deep);
+  }
+  :focus-visible {
+    outline: 3px solid var(--coral);
+    outline-offset: 3px;
+  }
+  img,
+  svg {
+    max-width: 100%;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 350;
+    font-variation-settings: 'opsz' 144;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.6rem, 6vw, 4.9rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  h2 {
+    font-size: clamp(2rem, 4.4vw, 3.25rem);
+    line-height: 1.06;
+  }
+  h1 em,
+  h2 em,
+  h3 em {
+    font-style: italic;
+    color: var(--coral);
+  }
+}
+
+@layer components {
+  .container-site {
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .skip-link {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 100;
+    background: var(--cream);
+    color: var(--plum);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .skip-link:focus {
+    top: 12px;
+  }
+
+  /* Pill buttons. Min 44px tall for touch targets. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.2;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .btn-primary {
+    background: var(--brick);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--brick-deep);
+    color: #fff;
+  }
+  .btn-ghost {
+    border-color: var(--on-plum-pink);
+    color: var(--cream);
+  }
+  .btn-ghost:hover {
+    background: rgb(255 248 242 / 0.1);
+    color: var(--cream);
+  }
+}
+
+/* Fade-up on scroll (SPEC §3). Off under prefers-reduced-motion. JS adds .js to <html>. */
+.js .fade-up {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+.js .fade-up.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Reserve room for the sticky mobile action bar so it never covers footer content. */
+@media (max-width: 767px) {
+  body > footer {
+    padding-bottom: 72px;
+  }
+}

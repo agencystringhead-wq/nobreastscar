@@ -1,0 +1,286 @@
+---
+import { nav } from '../data/nav';
+import { site } from '../data/site';
+import Wordmark from './Wordmark.astro';
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header id="site-header" class="sticky top-0 z-40 bg-plum text-cream border-b border-plum-2">
+  <div class="container-site flex items-center justify-between gap-4 min-h-[72px] py-3">
+    <a href="/" class="no-underline text-cream hover:text-cream" aria-label={`${site.name}, ${site.tagline}, home`}>
+      <Wordmark />
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav aria-label="Main" class="hidden xl:flex items-center gap-x-1 text-[15px] font-medium">
+      {
+        nav.map((item, i) =>
+          item.groups ? (
+            <div class="menu-item" data-menu>
+              <a
+                href={item.href}
+                class="text-cream no-underline hover:text-coral py-3 pl-3"
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+              <button
+                type="button"
+                class="menu-toggle text-coral hover:text-cream min-w-[32px] min-h-[44px] px-1 pr-2 cursor-pointer"
+                aria-expanded="false"
+                aria-controls={`menu-panel-${i}`}
+                data-menu-toggle
+              >
+                <span aria-hidden="true" class="menu-plus inline-block transition-transform">+</span>
+                <span class="sr-only">{`Show ${item.label} menu`}</span>
+              </button>
+              <div id={`menu-panel-${i}`} class="menu-panel" data-menu-panel hidden>
+                <div class="container-site py-8 grid gap-10 md:grid-cols-[repeat(var(--cols),minmax(0,1fr))_minmax(240px,300px)]" style={`--cols:${item.groups.length}`}>
+                  {item.groups.map((group) => (
+                    <div>
+                      <div class="eyebrow text-coral mb-3">{group.heading}</div>
+                      <ul class="list-none m-0 p-0 flex flex-col">
+                        {group.links.map((link) => (
+                          <li>
+                            <a
+                              href={link.href}
+                              class="block py-[7px] text-on-plum no-underline hover:text-coral"
+                              aria-current={currentPath === link.href ? 'page' : undefined}
+                            >
+                              {link.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  <div class="bg-plum rounded-[8px] p-6 self-start">
+                    <div class="eyebrow text-on-plum-pink mb-2">{item.label}</div>
+                    <p class="font-display text-[20px] leading-snug m-0 mb-4">No-cost internet consultation</p>
+                    <a href={item.href} class="font-bold text-coral no-underline hover:text-cream">
+                      All {item.label.toLowerCase()} →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="text-cream no-underline hover:text-coral py-3 px-3"
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="/contact/" class="btn btn-primary hidden xl:inline-flex !min-h-[44px] !py-2 !px-[22px] text-[15px]">Get Started</a>
+      <button
+        type="button"
+        class="xl:hidden inline-flex items-center gap-2 min-h-[44px] min-w-[44px] px-3 rounded-full border border-plum-line text-cream cursor-pointer font-semibold"
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+        data-drawer-open
+      >
+        <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h18M1 7h18M1 13h18"></path></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer (full screen, accordions) -->
+<div id="mobile-drawer" class="drawer fixed inset-0 z-50 bg-plum text-cream overflow-y-auto" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+  <div class="container-site flex items-center justify-between min-h-[72px] py-3 border-b border-plum-2">
+    <a href="/" class="no-underline text-cream hover:text-cream" aria-label={`${site.name}, home`}>
+      <Wordmark />
+    </a>
+    <button type="button" class="inline-flex items-center gap-2 min-h-[44px] min-w-[44px] px-3 rounded-full border border-plum-line text-cream cursor-pointer font-semibold" data-drawer-close>
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg>
+      <span>Close</span>
+    </button>
+  </div>
+  <nav aria-label="Mobile" class="container-site py-4">
+    <ul class="list-none m-0 p-0">
+      {
+        nav.map((item) => (
+          <li class="border-b border-plum-2">
+            {item.groups ? (
+              <details class="drawer-acc group">
+                <summary class="flex items-center justify-between min-h-[56px] cursor-pointer font-display text-[26px] list-none">
+                  <span>{item.label}</span>
+                  <span aria-hidden="true" class="text-coral text-[28px] group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <div class="pb-5">
+                  <a href={item.href} class="block py-3 font-bold text-coral no-underline">All {item.label.toLowerCase()} →</a>
+                  {item.groups.map((group) => (
+                    <div class="mt-3">
+                      <div class="eyebrow text-on-plum-soft mb-1">{group.heading}</div>
+                      <ul class="list-none m-0 p-0">
+                        {group.links.map((link) => (
+                          <li>
+                            <a href={link.href} class="block py-3 text-on-plum no-underline hover:text-coral">{link.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a href={item.href} class="flex items-center min-h-[56px] font-display text-[26px] text-cream no-underline hover:text-coral">{item.label}</a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex flex-col gap-3 mt-8 pb-10">
+      <a href={site.phoneHref} class="btn btn-ghost">Call {site.phone}</a>
+      <a href="#consult" class="btn btn-primary" data-drawer-close>Online Consultation</a>
+    </div>
+  </nav>
+</div>
+
+<style>
+  .menu-item {
+    display: flex;
+    align-items: center;
+  }
+  .menu-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--plum-2);
+    border-top: 1px solid var(--plum-line);
+    box-shadow: 0 24px 40px rgb(20 8 24 / 0.35);
+    color: var(--cream);
+  }
+  .menu-panel[hidden] {
+    display: none;
+  }
+  .menu-toggle[aria-expanded='true'] .menu-plus {
+    transform: rotate(45deg);
+  }
+  .drawer[hidden] {
+    display: none;
+  }
+  .drawer-acc > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const menus = Array.from(document.querySelectorAll<HTMLElement>('[data-menu]'));
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  function setOpen(menu: HTMLElement, open: boolean) {
+    const btn = menu.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const panel = menu.querySelector<HTMLElement>('[data-menu-panel]');
+    if (!btn || !panel) return;
+    btn.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+  }
+  function closeAll(except?: HTMLElement) {
+    menus.forEach((m) => {
+      if (m !== except) setOpen(m, false);
+    });
+  }
+
+  menus.forEach((menu) => {
+    const btn = menu.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+    let timer: number | undefined;
+    btn.addEventListener('click', (e) => {
+      // With a mouse the menu is already open from hover, so a click keeps it open instead of toggling it shut.
+      const mouseClick = finePointer.matches && (e as MouseEvent).detail > 0;
+      const open = mouseClick ? true : btn.getAttribute('aria-expanded') !== 'true';
+      closeAll(menu);
+      setOpen(menu, open);
+    });
+    menu.addEventListener('pointerenter', (e) => {
+      if (!finePointer.matches || e.pointerType !== 'mouse') return;
+      window.clearTimeout(timer);
+      closeAll(menu);
+      setOpen(menu, true);
+    });
+    menu.addEventListener('pointerleave', (e) => {
+      if (!finePointer.matches || e.pointerType !== 'mouse') return;
+      timer = window.setTimeout(() => setOpen(menu, false), 160);
+    });
+    menu.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget as Node | null;
+      if (next && !menu.contains(next)) setOpen(menu, false);
+    });
+    menu.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setOpen(menu, false);
+        btn.focus();
+      }
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (header && !header.contains(e.target as Node)) closeAll();
+  });
+
+  // Mobile drawer
+  const drawer = document.getElementById('mobile-drawer');
+  const opener = document.querySelector<HTMLButtonElement>('[data-drawer-open]');
+  const closers = Array.from(document.querySelectorAll<HTMLElement>('[data-drawer-close]'));
+  const desktop = window.matchMedia('(min-width: 1280px)');
+
+  function focusables(root: HTMLElement) {
+    return Array.from(
+      root.querySelectorAll<HTMLElement>('a[href], button, summary, [tabindex]:not([tabindex="-1"])'),
+    ).filter((el) => el.offsetParent !== null);
+  }
+  function openDrawer() {
+    if (!drawer || !opener) return;
+    drawer.hidden = false;
+    opener.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    drawer.querySelector<HTMLElement>('[data-drawer-close]')?.focus();
+  }
+  function closeDrawer(returnFocus = true) {
+    if (!drawer || !opener || drawer.hidden) return;
+    drawer.hidden = true;
+    opener.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (returnFocus) opener.focus();
+  }
+  opener?.addEventListener('click', openDrawer);
+  closers.forEach((c) => c.addEventListener('click', () => closeDrawer(!(c instanceof HTMLAnchorElement))));
+  drawer?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeDrawer();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const items = focusables(drawer);
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+  // Links inside the drawer close it when followed (same-page anchors).
+  drawer?.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest('a[href^="#"]');
+    if (a) closeDrawer(false);
+  });
+  desktop.addEventListener('change', (e) => {
+    if (e.matches) closeDrawer(false);
+  });
+</script>
