@@ -1,9 +1,10 @@
 ---
 // The three gallery category pages: the live intro, then the case studies the live page lists as a full-width photo
-// grid , then the other galleries.
+// grid (blurred by default), then the other galleries.
 import PageLayout from '../../layouts/PageLayout.astro';
 import Band from '../../components/Band.astro';
 import RichBlocks from '../../components/RichBlocks.astro';
+import BlurReveal from '../../components/BlurReveal.astro';
 import CaseCard from '../../components/CaseCard.astro';
 import CardGrid from '../../components/CardGrid.astro';
 import { allPages, studies, studiesInGallery, metaDescription, galleryLabels } from '../../lib/content';
@@ -63,9 +64,11 @@ const others = await Promise.all(
     )
   }
   <Band tone="blush" id="cases">
-    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
-    </ul>
+    <BlurReveal>
+      <ul class="list-none m-0 p-0 grid grid-cols-1 min-[900px]:grid-cols-2 gap-[28px] items-start">
+        {list.map((s) => <li><CaseCard study={s} /></li>)}
+      </ul>
+    </BlurReveal>
   </Band>
   <Fragment slot="related">
     <Band tone="cream">

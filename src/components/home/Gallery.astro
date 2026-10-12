@@ -1,6 +1,7 @@
 ---
 import home from '../../data/home.json';
 import { studiesInGallery } from '../../lib/content';
+import BlurReveal from '../BlurReveal.astro';
 import CaseCard from '../CaseCard.astro';
 
 const g = home.gallery;
@@ -16,12 +17,16 @@ const featured = (await studiesInGallery('breast-enlargement')).slice(0, 6);
       {g.paragraphs.map((p, idx) => <p class:list={['m-0 text-on-plum text-[18px]', idx === 0 && 'mb-2']}>{p}</p>)}
     </div>
 
-    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {featured.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
-    </ul>
+    <!-- One "View results" button for the whole grid. The photos are blurred by the initial CSS, never by JS. -->
+    <BlurReveal class="gallery-blur" showLabel={g.showLabel} hideLabel={g.hideLabel} notice={g.blurNotice}>
+      <ul class="list-none m-0 p-0 grid grid-cols-1 min-[900px]:grid-cols-2 gap-[28px] items-start">
+        {featured.map((s) => <li><CaseCard study={s} /></li>)}
+      </ul>
+    </BlurReveal>
 
     <div class="mt-8 flex flex-wrap gap-3 items-center">
       <a href={g.cta.href} class="btn btn-primary">{g.cta.label}</a>
+      <span class="text-on-plum-soft text-[14px]">{g.note}</span>
     </div>
     <nav aria-label={g.browseLabel} class="mt-6 flex flex-wrap items-center gap-2.5">
       <span class="eyebrow text-on-plum-soft mr-1.5">{g.browseLabel}</span>
@@ -29,3 +34,10 @@ const featured = (await studiesInGallery('breast-enlargement')).slice(0, 6);
     </nav>
   </div>
 </section>
+
+<style is:global>
+  /* The reveal button and its notice sit on the plum band here. */
+  .gallery-blur [data-blur-notice] {
+    color: var(--on-plum-soft);
+  }
+</style>

@@ -1,6 +1,9 @@
 ---
-// A case-study card for the gallery grids: the live thumbnail cropped to one consistent 4:3 ratio (centred), the
-// live title, the age and implant line when the case states them, and a "View case" link.
+// A case-study card for the gallery grids. The live thumbnail is a before/after composite with a branded header and
+// footer, so it is NEVER cropped: natural aspect ratio, width 100%, height auto, on a white panel with 12px padding.
+// Below it: the live title, a facts row from what the live page states ("Age 38 · Female · 365cc") and "View case".
+// The photo is a real patient photo: it is blurred by the initial CSS (class "blur-photo") until the visitor presses
+// "View results" on the surrounding <BlurReveal>.
 import Img from './Img.astro';
 import { caseLine, type CaseStudy } from '../lib/content';
 
@@ -13,31 +16,15 @@ const image = d.thumbnail ?? d.featured;
 const line = caseLine(d);
 ---
 
-<a href={d.path} class="case-card no-underline text-cream hover:text-cream bg-plum rounded-[8px] overflow-hidden flex flex-col w-full h-full">
-  <div class="relative overflow-hidden bg-[#8E6F86] aspect-[4/3]">
-    <Img src={image} alt={`Before and after photos: ${d.title}`} widths={[280, 420, 570]} sizes="(min-width: 1024px) 330px, (min-width: 640px) 45vw, 100vw" class="block w-full h-full object-cover object-center" />
+<article class="case-card bg-white text-ink rounded-[8px] p-3 flex flex-col w-full border border-line">
+  <a href={d.path} tabindex="-1" aria-hidden="true" class="block rounded-[4px] overflow-hidden bg-white">
+    <div class="blur-frame">
+      <Img src={image} alt="" widths={[420, 640, 880, 1100]} sizes="(min-width: 900px) 580px, 94vw" class="blur-photo block w-full h-auto object-contain" />
+    </div>
+  </a>
+  <div class="px-3 pt-5 pb-4 flex flex-col gap-2">
+    <h3 class="font-display text-[24px] leading-[1.25] m-0 text-plum"><a href={d.path} class="no-underline text-plum hover:text-brick-deep">{d.title}</a></h3>
+    {line && <p class="m-0 text-[15px] text-ink-soft">{line}</p>}
+    <a href={d.path} class="font-bold text-brick-deep mt-1">View case →<span class="sr-only">: {d.title}</span></a>
   </div>
-  <div class="py-4 px-[18px] flex flex-col gap-1 flex-1">
-    {line && <div class="text-[12px] tracking-[0.12em] uppercase text-on-plum-pink font-bold">{line}</div>}
-    <h3 class="font-display text-[19px] leading-[1.3] m-0 text-cream">{d.title}</h3>
-    <span class="mt-auto pt-2 text-coral font-bold text-[15px]">View case →</span>
-  </div>
-</a>
-
-<style>
-  .case-card {
-    transition: transform 160ms ease;
-  }
-  .case-card:hover,
-  .case-card:focus-visible {
-    transform: translateY(-3px);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .case-card {
-      transition: none;
-    }
-    .case-card:hover {
-      transform: none;
-    }
-  }
-</style>
+</article>

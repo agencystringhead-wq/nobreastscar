@@ -113,7 +113,8 @@ Facts about the live site that the build depends on (checked 2026-10-12):
    - Compare pills.
 6. **Gallery** (plum-2)
    - Category filter buttons (All, Breast Enlargement, Breast Lift, Breast Lift with Implants).
-   - 6 featured case studies from the collection, shown unblurred (client decision, replaces blur-by-default).
+   - 6 featured case studies from the collection, blurred by default.
+   - A "View results" toggle that unblurs the whole grid for that visit only. Store nothing.
 7. **Reviews:** one large plum quote plus 4 colored quote cards, quoted exactly from `/about/reviews/` with their source names. "All reviews" link.
 8. **Surgery timeline** (teal): five steps.
    - Night before: fast 8 hours
@@ -170,7 +171,7 @@ Four bands on plum:
 - `caseStudies` collection: 27 entries.
   - Schema: `title`, `category` (enum `breast-enlargement | breast-lift | breast-lift-with-implants`; confirm it maps 1:1 to the gallery pages before locking it), `images`, and optional `age`, `implantSize`, `implantType`, `technique`.
   - URL: `/case-study/<slug>/`.
-  - Before/after images are shown as on the live site: unblurred, featured image uncropped, lightbox on click.
+  - Before/after images use `BlurReveal.astro`.
 - The three gallery pages are grids filtered by category.
 - `/site-map/` is generated from both collections.
 
@@ -199,7 +200,7 @@ Four bands on plum:
   - After the import, nothing depends on WordPress at runtime.
 - Homepage copy lives in `src/data/home.json`, so copy edits don't touch components.
 - `site.ts` holds the NAP, phone, GTM ID and JotForm ID in one place.
-- Client JS is limited to: mega menu, mobile drawer, gallery lightbox, JotForm resize and the scroll fade. Use vanilla JS or `client:idle` islands; no React.
+- Client JS is limited to: mega menu, mobile drawer, gallery filter/reveal, JotForm resize and the scroll fade. Use vanilla JS or `client:idle` islands; no React.
 
 ## 9. SEO, analytics, hosting
 

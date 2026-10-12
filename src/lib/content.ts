@@ -54,9 +54,9 @@ export async function studiesInGallery(category: string): Promise<CaseStudy[]> {
     .sort((a, b) => (a.data.galleryOrder?.[category] ?? 999) - (b.data.galleryOrder?.[category] ?? 999));
 }
 
-/** "Age 38 · 365cc silicone": only what the case states. */
+/** "Age 38 · Female · 365cc silicone": only what the case states. */
 export function caseLine(d: CaseStudy['data']): string {
-  return [d.age && `Age ${d.age}`, d.implantSize && [d.implantSize, d.implantType].filter(Boolean).join(' ')].filter(Boolean).join(' · ');
+  return [d.age && `Age ${d.age}`, d.gender, d.implantSize && [d.implantSize, d.implantType].filter(Boolean).join(' ')].filter(Boolean).join(' · ');
 }
 
 /** Timing the case text states, for example "2 months after surgery" (only when it says it plainly). */
