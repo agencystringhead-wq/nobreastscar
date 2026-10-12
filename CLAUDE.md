@@ -4,7 +4,7 @@ A fresh Astro website for nobreastscar.com: Richmond Breast Enhancement Center, 
 
 ## Read these before writing code
 1. `docs/SPEC.md`: the full build spec, which is the source of truth.
-2. `design/homepage-design.html` and `design/homepage-design.png`: the approved homepage design. Match its layout, colors, type and section order. It's a static mockup; rebuild it as Astro components and don't paste it in.
+2. `design/homepage-design.html` and `design/homepage-design.webp`: the approved homepage design. Match its layout, colors, type and section order. It's a static mockup; rebuild it as Astro components and don't paste it in.
 3. `docs/CONTENT.md`: the facts used on the homepage and which live page each one came from.
 
 ## Non-negotiables

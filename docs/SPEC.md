@@ -6,7 +6,7 @@ GTM container: `GTM-KGR42B5`
 JotForm: "No Scar Contact Form", ID `62864268680467`
 Staging: https://nobreastscar.pages.dev (custom domain nobreastscar.com at launch)
 
-Approved homepage design: `design/homepage-design.html` (screenshot: `design/homepage-design.png`). Where this spec and the design disagree on a visual detail, follow the design. Where they disagree on behavior, data or URLs, follow this spec.
+Approved homepage design: `design/homepage-design.html` (screenshot: `design/homepage-design.webp`). Where this spec and the design disagree on a visual detail, follow the design. Where they disagree on behavior, data or URLs, follow this spec.
 
 ---
 

@@ -1,4 +1,4 @@
-Read CLAUDE.md, then docs/SPEC.md and docs/CONTENT.md, then look at design/homepage-design.png and open design/homepage-design.html.
+Read CLAUDE.md, then docs/SPEC.md and docs/CONTENT.md, then look at design/homepage-design.webp and open design/homepage-design.html.
 
 Build the new nobreastscar.com as a fresh Astro site, following the spec exactly. The homepage must match the approved design. Keep every live page URL the same, keep all images WebP only, and put the big footer with the JotForm on every page.
 

@@ -1,7 +1,7 @@
 ---
 import home from '../../data/home.json';
 import Img from '../Img.astro';
-import portrait from '../../assets/images/doctor/doctor-lynam.webp';
+import portrait from '../../assets/images/doctor/dr-lynam.webp';
 import signature from '../../assets/images/doctor/nlynam-sign.webp';
 
 const d = home.doctor;
@@ -10,9 +10,9 @@ const d = home.doctor;
 <section class="bg-cream">
   <div class="container-site py-[104px] max-md:py-14 flex flex-wrap gap-16 max-md:gap-10 items-start">
     <div class="flex-[1_1_340px] max-w-[460px] max-md:max-w-none min-w-0 w-full">
-      <!-- The live site's studio portrait (200x270) is shown at its own size so it stays sharp. -->
-      <div class="bg-blush rounded-[8px] p-6 flex justify-center">
-        <Img src={portrait} alt={d.photoAlt} widths={[portrait.width]} sizes={`${portrait.width}px`} class="rounded-[4px] w-[200px] h-auto" />
+      <!-- The live homepage portrait (transparent cut-out), used only here on the homepage. -->
+      <div class="bg-blush rounded-[8px] pt-8 flex justify-center overflow-hidden">
+        <Img src={portrait} alt={d.photoAlt} widths={[320, portrait.width]} sizes="(min-width: 640px) 320px, 70vw" class="w-[320px] max-w-[80%] h-auto" />
       </div>
       <div class="mt-4 bg-plum text-cream rounded-[8px] p-[22px]">
         <h3 class="eyebrow text-on-plum-pink mb-2.5">{d.trainingHeading}</h3>

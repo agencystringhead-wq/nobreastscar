@@ -3,17 +3,38 @@ import { getCollection } from 'astro:content';
 import home from '../../data/home.json';
 import { site } from '../../data/site';
 import Img from '../Img.astro';
-import drLynam from '../../assets/images/doctor/dr-lynam.webp';
+import heroWoman from '../../assets/images/hero/hero-woman.webp';
+
+interface Props {
+  /** "bleed": photo full-bleed on the right half with a plum fade. "arch": photo cropped to her face inside an arch. */
+  variant?: 'bleed' | 'arch';
+}
+const { variant = 'bleed' } = Astro.props;
 
 const h = home.hero;
 // The case-study count always comes from the collection, never a typed number.
 const caseStudyCount = (await getCollection('caseStudies')).length;
 const factValue = (v: string) => (v === 'caseStudyCount' ? String(caseStudyCount) : v);
+const heroWidths = [480, 640, 960, 1280, 1400];
 ---
 
-<section class="bg-plum text-cream overflow-hidden">
-  <div class="container-site pt-20 pb-[72px] max-md:pt-12 max-md:pb-12 flex flex-wrap gap-14 items-center">
-    <div class="flex-[1_1_520px] min-w-0">
+<section class:list={['bg-plum text-cream overflow-hidden', variant === 'bleed' ? 'hero-bleed' : 'hero-arch']}>
+  <div class="hero-main">
+  {
+    variant === 'bleed' && (
+      <!-- Real live-site hero photo. Phone: above the text, cropped to her face. Desktop: right half, bleeding off the edge. -->
+      <div class="hero-photo-wrap">
+        <Img src={heroWoman} alt={h.imageAlt} loading="eager" widths={heroWidths} sizes="(min-width: 1024px) 50vw, 100vw" class="hero-photo" />
+      </div>
+      <div class="hero-card hero-card-bleed">
+        <div class="text-[11px] tracking-[0.14em] uppercase text-brick font-bold mb-1">{h.card.label}</div>
+        <div class="font-display text-[19px] leading-[1.25]">{h.card.text}</div>
+      </div>
+    )
+  }
+
+  <div class="container-site hero-body pt-14 pb-[72px] max-lg:pt-10 max-md:pb-12 lg:pt-24 flex flex-wrap gap-14 items-center">
+    <div class:list={['min-w-0', variant === 'bleed' ? 'hero-text flex-1' : 'flex-[1_1_520px]']}>
       <div class="inline-flex items-center gap-2.5 eyebrow text-on-plum-pink mb-6">
         <span aria-hidden="true" class="w-7 h-0.5 bg-coral"></span>{h.eyebrow}
       </div>
@@ -25,22 +46,23 @@ const factValue = (v: string) => (v === 'caseStudyCount' ? String(caseStudyCount
       </div>
     </div>
 
-    <div class="flex-[1_1_380px] min-w-0 relative max-w-[460px] max-lg:mx-auto w-full">
-      <!-- Real portrait of Dr. Lynam (transparent cut-out) standing on the arch. -->
-      <div class="relative aspect-[4/5] w-full bg-on-plum-pink rounded-[300px_300px_8px_8px] overflow-hidden">
-        <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-[46%] bg-coral opacity-35"></div>
-        <div class="absolute inset-0 flex justify-center items-end">
-          <Img src={drLynam} alt={h.imageAlt} loading="eager" widths={[320, 467]} sizes="(min-width: 1024px) 300px, 70vw" class="h-[96%] w-auto max-w-none" />
+    {
+      variant === 'arch' && (
+        <div class="flex-[1_1_380px] min-w-0 relative max-w-[460px] max-lg:mx-auto w-full">
+          <div class="hero-arch-shape relative aspect-[4/5] w-full rounded-[300px_300px_8px_8px] overflow-hidden bg-on-plum-pink">
+            <Img src={heroWoman} alt={h.imageAlt} loading="eager" widths={heroWidths} sizes="(min-width: 1024px) 460px, 90vw" class="hero-arch-photo" />
+          </div>
+          <div class="hero-card hero-card-arch">
+            <div class="text-[11px] tracking-[0.14em] uppercase text-brick font-bold mb-1">{h.card.label}</div>
+            <div class="font-display text-[19px] leading-[1.25]">{h.card.text}</div>
+          </div>
         </div>
-      </div>
-      <div class="absolute left-3 bottom-9 max-sm:left-2 bg-cream text-ink rounded-[8px] py-4 px-[18px] max-w-[260px] shadow-[0_18px_40px_rgba(20,8,24,0.35)]">
-        <div class="text-[11px] tracking-[0.14em] uppercase text-brick font-bold mb-1">{h.card.label}</div>
-        <div class="font-display text-[19px] leading-[1.25]">{h.card.text}</div>
-      </div>
-    </div>
+      )
+    }
+  </div>
   </div>
 
-  <div class="border-t border-plum-2">
+  <div class="border-t border-plum-2 relative z-10">
     <div class="container-site">
       <ul class="list-none p-0 my-0 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
         {
@@ -55,3 +77,117 @@ const factValue = (v: string) => (v === 'caseStudyCount' ? String(caseStudyCount
     </div>
   </div>
 </section>
+
+<!-- Global: the <img> is rendered by the Img component, which scoped styles cannot reach. -->
+<style is:global>
+  .hero-main {
+    position: relative;
+  }
+  .hero-bleed .hero-body {
+    position: relative;
+    z-index: 2;
+  }
+  /* Phone: photo above the text, about 320px tall, cropped to her face (face sits at ~63% across the image). */
+  .hero-photo-wrap {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background: #ecebeb;
+  }
+  .hero-photo {
+    position: absolute;
+    max-width: none;
+    height: 440px;
+    width: auto;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-63%);
+  }
+  /* Phone: the card overlaps only the bottom edge of the photo, clear of her face. */
+  .hero-card-bleed {
+    position: relative;
+    z-index: 3;
+    margin: -28px 16px 0;
+  }
+  .hero-card {
+    background: var(--cream);
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 16px 18px;
+    max-width: 260px;
+    box-shadow: 0 18px 40px rgb(20 8 24 / 0.35);
+  }
+  /* Desktop: right half, full bleed, plum fading in from the left so the text stays on solid plum. */
+  @media (min-width: 1024px) {
+    .hero-photo-wrap {
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 50%;
+      height: auto;
+      background: var(--plum);
+    }
+    .hero-photo {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      top: 0;
+      left: 0;
+      transform: none;
+      object-fit: cover;
+      object-position: 85% 30%;
+    }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #2a1730 0%, rgb(42 23 48 / 0.94) 14%, rgb(42 23 48 / 0.6) 38%, rgb(42 23 48 / 0) 72%);
+      z-index: 1;
+    }
+    .hero-card-bleed {
+      position: absolute;
+      margin: 0;
+      left: calc(50% + 32px);
+      bottom: 48px;
+    }
+  }
+  .hero-bleed .hero-text {
+    max-width: 600px;
+  }
+  /* Narrow desktops: give the text more room so it never sits over the photo. */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .hero-photo-wrap {
+      width: 42%;
+    }
+    .hero-card-bleed {
+      left: calc(42% + 32px);
+    }
+    .hero-bleed .hero-text {
+      max-width: 520px;
+    }
+  }
+
+  /* Arch variant */
+  .hero-arch-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: 66% 28%;
+  }
+  .hero-arch-shape::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 30%;
+    background: linear-gradient(0deg, rgb(42 23 48 / 0.35), transparent);
+  }
+  .hero-card-arch {
+    position: absolute;
+    left: 12px;
+    bottom: 36px;
+    z-index: 3;
+  }
+</style>
