@@ -19,7 +19,7 @@ export async function getStaticPaths() {
     const list = await studiesInGallery(gallery);
     const i = list.findIndex((s) => s.id === study.id);
     // "More cases": the neighbours in the same gallery, wrapping round.
-    const others = [...list.slice(i + 1), ...list.slice(0, i)].slice(0, 3);
+    const others = [...list.slice(i + 1), ...list.slice(0, i)].slice(0, 2);
     result.push({ params: { slug: study.id }, props: { study, gallery, prev: list[i - 1], next: list[i + 1], others } });
   }
   return result;
@@ -165,8 +165,8 @@ const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Gallery', href
     <Band tone="cream">
       <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] mb-8 text-plum">More {label.toLowerCase()} cases</h2>
       <BlurReveal>
-        <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {others.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
+        <ul class="list-none m-0 p-0 grid grid-cols-1 min-[900px]:grid-cols-2 gap-[28px] items-start">
+          {others.map((s) => <li><CaseCard study={s} /></li>)}
         </ul>
       </BlurReveal>
     </Band>

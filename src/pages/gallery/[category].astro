@@ -65,8 +65,8 @@ const others = await Promise.all(
   }
   <Band tone="blush" id="cases">
     <BlurReveal>
-      <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {list.map((s) => <li class="flex"><CaseCard study={s} /></li>)}
+      <ul class="list-none m-0 p-0 grid grid-cols-1 min-[900px]:grid-cols-2 gap-[28px] items-start">
+        {list.map((s) => <li><CaseCard study={s} /></li>)}
       </ul>
     </BlurReveal>
   </Band>
