@@ -9,6 +9,9 @@
   "scripts": {
     "dev": "astro dev",
     "check:images": "node scripts/check-image-formats.mjs",
+    "check:urls": "node scripts/check-urls.mjs",
+    "fetch:images": "node scripts/fetch-images.mjs",
+    "import:content": "node scripts/import-content.mjs",
     "build": "node scripts/check-image-formats.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -23,6 +26,8 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "cheerio": "^1.2.0",
+    "turndown": "^7.2.4",
     "typescript": "^5.9.3"
   }
 }

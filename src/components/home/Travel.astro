@@ -1,7 +1,12 @@
 ---
 import home from '../../data/home.json';
+import Img from '../Img.astro';
+import airport from '../../assets/images/travel/richmond-airlines.webp';
+import hotelsImg from '../../assets/images/travel/hotels.webp';
 
 const t = home.travel;
+// Real photos from the live Travel pages: Richmond airport terminal and a Richmond hotel.
+const images: Record<string, ImageMetadata> = { airport, hotels: hotelsImg };
 ---
 
 <section class="bg-butter">
@@ -10,13 +15,16 @@ const t = home.travel;
       <div class="eyebrow text-[#8A3A26] mb-3.5">{t.eyebrow}</div>
       <h2 class="text-[clamp(1.9rem,4vw,2.875rem)] mb-5">{t.title}</h2>
       <p class="m-0 mb-7 text-[#4A3B2A] text-[18px]">{t.text}</p>
-      <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3.5 mb-[30px]">
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-3.5 mb-[30px]">
         {
           t.cards.map((c) => (
-            <div class="bg-cream rounded-[8px] p-5">
-              <div class="eyebrow text-[#8A3A26]">{c.label}</div>
-              <div class="font-display text-[21px] mt-1 leading-snug">{c.title}</div>
-              <div class="text-ink-soft text-[14px] mt-1">{c.text}</div>
+            <div class="bg-cream rounded-[8px] overflow-hidden flex flex-col">
+              <Img src={images[c.image]} alt={c.alt} widths={[320, 400]} sizes="(min-width: 640px) 240px, 90vw" class="w-full h-[150px] object-cover" />
+              <div class="p-5">
+                <div class="eyebrow text-[#8A3A26]">{c.label}</div>
+                <div class="font-display text-[21px] mt-1 leading-snug">{c.title}</div>
+                <div class="text-ink-soft text-[14px] mt-1">{c.text}</div>
+              </div>
             </div>
           ))
         }
@@ -36,8 +44,17 @@ const t = home.travel;
       <div class="bg-cream rounded-[8px] p-6">
         <h3 class="eyebrow text-[#8A3A26] mb-3">{t.hotels.heading}</h3>
         <ul class="list-none m-0 p-0 flex flex-wrap gap-2 text-[14px]">
-          {t.hotels.items.map((h) => <li class="bg-blush rounded-full px-3 py-1.5">{h}</li>)}
+          {
+            t.hotels.items.map((h) => (
+              <li>
+                <a href={h.href} target="_blank" rel="noopener" class="bg-blush rounded-full px-3 py-2 min-h-[44px] inline-flex items-center text-ink no-underline hover:bg-blush-2 hover:text-ink">
+                  {h.name}<span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            ))
+          }
         </ul>
+        <a href={t.hotels.more.href} class="inline-block mt-4 font-bold no-underline">{t.hotels.more.label} →</a>
       </div>
     </div>
   </div>

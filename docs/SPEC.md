@@ -10,10 +10,19 @@ Approved homepage design: `design/homepage-design.html` (screenshot: `design/hom
 
 ---
 
+## 0. Content rule (overrides everything below)
+
+**The site uses only content and images that exist on the live nobreastscar.com.** Nothing is invented: no claims, stats, prices, testimonials, stock photos or illustrations. There are no placeholder boxes or `[photo]` / `[n]` labels on the finished site. Any section in §5 (or in the approved design) that has no real content behind it is changed, merged or removed, while the approved look is kept: colours, fonts, colour-blocked bands and the big footer with the JotForm. `docs/ASSETS.md` is the inventory of real images and real content per topic; the homepage is built from it.
+
+Facts about the live site that the build depends on (checked 2026-10-12):
+- The case-study sitemap lists 26 case studies plus the `/case-study/` archive page (27 URLs). The page sitemap lists 38 URLs. Total 65.
+- The three gallery pages are not a clean 1:1 split: Breast Enlargement and Breast Lift with Implants list the same 10 studies, and Breast Lift lists all 26. Case studies therefore store `galleries` (the live pages that list them) instead of a single category.
+- The live homepage already has a real "Patient Gallery" image, real implant images and a real Dr. Lynam portrait and signature. There is no hero photo.
+
 ## 1. Ground rules
 
 - **Content:** reuse the live site's wording. Fix only obvious typos ("minimial" to "minimal", "comitted" to "committed", "Tranaxillary" to "Transaxillary"). Homepage summaries of inner pages must stay faithful to those pages (see `docs/CONTENT.md`).
-- **No invented facts:** no stats, prices, ratings, review counts or claims that aren't on the live site. Unknown values render as `[placeholder]` and are listed in §11.
+- **No invented facts:** no stats, prices, ratings, review counts or claims that aren't on the live site. See §0: unknown values are not shown, not replaced by placeholders.
 - **Don't use "the only"** board-certified surgeon claim from the About page. Use "board-certified plastic and maxillofacial surgeon" instead.
 - **URLs:** every page keeps its live URL with a trailing slash. Keep misspelled live slugs as they are (e.g. `/procedures/minimal-scar-periaerolar-incision/`).
 - **No em dashes** in UI copy.

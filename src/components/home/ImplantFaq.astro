@@ -1,14 +1,39 @@
 ---
+// The six questions and answers are read from the imported /implants/implant-faq/ page, so the homepage
+// can never drift from the live wording.
+import { getCollection } from 'astro:content';
 import home from '../../data/home.json';
 
 const f = home.faq;
+const page = (await getCollection('pages')).find((p) => p.data.path === '/implants/implant-faq/');
+
+/** Markdown links and bold to plain text. */
+const plain = (s: string) => s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\*\*([^*]+)\*\*/g, '$1').trim();
+
+interface Item {
+  q: string;
+  blocks: { type: 'p' | 'ul'; items: string[] }[];
+}
+const items: Item[] = [];
+for (const part of (page?.body ?? '').split(/^## /m).slice(1)) {
+  const [q, ...rest] = part.split('\n');
+  const blocks: Item['blocks'] = [];
+  for (const chunk of rest.join('\n').split(/\n{2,}/)) {
+    const lines = chunk.split('\n').map((l) => l.trim()).filter(Boolean);
+    if (!lines.length) continue;
+    if (lines.every((l) => l.startsWith('-'))) blocks.push({ type: 'ul', items: lines.map((l) => plain(l.replace(/^-\s*/, ''))) });
+    else blocks.push({ type: 'p', items: [plain(lines.join(' '))] });
+  }
+  items.push({ q: plain(q), blocks });
+}
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: f.items.map((item) => ({
+  mainEntity: items.map((item) => ({
     '@type': 'Question',
     name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
+    acceptedAnswer: { '@type': 'Answer', text: item.blocks.map((b) => b.items.join(' ')).join(' ') },
   })),
 };
 ---
@@ -22,13 +47,15 @@ const jsonLd = {
     </div>
     <div class="flex-[2_1_560px] min-w-0 flex flex-col gap-2.5">
       {
-        f.items.map((item, idx) => (
+        items.map((item, idx) => (
           <details class="faq bg-cream rounded-[8px] overflow-hidden" open={idx === 0}>
             <summary class="px-6 py-[22px] max-sm:px-4 cursor-pointer list-none flex justify-between gap-4 min-h-[44px]">
-              <span class="font-display text-[21px] leading-snug">{item.q}</span>
+              <h3 class="font-display text-[21px] leading-snug m-0">{item.q}</h3>
               <span aria-hidden="true" class="faq-icon text-[24px] leading-none text-brick transition-transform">+</span>
             </summary>
-            <div class="px-6 pb-[22px] max-sm:px-4 text-ink-soft">{item.a}</div>
+            <div class="px-6 pb-[22px] max-sm:px-4 text-ink-soft flex flex-col gap-3">
+              {item.blocks.map((b) => (b.type === 'ul' ? <ul class="m-0 pl-5 list-disc">{b.items.map((li) => <li>{li}</li>)}</ul> : <p class="m-0">{b.items[0]}</p>))}
+            </div>
           </details>
         ))
       }

@@ -1,0 +1,33 @@
+---
+// Single image wrapper (SPEC §2): astro:assets <Image>, WebP only, intrinsic width and height,
+// responsive widths that never exceed the source, lazy loading except for the hero.
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** Candidate widths for srcset. Sizes larger than the source are dropped so nothing is upscaled. */
+  widths?: number[];
+  sizes?: string;
+  /** Use "eager" for the LCP image only. */
+  loading?: 'lazy' | 'eager';
+  class?: string;
+  quality?: number;
+}
+const { src, alt, widths = [320, 480, 640, 960, 1280], sizes = '100vw', loading = 'lazy', class: className, quality = 82 } = Astro.props;
+const usable = widths.filter((w) => w < src.width);
+const finalWidths = [...usable, src.width];
+---
+
+<Image
+  src={src}
+  alt={alt}
+  format="webp"
+  quality={quality}
+  widths={finalWidths}
+  sizes={sizes}
+  loading={loading}
+  decoding={loading === 'eager' ? 'sync' : 'async'}
+  fetchpriority={loading === 'eager' ? 'high' : undefined}
+  class={className}
+/>

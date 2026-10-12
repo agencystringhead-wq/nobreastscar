@@ -1,0 +1,26 @@
+---
+// Phase 2 stand-in: renders every imported page at its live URL so the URL check can pass.
+// Phase 4 replaces this body with PageLayout (hero, sidebar, prose styling, generated gallery grids).
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages
+    .filter((p) => p.data.path !== '/')
+    .map((p) => ({
+      params: { slug: p.data.path.replace(/^\/|\/$/g, '') },
+      props: { page: p },
+    }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.seoTitle} description={page.data.description}>
+  <section class="container-site py-16 max-w-[72ch] mx-auto">
+    <h1 class="mb-6 text-plum">{page.data.title}</h1>
+    <Content />
+  </section>
+</BaseLayout>

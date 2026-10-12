@@ -1,0 +1,21 @@
+---
+// Phase 2 stand-in so every case-study URL exists. It deliberately shows no photos: before and after
+// images must go through BlurReveal (Phase 4), never appear unblurred.
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('caseStudies');
+  return studies.map((s) => ({ params: { slug: s.id }, props: { study: s } }));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+---
+
+<BaseLayout title={study.data.seoTitle} description={study.data.description}>
+  <section class="container-site py-16 max-w-[72ch] mx-auto">
+    <h1 class="mb-6 text-plum">{study.data.title}</h1>
+    <Content />
+  </section>
+</BaseLayout>

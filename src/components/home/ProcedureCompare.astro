@@ -1,6 +1,5 @@
 ---
 import home from '../../data/home.json';
-import IncisionDiagram from '../IncisionDiagram.astro';
 
 const c = home.compare;
 const tagTones: Record<string, string> = {
@@ -34,17 +33,16 @@ const tagTones: Record<string, string> = {
                 <span class:list={['text-[12px] tracking-[0.14em] uppercase font-bold', card.dark ? 'text-on-plum-pink' : 'text-ink-soft']}>{card.label}</span>
                 <span class:list={['text-[12px] font-bold px-2.5 py-1 rounded-full', tagTones[card.tagTone]]}>{card.tag}</span>
               </div>
-              <IncisionDiagram variant={card.variant as 'armpit' | 'crease' | 'areola'} dark={card.dark} label={card.diagramLabel} class="w-full h-[150px]" />
-              <h3 class="font-display text-[26px] leading-[1.2]">{card.title}</h3>
-              <dl class="m-0 grid grid-cols-[auto_1fr] gap-x-3.5 gap-y-1.5 text-[15px]">
+              <h3 class="font-display text-[28px] leading-[1.15]">{card.title}</h3>
+              <dl class="m-0 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2.5 text-[15px]">
                 {card.rows.map(([k, v]) => (
                   <>
-                    <dt class={card.dark ? 'text-on-plum-soft' : 'text-ink-soft'}>{k}</dt>
+                    <dt class:list={['font-semibold', card.dark ? 'text-on-plum-soft' : 'text-ink-soft']}>{k}</dt>
                     <dd class="m-0">{v}</dd>
                   </>
                 ))}
               </dl>
-              <span class:list={['font-bold mt-auto', card.dark ? 'text-coral' : 'text-brick']}>{c.learnMore} →</span>
+              <span class:list={['font-bold mt-auto pt-2', card.dark ? 'text-coral' : 'text-brick']}>{c.learnMore} →</span>
             </a>
           </li>
         ))
