@@ -5,13 +5,12 @@ description: "Body lift and breast lift patient case study cover 6months before 
 path: "/case-study/women-with-body-lift-and-breast-lift/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 8
-thumbnail: "../../assets/images/case-studies/body-arm-breast-fi.webp"
-images: ["../../assets/images/case-studies/bab-2.webp","../../assets/images/case-studies/bab-1.webp","../../assets/images/case-studies/body-arm-breast.webp"]
+galleryOrder: {"breast-enlargement":8,"breast-lift":8,"breast-lift-with-implants":8}
+featured: "../../assets/images/case-studies/women-with-body-lift-and-breast-lift/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-with-body-lift-and-breast-lift/featured.webp"
+images: ["../../assets/images/case-studies/women-with-body-lift-and-breast-lift/image-1.webp","../../assets/images/case-studies/women-with-body-lift-and-breast-lift/image-2.webp","../../assets/images/case-studies/women-with-body-lift-and-breast-lift/image-3.webp"]
 age: "35-45"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 ---
 
 ## Case description

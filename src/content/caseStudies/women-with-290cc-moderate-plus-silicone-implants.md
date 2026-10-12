@@ -5,13 +5,12 @@ description: "290cc moderate plus silicone implants inframammary incision patien
 path: "/case-study/women-with-290cc-moderate-plus-silicone-implants/"
 galleries: ["breast-lift"]
 order: 19
-thumbnail: "../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.webp"
-images: ["../../assets/images/case-studies/fb-model.webp","../../assets/images/case-studies/fullbreast-model.webp","../../assets/images/case-studies/full-breast-model.webp"]
+galleryOrder: {"breast-lift":19}
+featured: "../../assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-1.webp","../../assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-2.webp","../../assets/images/case-studies/women-with-290cc-moderate-plus-silicone-implants/image-3.webp"]
 age: "27-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "290cc"
 implantType: "silicone"
 ---

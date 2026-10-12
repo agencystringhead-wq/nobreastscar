@@ -4,13 +4,12 @@ seoTitle: "Woman Breast augmentation with 250cc silicone implants - No Breast Sc
 path: "/case-study/woman-breast-augmentation-250cc-silicone-implants/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 2
-thumbnail: "../../assets/images/case-studies/breastaugmentation-250cc-silicon-implants.webp"
-images: ["../../assets/images/case-studies/breastaugmentation-250cc-silicon-implants-img2.webp","../../assets/images/case-studies/breastaugmentation-250cc-silicon-implants-img1.webp"]
+galleryOrder: {"breast-enlargement":2,"breast-lift":2,"breast-lift-with-implants":2}
+featured: "../../assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/image-1.webp","../../assets/images/case-studies/woman-breast-augmentation-250cc-silicone-implants/image-2.webp"]
 age: "35-45"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "250cc"
 implantType: "silicone"
 ---

@@ -4,13 +4,12 @@ seoTitle: "27 year old female Arm pit incision with 340cc and 370cc - No Breast 
 path: "/case-study/27-year-old-female-arm-pit-incision-340cc-370cc/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 1
-thumbnail: "../../assets/images/case-studies/nbs-27-year-old-female-arm-pit-incision-with-340cc-and-370cc.webp"
-images: ["../../assets/images/case-studies/27-year-old-female-arm-pit-incision-image1.webp","../../assets/images/case-studies/27-year-old-female-arm-pit-incision-image2.webp","../../assets/images/case-studies/27-year-old-female-arm-pit-incision-image3.webp"]
+galleryOrder: {"breast-enlargement":1,"breast-lift":1,"breast-lift-with-implants":1}
+featured: "../../assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/featured.webp"
+thumbnail: "../../assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/featured.webp"
+images: ["../../assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-1.webp","../../assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-2.webp","../../assets/images/case-studies/27-year-old-female-arm-pit-incision-340cc-370cc/image-3.webp"]
 age: "27"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "340cc"
 technique: "transaxillary"
 ---

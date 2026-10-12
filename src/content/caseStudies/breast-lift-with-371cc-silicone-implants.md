@@ -5,13 +5,12 @@ description: "Breast lift with 371cc silicone implants patient case study cover 
 path: "/case-study/breast-lift-with-371cc-silicone-implants/"
 galleries: ["breast-lift"]
 order: 15
-thumbnail: "../../assets/images/case-studies/breast-lift-with-371cc-silicone-implants.webp"
-images: ["../../assets/images/case-studies/breastlift371cc1.webp","../../assets/images/case-studies/breastlift371cc.webp"]
+galleryOrder: {"breast-lift":15}
+featured: "../../assets/images/case-studies/breast-lift-with-371cc-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/breast-lift-with-371cc-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/breast-lift-with-371cc-silicone-implants/image-1.webp","../../assets/images/case-studies/breast-lift-with-371cc-silicone-implants/image-2.webp"]
 age: "25-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "371cc"
 implantType: "silicone"
 ---

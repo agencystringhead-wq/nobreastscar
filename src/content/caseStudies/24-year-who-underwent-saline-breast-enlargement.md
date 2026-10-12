@@ -5,13 +5,12 @@ description: "saline breast enlargement with a “no breast scar” technique wi
 path: "/case-study/24-year-who-underwent-saline-breast-enlargement/"
 galleries: ["breast-lift"]
 order: 22
-thumbnail: "../../assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement.webp"
-images: ["../../assets/images/case-studies/breastenlargement.webp","../../assets/images/case-studies/breastenlargement1.webp"]
+galleryOrder: {"breast-lift":22}
+featured: "../../assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/featured.webp"
+thumbnail: "../../assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/featured.webp"
+images: ["../../assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/image-1.webp","../../assets/images/case-studies/24-year-who-underwent-saline-breast-enlargement/image-2.webp"]
 age: "27-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantType: "saline"
 ---
 

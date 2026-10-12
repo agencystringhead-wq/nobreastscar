@@ -4,13 +4,12 @@ seoTitle: "37 years woman with 330cc silicone implants - No Breast Scar"
 path: "/case-study/37-years-woman-330cc-silicone-implants/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 3
-thumbnail: "../../assets/images/case-studies/37year-330cc-breastlift.webp"
-images: ["../../assets/images/case-studies/37year-330cc-breastlift-img2.webp","../../assets/images/case-studies/37year-330cc-breastlift-image1.webp"]
+galleryOrder: {"breast-enlargement":3,"breast-lift":3,"breast-lift-with-implants":3}
+featured: "../../assets/images/case-studies/37-years-woman-330cc-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/37-years-woman-330cc-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/37-years-woman-330cc-silicone-implants/image-1.webp","../../assets/images/case-studies/37-years-woman-330cc-silicone-implants/image-2.webp"]
 age: "37"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "330cc"
 implantType: "silicone"
 ---

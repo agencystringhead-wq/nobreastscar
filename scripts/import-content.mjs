@@ -14,6 +14,8 @@ import TurndownService from 'turndown';
 import { LIVE, liveUrls, fetchHtml, pool, pathOf, topSections, normalizeImage, originalImageUrl, root } from './lib/live.mjs';
 
 const imageMap = JSON.parse(await readFile(join(root, 'scripts', 'image-map.json'), 'utf8'));
+// Case-study photos come from scripts/import-case-images.mjs (originals, WebP q85, one folder per case study).
+const caseManifest = JSON.parse(await readFile(join(root, 'scripts', 'case-images.json'), 'utf8')).manifest;
 const pagesDir = join(root, 'src', 'content', 'pages');
 const csDir = join(root, 'src', 'content', 'caseStudies');
 const warnings = [];
@@ -339,6 +341,8 @@ const parseGalleryMembership = async (pages) => {
   return cats;
 };
 
+const undisclosed = (v) => (v && !/^undisclosed$/i.test(v.trim()) ? v : undefined);
+
 async function importCaseStudy(url, membership, order) {
   const path = pathOf(url);
   const slug = path.split('/').filter(Boolean).pop();
@@ -354,15 +358,14 @@ async function importCaseStudy(url, membership, order) {
     if (k) patient[k] = v;
   });
   const rel = (img) => relative(dirname(mdFile), join(root, img)).split('\\').join('/');
-  const thumbSrc = $('.patient-image img').first().attr('src');
-  const thumb = thumbSrc ? mapImage(thumbSrc, url) : null;
-  const images = $('.case-study-images img')
-    .map((_, i) => mapImage($(i).attr('src'), url))
-    .get()
-    .filter(Boolean);
+  const man = caseManifest[slug];
+  if (!man) warn(path, 'no entry in scripts/case-images.json (run import-case-images.mjs)');
+  const featuredFile = man?.featured?.file;
+  const thumbFile = man?.thumbnail?.same ? featuredFile : man?.thumbnail?.file;
+  const imageFiles = (man?.images ?? []).map((i) => i.file);
   if (!title) warn(path, 'no title');
-  if (!thumb) warn(path, 'no thumbnail image');
-  if (!images.length) warn(path, 'no case-study images');
+  if (!featuredFile) warn(path, 'no featured image');
+  if (!imageFiles.length) warn(path, 'no case-study images');
 
   // The live gallery pages are the only real categorisation: Breast Enlargement and Breast Lift with Implants
 // list the same 10 studies, Breast Lift lists all of them. Keep the real membership, never a guessed category.
@@ -386,13 +389,16 @@ async function importCaseStudy(url, membership, order) {
     path,
     galleries,
     order,
-    thumbnail: thumb ? rel(thumb) : undefined,
-    images: images.map(rel),
-    age: patient.age,
-    gender: patient.gender,
-    ethnicity: patient.ethnicity,
-    height: patient.height,
-    weight: patient.weight,
+    galleryOrder: man?.galleryOrder,
+    featured: featuredFile ? rel(featuredFile) : undefined,
+    thumbnail: thumbFile ? rel(thumbFile) : undefined,
+    images: imageFiles.map(rel),
+    // Fields the live page marks "undisclosed" are not facts, so they are left out.
+    age: undisclosed(patient.age),
+    gender: undisclosed(patient.gender),
+    ethnicity: undisclosed(patient.ethnicity),
+    height: undisclosed(patient.height),
+    weight: undisclosed(patient.weight),
     implantSize: size ? `${size}cc` : undefined,
     implantType,
     technique,
@@ -400,7 +406,7 @@ async function importCaseStudy(url, membership, order) {
   const body = [caseDescription && `## Case description\n\n${caseDescription}`, procedures && `## Procedure details\n\n${procedures}`].filter(Boolean).join('\n\n');
   await mkdir(csDir, { recursive: true });
   await writeFile(mdFile, frontmatter(fm) + '\n' + body + '\n');
-  return { path, title, galleries, images: images.length };
+  return { path, title, galleries, images: imageFiles.length };
 }
 
 // ---------- run ----------

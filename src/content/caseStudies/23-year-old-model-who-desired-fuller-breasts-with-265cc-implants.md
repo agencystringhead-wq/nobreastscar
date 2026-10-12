@@ -5,8 +5,10 @@ description: "Natrelle 265cc implants patient case study cover before and after 
 path: "/case-study/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/"
 galleries: ["breast-lift"]
 order: 25
-thumbnail: "../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants-1.webp"
-images: ["../../assets/images/case-studies/fb-model.webp","../../assets/images/case-studies/fullbreast-model.webp","../../assets/images/case-studies/full-breast-model.webp"]
+galleryOrder: {"breast-lift":25}
+featured: "../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/featured.webp"
+images: ["../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/image-1.webp","../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/image-2.webp","../../assets/images/case-studies/23-year-old-model-who-desired-fuller-breasts-with-265cc-implants/image-3.webp"]
 age: "23"
 gender: "Female"
 ethnicity: "African American"

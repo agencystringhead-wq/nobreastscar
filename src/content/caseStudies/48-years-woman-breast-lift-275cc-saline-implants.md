@@ -4,13 +4,12 @@ seoTitle: "48 years woman Breast lift with 275cc saline implants - No Breast Sca
 path: "/case-study/48-years-woman-breast-lift-275cc-saline-implants/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 6
-thumbnail: "../../assets/images/case-studies/nbs-48yrs-275cc.webp"
-images: ["../../assets/images/case-studies/48yrs-275cc-img2.webp","../../assets/images/case-studies/48yrs-275cc-img1.webp"]
+galleryOrder: {"breast-enlargement":6,"breast-lift":6,"breast-lift-with-implants":6}
+featured: "../../assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/featured.webp"
+images: ["../../assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/image-1.webp","../../assets/images/case-studies/48-years-woman-breast-lift-275cc-saline-implants/image-2.webp"]
 age: "48"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "275cc"
 implantType: "saline"
 ---

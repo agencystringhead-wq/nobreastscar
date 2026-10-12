@@ -5,13 +5,12 @@ description: "375cc moderate plus silicone implants inframammary incision patien
 path: "/case-study/26-year-with-375cc-moderate-plus-silicone-implants/"
 galleries: ["breast-lift"]
 order: 18
-thumbnail: "../../assets/images/case-studies/26-year-moderate-plus-silicone-implants-375cc.webp"
-images: ["../../assets/images/case-studies/26yr-375cc.webp"]
+galleryOrder: {"breast-lift":18}
+featured: "../../assets/images/case-studies/26-year-with-375cc-moderate-plus-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/26-year-with-375cc-moderate-plus-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/26-year-with-375cc-moderate-plus-silicone-implants/image-1.webp"]
 age: "26"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "375cc"
 implantType: "silicone"
 ---

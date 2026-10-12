@@ -5,13 +5,12 @@ description: "Breast lift with 400cc implants patient case study cover before an
 path: "/case-study/women-breast-lift-with-400cc-implants/"
 galleries: ["breast-lift"]
 order: 13
-thumbnail: "../../assets/images/case-studies/women-breast-lift-with-400cc-implants.webp"
-images: ["../../assets/images/case-studies/breastlift-400cc.webp","../../assets/images/case-studies/breastlift-400cc-1.webp"]
+galleryOrder: {"breast-lift":13}
+featured: "../../assets/images/case-studies/women-breast-lift-with-400cc-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-breast-lift-with-400cc-implants/featured.webp"
+images: ["../../assets/images/case-studies/women-breast-lift-with-400cc-implants/image-1.webp","../../assets/images/case-studies/women-breast-lift-with-400cc-implants/image-2.webp"]
 age: "25-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "400cc"
 ---
 

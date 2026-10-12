@@ -5,13 +5,12 @@ description: "Trans ax saline 350 cc with saline implants patient case study cov
 path: "/case-study/women-with-trans-ax-saline-350-cc-with-saline-implants/"
 galleries: ["breast-lift"]
 order: 17
-thumbnail: "../../assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants.webp"
-images: ["../../assets/images/case-studies/saline-implant-1.webp","../../assets/images/case-studies/saline-implant.webp"]
+galleryOrder: {"breast-lift":17}
+featured: "../../assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/featured.webp"
+images: ["../../assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/image-1.webp","../../assets/images/case-studies/women-with-trans-ax-saline-350-cc-with-saline-implants/image-2.webp"]
 age: "18-29"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "350cc"
 implantType: "saline"
 ---

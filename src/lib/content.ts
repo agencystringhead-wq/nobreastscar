@@ -47,6 +47,24 @@ export async function studies(): Promise<CaseStudy[]> {
   return (await getCollection('caseStudies')).sort((a, b) => a.data.order - b.data.order);
 }
 
+/** The case studies a live gallery page lists, in the live order of that page. */
+export async function studiesInGallery(category: string): Promise<CaseStudy[]> {
+  return (await studies())
+    .filter((s) => s.data.galleries.includes(category as 'breast-lift'))
+    .sort((a, b) => (a.data.galleryOrder?.[category] ?? 999) - (b.data.galleryOrder?.[category] ?? 999));
+}
+
+/** "Age 38 · 365cc silicone": only what the case states. */
+export function caseLine(d: CaseStudy['data']): string {
+  return [d.age && `Age ${d.age}`, d.implantSize && [d.implantSize, d.implantType].filter(Boolean).join(' ')].filter(Boolean).join(' · ');
+}
+
+/** Timing the case text states, for example "2 months after surgery" (only when it says it plainly). */
+export function statedTiming(text: string): string | undefined {
+  const m = text.match(/\b(\d+|one|two|three|four|five|six|seven|eight|nine|ten|twelve)[ -](weeks?|months?|years?)\s+(?:after|post)[ -]?(?:op\b|operative\b|surgery|the surgery|her surgery)(?:\s+(?:surgery|period))?/i);
+  return m ? m[0].replace(/\s+/g, ' ').trim() : undefined;
+}
+
 export const galleryLabels: Record<string, string> = {
   'breast-enlargement': 'Breast Enlargement',
   'breast-lift': 'Breast Lift',

@@ -4,13 +4,12 @@ seoTitle: "51 years woman with 325cc SRF Silicone implants - No Breast Scar"
 path: "/case-study/51-years-woman-325cc-srf-silicone-implants/"
 galleries: ["breast-enlargement","breast-lift","breast-lift-with-implants"]
 order: 5
-thumbnail: "../../assets/images/case-studies/51-year-old-woman-silicon-implants.webp"
-images: ["../../assets/images/case-studies/51-year-old-with-silicon-implants-image1.webp"]
+galleryOrder: {"breast-enlargement":5,"breast-lift":5,"breast-lift-with-implants":5}
+featured: "../../assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/featured.webp"
+thumbnail: "../../assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/featured.webp"
+images: ["../../assets/images/case-studies/51-years-woman-325cc-srf-silicone-implants/image-1.webp"]
 age: "51"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "325cc"
 implantType: "silicone"
 ---

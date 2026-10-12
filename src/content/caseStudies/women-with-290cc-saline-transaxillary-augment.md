@@ -5,13 +5,12 @@ description: "290cc saline transaxillary Enlargement patient case study cover be
 path: "/case-study/women-with-290cc-saline-transaxillary-augment/"
 galleries: ["breast-lift"]
 order: 23
-thumbnail: "../../assets/images/case-studies/women-with-290cc.webp"
-images: ["../../assets/images/case-studies/290cc-1.webp","../../assets/images/case-studies/290cc-be.webp"]
+galleryOrder: {"breast-lift":23}
+featured: "../../assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/featured.webp"
+thumbnail: "../../assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/featured.webp"
+images: ["../../assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/image-1.webp","../../assets/images/case-studies/women-with-290cc-saline-transaxillary-augment/image-2.webp"]
 age: "25-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 implantSize: "290cc"
 implantType: "saline"
 technique: "transaxillary"

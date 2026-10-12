@@ -5,13 +5,12 @@ description: "No breast scar technique with 450cc Moderate plus saline implants 
 path: "/case-study/27-year-with-desire-for-fuller-breasts/"
 galleries: ["breast-lift"]
 order: 24
-thumbnail: "../../assets/images/case-studies/27-year-with-desire-for-fuller-breasts.webp"
-images: ["../../assets/images/case-studies/fullbreasts-1.webp","../../assets/images/case-studies/27yr-full-breasts.webp"]
+galleryOrder: {"breast-lift":24}
+featured: "../../assets/images/case-studies/27-year-with-desire-for-fuller-breasts/featured.webp"
+thumbnail: "../../assets/images/case-studies/27-year-with-desire-for-fuller-breasts/featured.webp"
+images: ["../../assets/images/case-studies/27-year-with-desire-for-fuller-breasts/image-1.webp","../../assets/images/case-studies/27-year-with-desire-for-fuller-breasts/image-2.webp"]
 age: "27-30"
 gender: "Female"
-ethnicity: "undisclosed"
-height: "undisclosed"
-weight: "undisclosed"
 ---
 
 ## Case description
