@@ -1,21 +1,124 @@
 ---
-// Phase 2 stand-in so every case-study URL exists. It deliberately shows no photos: before and after
-// images must go through BlurReveal (Phase 4), never appear unblurred.
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// One patient case study: only facts the live case study states, its real photos (blurred until the visitor
+// chooses), its own description, previous/next links within the same gallery and a consult call to action.
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlurReveal from '../../components/BlurReveal.astro';
+import Img from '../../components/Img.astro';
+import { studies, primaryGallery, galleryLabels, excerpt, mdBlock, plain, type CaseStudy } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const studies = await getCollection('caseStudies');
-  return studies.map((s) => ({ params: { slug: s.id }, props: { study: s } }));
+  const all = await studies();
+  return all.map((study) => {
+    const gallery = primaryGallery(study);
+    const list = all.filter((s) => primaryGallery(s) === gallery);
+    const i = list.findIndex((s) => s.id === study.id);
+    return { params: { slug: study.id }, props: { study, gallery, prev: list[i - 1], next: list[i + 1] } };
+  });
 }
 
-const { study } = Astro.props;
-const { Content } = await render(study);
+const { study, gallery, prev, next } = Astro.props as { study: CaseStudy; gallery: string; prev?: CaseStudy; next?: CaseStudy };
+const d = study.data;
+
+// The body is "## Case description" and "## Procedure details". The live site often repeats the same sentence in both.
+const sectionsMd = Object.fromEntries(
+  (study.body ?? '')
+    .split(/^## /m)
+    .slice(1)
+    .map((s) => {
+      const [h, ...rest] = s.split('\n');
+      return [h.trim().toLowerCase(), rest.join('\n').trim()];
+    }),
+);
+const caseMd = sectionsMd['case description'] ?? '';
+const procMd = sectionsMd['procedure details'] ?? '';
+const showProc = procMd && plain(procMd) !== plain(caseMd);
+
+// Facts: only what the live case study states.
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const facts = [
+  { label: 'Age', value: d.age },
+  { label: 'Implant size', value: d.implantSize },
+  { label: 'Implant type', value: d.implantType && cap(d.implantType) },
+  { label: 'Technique', value: d.technique && cap(d.technique) },
+].filter((f): f is { label: string; value: string } => Boolean(f.value));
+
+const photos = [d.thumbnail, ...d.images].filter((p, i, a): p is NonNullable<typeof p> => Boolean(p) && a.findIndex((q) => q?.src === p?.src) === i);
+const description = d.description || excerpt(caseMd || procMd, 155);
+const galleryHref = `/gallery/${gallery}/`;
+const crumbs = [
+  { label: 'No Breast Scar', href: '/' },
+  { label: 'Gallery', href: '/gallery/' },
+  { label: galleryLabels[gallery], href: galleryHref },
+  { label: d.title },
+];
 ---
 
-<BaseLayout title={study.data.seoTitle} description={study.data.description}>
-  <section class="container-site py-16 max-w-[72ch] mx-auto">
-    <h1 class="mb-6 text-plum">{study.data.title}</h1>
-    <Content />
+<PageLayout
+  title={d.title}
+  seoTitle={d.seoTitle}
+  description={description}
+  path={d.path}
+  breadcrumb={crumbs}
+  sidebar={false}
+  cta={{ heading: 'Ready to get started?', text: 'Contact Dr. Lynam today.' }}
+>
+  {
+    facts.length > 0 && (
+      <dl class="m-0 mb-10 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] border-y border-line">
+        {facts.map((f) => (
+          <div class="py-5 pr-5">
+            <dt class="eyebrow text-brick mb-1">{f.label}</dt>
+            <dd class="m-0 font-display text-[26px] leading-tight text-plum">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+
+  <BlurReveal>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 gap-4">
+      {
+        photos.map((p, i) => (
+          <li class="blur-frame rounded-[8px] bg-[#8E6F86]">
+            <Img src={p} alt={`Before and after photos, view ${i + 1}: ${d.title}`} widths={[480, 800, 1100]} sizes="(min-width: 1024px) 860px, 100vw" class="blur-photo block w-full h-auto" />
+          </li>
+        ))
+      }
+    </ul>
+  </BlurReveal>
+
+  <section class="prose-nb mt-12" aria-labelledby="case-desc">
+    <h2 id="case-desc">Case description</h2>
+    <Fragment set:html={mdBlock(caseMd)} />
+    {
+      showProc && (
+        <>
+          <h2>Procedure details</h2>
+          <Fragment set:html={mdBlock(procMd)} />
+        </>
+      )
+    }
   </section>
-</BaseLayout>
+
+  <nav class="mt-12 grid sm:grid-cols-2 gap-4" aria-label="More case studies">
+    {
+      prev ? (
+        <a href={prev.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2">
+          <span class="eyebrow text-brick block mb-1">← Previous case</span>
+          <span class="font-display text-[20px] leading-snug">{prev.data.title}</span>
+        </a>
+      ) : (
+        <span></span>
+      )
+    }
+    {
+      next && (
+        <a href={next.data.path} class="block bg-blush rounded-[8px] p-5 no-underline text-ink hover:text-ink hover:bg-blush-2 sm:text-right">
+          <span class="eyebrow text-brick block mb-1">Next case →</span>
+          <span class="font-display text-[20px] leading-snug">{next.data.title}</span>
+        </a>
+      )
+    }
+  </nav>
+  <p class="mt-8 mb-0"><a href={galleryHref} class="font-bold">← Back to the {galleryLabels[gallery]} gallery</a></p>
+</PageLayout>

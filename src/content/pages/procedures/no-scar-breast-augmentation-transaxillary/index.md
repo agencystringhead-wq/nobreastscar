@@ -4,9 +4,12 @@ seoTitle: "Transaxillary Breast Augmentation | No Breast Scar Richmond"
 description: "Transaxillary breast augmentation has become increasingly popular in recent years since it enables you to have breast surgery performed without there being any scars left behind on the breasts themselves."
 path: "/procedures/no-scar-breast-augmentation-transaxillary/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures","href":"/procedures/"},{"label":"No Scar Breast Augmentation – Transaxillary"}]
-lead: "**Breast augmentation is a form of cosmetic surgery that comes with many different options.** Not only are there different types of implants to choose from but the incisions can be made in different places and the implants can be placed either above or below the chest muscle.\n\nTransaxillary breast augmentation has become increasingly popular in recent years since it enables you to have breast surgery performed without any scars left behind on the actual breasts. any scars left behind on the breasts themselves."
 cta: {"heading":"Ready to start this life changing process?","text":"Our team has deep experience in this delicate procedure. Lets get started on your transaxilliary no-scar procedure it’s safe, beautiful and scarfree."}
 ---
+
+**Breast augmentation is a form of cosmetic surgery that comes with many different options.** Not only are there different types of implants to choose from but the incisions can be made in different places and the implants can be placed either above or below the chest muscle.
+
+Transaxillary breast augmentation has become increasingly popular in recent years since it enables you to have breast surgery performed without any scars left behind on the actual breasts. any scars left behind on the breasts themselves.
 
 ## How transaxillary breast augmentation is performed
 

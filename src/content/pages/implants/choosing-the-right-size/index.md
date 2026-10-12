@@ -4,9 +4,10 @@ seoTitle: "Choosing the right breast size | No Breast Scar Richmond"
 description: "Right breast size is about your anatomy and your goals. Let’s review all your options and choose a implant that suits your body and your vision for the procedure."
 path: "/implants/choosing-the-right-size/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Choosing the right size"}]
-lead: "There are many key decisions to make when choosing to get breast augmentation surgery. One of the biggest decisions is choosing the size of your implant."
 cta: {"heading":"Ready to start this life changing process?","text":"The right size is about your anatomy and your goals. Let’s review all your options and choose a implant that suits your body and your vision for the procedure."}
 ---
+
+There are many key decisions to make when choosing to get breast augmentation surgery. One of the biggest decisions is choosing the size of your implant.
 
 ## Factors that can affect your decision
 

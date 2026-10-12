@@ -4,9 +4,12 @@ seoTitle: "Choosing the right type of breast implants | No Breast Scar Richmond"
 description: "Choosing the right type of breast implants when you’re getting a breast augmentation is key. The implants you get are going to play a huge role in the final results of your surgery."
 path: "/implants/choosing-the-right-type/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Choosing the right type"}]
-lead: "**Choosing the right type of implants when you’re getting a breast augmentation is key. The implants you get are going to play a huge role in the final results of your surgery.**\n\nIn order to help you make an informed decision on the right type of implants for your surgery, below is a guide to the different textures, fillings, and shapes available."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**Choosing the right type of implants when you’re getting a breast augmentation is key. The implants you get are going to play a huge role in the final results of your surgery.**
+
+In order to help you make an informed decision on the right type of implants for your surgery, below is a guide to the different textures, fillings, and shapes available.
 
 ## Texture
 

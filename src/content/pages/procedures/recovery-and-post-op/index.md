@@ -4,9 +4,10 @@ seoTitle: "Breast Augmentation Recovery and Post Op | No Breast Scar Richmond"
 description: "Breast augmentation is a major procedure so it’s extremely important that you follow the recovery advice you’re given closely."
 path: "/procedures/recovery-and-post-op/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures","href":"/procedures/"},{"label":"Recovery and Post Op"}]
-lead: "Breast augmentation is a major procedure so it’s important that you follow the recovery directions that you are given closely. It’s also important to be aware of the likely side effects so you can make an informed decision and know what to expect following your surgery."
 cta: {"heading":"Ready to start this life changing process?","text":"A great recovery depends on taking care of yourself! Don’t over do it and let the healing process complete. Great results come from smart recovery."}
 ---
+
+Breast augmentation is a major procedure so it’s important that you follow the recovery directions that you are given closely. It’s also important to be aware of the likely side effects so you can make an informed decision and know what to expect following your surgery.
 
 ## Side effects of breast augmentation surgery
 

@@ -4,9 +4,16 @@ seoTitle: "Day Of Surgery | No Breast Scar Richmond"
 description: "On the day of your surgery you might feel a little bit nervous. This is completely normal and is something that most people who are undergoing surgery experience."
 path: "/procedures/day-of-surgery/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures","href":"/procedures/"},{"label":"Day Of Surgery"}]
-lead: "On the day of your surgery you might feel a little bit nervous. This is completely normal and is something that most people who are undergoing surgery experience. You can shower using soap and water but you should avoid using any special soaps, gels, or shampoos. You should also avoid spraying your skin with antiperspirant or deodorant.\n\nYou should arrive at the clinic 2 hours before your scheduled surgery time. This gives the nurses time to check you in and give you any required medication. You’ll then be able to relax prior to your surgery.\n\nYou should be made aware of your scheduled surgery time at least a few days prior to it taking place. A date is usually pencilled in weeks before but sometimes re-scheduling has to be done to accommodate the needs of different patients.\n\nOnce your surgery is completed, you’ll be able to go home when you feel well enough to get up and move around. It’s very important that you arrange to be driven home after your surgery since you cannot drive safely while still feeling the effects of the anesthesia."
 cta: {"heading":"Ready to start this life changing process?","text":"We want you to know exactly what to expect on your day of surgery. Have a question or concern? Just contact our team to get all your questions answered."}
 ---
+
+On the day of your surgery you might feel a little bit nervous. This is completely normal and is something that most people who are undergoing surgery experience. You can shower using soap and water but you should avoid using any special soaps, gels, or shampoos. You should also avoid spraying your skin with antiperspirant or deodorant.
+
+You should arrive at the clinic 2 hours before your scheduled surgery time. This gives the nurses time to check you in and give you any required medication. You’ll then be able to relax prior to your surgery.
+
+You should be made aware of your scheduled surgery time at least a few days prior to it taking place. A date is usually pencilled in weeks before but sometimes re-scheduling has to be done to accommodate the needs of different patients.
+
+Once your surgery is completed, you’ll be able to go home when you feel well enough to get up and move around. It’s very important that you arrange to be driven home after your surgery since you cannot drive safely while still feeling the effects of the anesthesia.
 
 ## Preparing for your recovery
 

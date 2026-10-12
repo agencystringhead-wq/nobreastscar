@@ -4,9 +4,12 @@ seoTitle: "Silicone Implants | Silicone Breast Implants | No Breast Scar Richmon
 description: "Silicone implants are a very popular choice with women who choose to get breast augmentation surgery, and have seen a surge in popularity since they were approved by the FDA to be used again."
 path: "/implants/silicone-implants/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Implants","href":"/implants/"},{"label":"Silicone implants"}]
-lead: "**Silicone implants are one of the two main types of implants that are used in breast augmentation surgery, with the other being saline implants.**\n\nSilicone implants are a very popular choice with women who choose to get breast augmentation surgery, and have seen a surge in popularity since they were approved by the FDA to be used again."
 cta: {"heading":"Ready to start this life changing process?","text":"Each type of implant has pros and cons. Lets connect and choose a implant that suits your dreams and goals. The best results start with great communication!"}
 ---
+
+**Silicone implants are one of the two main types of implants that are used in breast augmentation surgery, with the other being saline implants.**
+
+Silicone implants are a very popular choice with women who choose to get breast augmentation surgery, and have seen a surge in popularity since they were approved by the FDA to be used again.
 
 ## Advantages of silicone implants
 

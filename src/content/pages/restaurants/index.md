@@ -15,7 +15,7 @@ Check out our Richmond Restaurants guide to learn all the amazing places to stay
 [The Black Sheep
 ](http://www.blacksheeprva.com/)
 
-[804-648-1300](tel:804-648-1300)
+[804-648-1300](tel:+18046481300)
 
 Located in Richmond, Virginia’s historic Carver District, The Black Sheep serves new Southern and Cajun cuisine, and our infamous battleships.
 
@@ -23,7 +23,7 @@ Located in Richmond, Virginia’s historic Carver District, The Black Sheep serv
 
 [Cafe Rustica](http://www.caferusticarva.com/)
 
-[804-255-8811](tel:\(804\)255-8811)
+[804-255-8811](tel:+18042558811)
 
 Mediterranean and German dishes freshly prepared and served in a warm, casual atmosphere.
 
@@ -31,7 +31,7 @@ Mediterranean and German dishes freshly prepared and served in a warm, casual at
 
 [Mama J’s Kitchen](http://mamajskitchen.com/)
 
-[804-255-7449](tel:\(804\)255-7449)
+[804-255-7449](tel:+18042557449)
 
 “Mama J’s is Richmond’s premiere soul food dining experience.  great southern
 food with outstanding service in a relaxing atmosphere.”
@@ -40,6 +40,6 @@ food with outstanding service in a relaxing atmosphere.”
 
 [Brio Tuscan Grille](http://www.brioitalian.com/stony_point_fashion_park.html)
 
-[804-272-2255](tel:804-272-2255)
+[804-272-2255](tel:+18042722255)
 
 “Enjoy delectable chef-inspired Italian dishes and wonderful wines in a cozy setting.”

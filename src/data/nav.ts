@@ -93,3 +93,36 @@ export const footerColumns: NavGroup[] = [
     ],
   },
 ];
+
+/** Travel guide pages that exist on the live site (all under the Travel nav item). */
+export const travelLinks: NavLink[] = [
+  { label: 'Travel', href: '/travel/' },
+  { label: 'Travel Kit', href: '/travel/travel-kit/' },
+  { label: 'Hotels', href: '/hotels/' },
+  { label: 'Restaurants', href: '/restaurants/' },
+  { label: 'Airlines', href: '/airlines/' },
+  { label: 'Car Rentals', href: '/car-rentals/' },
+  { label: 'Entertainment and Landmarks', href: '/entertainment-and-landmarks/' },
+];
+
+export interface SiteSection {
+  key: string;
+  title: string;
+  href: string;
+  links: NavLink[];
+}
+
+/** Sections used by the page sidebar and the section landing pages. */
+export const sections: SiteSection[] = [
+  { key: 'procedures', title: 'Procedures', href: '/procedures/', links: [...procedureTechniques, ...yourSurgery] },
+  { key: 'implants', title: 'Implants', href: '/implants/', links: [...implantTypes, ...implantChoosing] },
+  { key: 'gallery', title: 'Gallery', href: '/gallery/', links: galleryLinks },
+  { key: 'about', title: 'About', href: '/about/', links: aboutLinks },
+  { key: 'travel', title: 'Travel', href: '/travel/', links: travelLinks.slice(1) },
+];
+
+/** The section a path belongs to, or undefined (contact, site map and the home page have none). */
+export function sectionOf(path: string): SiteSection | undefined {
+  if (['/hotels/', '/restaurants/', '/airlines/', '/car-rentals/', '/entertainment-and-landmarks/'].includes(path)) return sections.find((s) => s.key === 'travel');
+  return sections.find((s) => path === s.href || path.startsWith(s.href));
+}

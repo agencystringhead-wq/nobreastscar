@@ -1,0 +1,19 @@
+---
+import Breadcrumb from './Breadcrumb.astro';
+
+interface Props {
+  title: string;
+  crumbs: { label: string; href?: string }[];
+  /** Optional line under the title (plain text). */
+  subtitle?: string;
+}
+const { title, crumbs, subtitle } = Astro.props;
+---
+
+<section class="bg-plum text-cream">
+  <div class="container-site pt-10 pb-14 max-md:pb-10">
+    <Breadcrumb crumbs={crumbs} />
+    <h1 class="mt-6 max-w-[900px] text-[clamp(2.2rem,5vw,3.75rem)]">{title}</h1>
+    {subtitle && <p class="mt-5 mb-0 text-[19px] text-on-plum max-w-[680px]">{subtitle}</p>}
+  </div>
+</section>

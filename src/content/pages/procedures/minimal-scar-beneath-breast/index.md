@@ -4,9 +4,12 @@ seoTitle: "Minimal Scar Breast Augmentation - Beneath Breast | No Breast Scar Ri
 description: "Inframammary breast augmentation is a type of surgery where the incisions made to insert the implants are done underneath the breasts, where they meet the chest wall."
 path: "/procedures/minimal-scar-beneath-breast/"
 breadcrumb: [{"label":"No Breast Scar","href":"/"},{"label":"Procedures","href":"/procedures/"},{"label":"Minimal Scar Breast Augmentation – Beneath Breast"}]
-lead: "Inframammary breast augmentation is a type of surgery where the incisions made to insert the implants are done underneath the breasts, where they meet the chest wall. This method has been used for a long time and provides very reliable results.\n\nThe only problem with inframammary breast augmentation is that sometimes the scars left behind can be quite noticeable from certain angles. Luckily there are ways to perform this procedure where the scars left behind are minimal."
 cta: {"heading":"Ready to start this life changing process?","text":"Beneath the breast incision is the most common breast augmentation technique. Our team has deep experience with this delicate procedure. Contact Dr. Lynam to learn all your surgical options."}
 ---
+
+Inframammary breast augmentation is a type of surgery where the incisions made to insert the implants are done underneath the breasts, where they meet the chest wall. This method has been used for a long time and provides very reliable results.
+
+The only problem with inframammary breast augmentation is that sometimes the scars left behind can be quite noticeable from certain angles. Luckily there are ways to perform this procedure where the scars left behind are minimal.
 
 ## Saline or silicone?
 

@@ -74,5 +74,10 @@
       "logo": null,
       "source": null
     }
-  ]
+  ],
+  "video": {
+    "id": "jz4FTvB-4vc",
+    "title": "Patient testimonial video",
+    "thumbnail": "src/assets/images/pages/testimonial-video.webp"
+  }
 }
