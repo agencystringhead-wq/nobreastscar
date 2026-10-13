@@ -1,0 +1,232 @@
+---
+// /travel/ has its own template: a trip planner built only from the live /travel/ page, its sub-pages and the live
+// homepage travel line. Hotels are parsed from the live /travel/ text, so nothing is retyped here.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Band from '../../components/Band.astro';
+import Img from '../../components/Img.astro';
+import MapFacade from '../../components/MapFacade.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import airport from '../../assets/images/travel/richmond-airlines.webp';
+import hotelsImg from '../../assets/images/travel/hotels.webp';
+import restaurantsImg from '../../assets/images/travel/restaurants.webp';
+import carImg from '../../assets/images/travel/car-rentals.webp';
+import landmarksImg from '../../assets/images/travel/memorial.webp';
+import home from '../../data/home.json';
+import { pageByPath, metaDescription } from '../../lib/content';
+import { site } from '../../data/site';
+
+const page = (await pageByPath('/travel/'))!;
+const d = page.data;
+const body = (page.body ?? '').replace(/\r\n/g, '\n');
+const base = site.productionUrl;
+const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Travel' }];
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: new URL(c.href ?? d.path, base).href })),
+};
+
+const intro = home.travel.text.split('. Check out')[0] + '.';
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${site.address.street} ${site.address.suite} ${site.address.city} ${site.address.region} ${site.address.zip}`)}`;
+
+// "Getting here": the live paragraph under that heading.
+const gettingHere = (body.split('## Getting here')[1] ?? '').trim().split('\n\n')[0];
+
+// Hotels: from "**Hotels**" to "**Restaurants**" on the live page.
+const hotelText = body.split('**Hotels**')[1]?.split('**Restaurants**')[0] ?? '';
+const hotels = hotelText
+  .split(/\n\n(?=\*\*[^*]+\*\*\n)/)
+  .map((chunk) => chunk.trim())
+  .filter((c) => c.startsWith('**'))
+  .map((chunk) => {
+    const lines = chunk.split('\n').map((l) => l.trim()).filter(Boolean);
+    const name = lines[0].replace(/\*\*/g, '');
+    const link = lines.find((l) => /^\[http/.test(l))?.match(/\((https?:[^)]+)\)/)?.[1];
+    const rest = lines.slice(1).filter((l) => !/^\[http/.test(l));
+    return { name, desc: rest[0], address: rest.slice(1).map((l) => l.replace(/,$/, '')).join(', '), link, near: /very close to Dr Lynam/i.test(rest[0]) };
+  })
+  .filter((h) => h.desc);
+
+const steps = [
+  { title: 'Start with a no-cost online consultation', text: 'Get started on this life changing journey today.', href: '/contact/', cta: 'Online Consultation' },
+  { title: 'Fly into Richmond International Airport', text: 'Daily flights from across the country.', href: '/airlines/', cta: 'Airlines' },
+  { title: 'Stay near Stony Point Parkway', text: 'Best Western Plus Governor’s Inn is located very close to Dr Lynam’s surgery.', href: '/hotels/', cta: 'Hotels' },
+  { title: 'Recover in Richmond for the first week', text: 'Have somebody with you for the first 24 hours after your surgery.', href: '/procedures/recovery-and-post-op/', cta: 'Recovery' },
+];
+
+// Icons: simple 24px line icons.
+const icons: Record<string, string> = {
+  bra: 'M4 6c0 5 3 8 8 8s8-3 8-8M4 6h4m12 0h-4M8 6c0 3 1.5 5 4 5s4-2 4-5M7 18h10',
+  pill: 'M10.5 20.5a5 5 0 0 1-7-7l9-9a5 5 0 0 1 7 7zM8.5 8.5l7 7',
+  shirt: 'M8 3 3 6l2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z',
+  people: 'M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2 20c0-3.5 3-6 7-6s7 2.5 7 6M17 11a3 3 0 1 0 0-6M18 14c2.5.5 4 2.3 4 5',
+  laptop: 'M5 6h14v9H5zM2 19h20',
+};
+const pack = [
+  { icon: 'bra', title: 'Sports bra', text: 'Although you’ll be provided with a sports bra to wear after your surgery, you might have one of your own that you prefer. Be sure to check with Dr Lynam that it is suitable.' },
+  { icon: 'pill', title: 'Your medication', text: 'Bring any medication that you need to take with you. Generally it’s only blood thinners that should be avoided.' },
+  { icon: 'shirt', title: 'Comfortable clothing', text: 'Your breasts will be quite sore and tender at first, so any tight or restrictive clothing should be avoided.' },
+  { icon: 'people', title: 'A friend or family member', text: 'It’s always recommended that you have somebody with you for the first 24 hours after your surgery.' },
+  { icon: 'laptop', title: 'A laptop or tablet', text: 'The first few days should be devoted to resting and recovering, so it’s a good idea to have some form of entertainment with you.' },
+];
+
+const guide = [
+  { title: 'Travel Kit', href: '/travel/travel-kit/', line: 'Come prepared and bring the right things with you.', image: undefined as ImageMetadata | undefined },
+  { title: 'Hotels', href: '/hotels/', line: 'Check out our Richmond hotel guide to learn all the amazing places to stay in town.', image: hotelsImg },
+  { title: 'Restaurants', href: '/restaurants/', line: 'Richmond has many excellent hotels and restaurants to make your visit comfortable and relaxing.', image: restaurantsImg },
+  { title: 'Airlines', href: '/airlines/', line: 'How to reach Richmond? Check out our Richmond Airlines guide.', image: airport },
+  { title: 'Car Rentals', href: '/car-rentals/', line: 'Check out our helpful Car Rentals guide.', image: carImg },
+  { title: 'Entertainment and Landmarks', href: '/entertainment-and-landmarks/', line: 'Learn all the amazing places in town.', image: landmarksImg },
+];
+const tileTones = ['bg-blush', 'bg-mint', 'bg-butter'];
+---
+
+<BaseLayout title={d.seoTitle} description={metaDescription(d.description, '')}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  </Fragment>
+
+  <!-- 1. Hero -->
+  <section class="bg-plum text-cream overflow-hidden">
+    <div class="container-site pt-10 pb-14 max-md:pb-10">
+      <Breadcrumb crumbs={crumbs} />
+      <div class="mt-8 grid gap-10 items-center lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-16">
+        <div class="order-2 lg:order-1 min-w-0">
+          <div class="eyebrow text-on-plum-pink mb-4">Travel</div>
+          <h1 style="max-width: 14ch">Travelling to <em>Richmond</em></h1>
+          <p class="mt-5 mb-0 text-[clamp(1.1rem,1.6vw,1.3rem)] leading-[1.6] text-on-plum max-w-[56ch]">{intro}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#consult" class="btn btn-primary">Online Consultation</a>
+            <a href={site.phoneHref} class="btn border-plum-line text-cream hover:border-coral hover:text-cream">{site.phone}</a>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 mx-auto w-[260px] lg:w-[380px] max-w-full">
+          <div class="relative aspect-square overflow-hidden rounded-[190px_190px_8px_8px] max-lg:rounded-[130px_130px_8px_8px] bg-on-plum-pink">
+            <Img src={airport} alt="Richmond International Airport terminal" loading="eager" widths={[260, 380]} sizes="(min-width: 1024px) 380px, 260px" class="absolute inset-0 w-full h-full object-cover object-center" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Plan your trip in 4 steps -->
+  <Band tone="cream" id="plan">
+    <div class="max-w-[720px] mb-10">
+      <div class="eyebrow text-brick-deep mb-3">Trip planner</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 text-plum">Plan your trip <em>in 4 steps</em></h2>
+    </div>
+    <ol class="list-none m-0 p-0 grid gap-0 lg:grid-cols-4 lg:gap-6">
+      {
+        steps.map((s, i) => (
+          <li class="relative pl-14 pb-8 last:pb-0 lg:pl-0 lg:pb-0 lg:pt-14">
+            {i < steps.length - 1 && <span class="absolute left-[19px] top-10 bottom-0 w-[2px] bg-brick-deep/25 lg:left-12 lg:right-[-24px] lg:top-[19px] lg:bottom-auto lg:w-auto lg:h-[2px]" aria-hidden="true" />}
+            <span class="absolute left-0 top-0 lg:left-0 w-10 h-10 rounded-full bg-brick-deep text-cream font-display text-[20px] flex items-center justify-center" aria-hidden="true">{i + 1}</span>
+            <h3 class="font-display text-[22px] leading-[1.2] m-0 text-plum">{s.title}</h3>
+            <p class="mt-2 mb-3 text-[16px] leading-[1.55] text-ink-soft">{s.text}</p>
+            <a href={s.href} class="font-bold">{s.cta} →</a>
+          </li>
+        ))
+      }
+    </ol>
+  </Band>
+
+  <!-- 3. What to pack -->
+  <Band tone="butter" id="pack">
+    <div class="max-w-[720px] mb-10">
+      <div class="eyebrow text-brick-deep mb-3">Travel Kit</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 text-plum">What <em>to pack</em></h2>
+    </div>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        pack.map((p) => (
+          <li class="bg-white/80 rounded-[8px] p-6 flex flex-col gap-3">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="text-brick-deep" aria-hidden="true">
+              <path d={icons[p.icon]} />
+            </svg>
+            <h3 class="font-display text-[22px] leading-[1.2] m-0 text-plum">{p.title}</h3>
+            <p class="m-0 text-[16px] leading-[1.55]">{p.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-8 mb-0"><a href="/travel/travel-kit/" class="font-bold">Read the full Travel Kit →</a></p>
+  </Band>
+
+  <!-- 4. Where to stay -->
+  <Band tone="blush" id="stay">
+    <div class="max-w-[720px] mb-10">
+      <div class="eyebrow text-brick-deep mb-3">Hotels</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 mb-4 text-plum">Where <em>to stay</em></h2>
+      <p class="m-0 text-[18px] leading-[1.6]">Below are some great hotels to consider staying at while in Richmond.</p>
+    </div>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        hotels.map((h) => (
+          <li class="bg-white rounded-[8px] p-6 flex flex-col gap-2">
+            {h.near && <span class="self-start rounded-full bg-mint text-plum text-[13px] font-bold px-3 py-1">Near the surgery center</span>}
+            <h3 class="font-display text-[22px] leading-[1.2] m-0 text-plum">{h.name}</h3>
+            <p class="m-0 text-[16px] leading-[1.55] text-ink-soft">{h.desc}</p>
+            {h.address && <p class="m-0 text-[15px] text-ink-soft">{h.address}</p>}
+            {h.link && (
+              <a href={h.link} target="_blank" rel="noopener" class="mt-auto pt-2 font-bold">
+                Visit website →<span class="sr-only"> ({h.name}, opens in a new tab)</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-8"><a href="/hotels/" class="btn btn-primary">All hotels</a></div>
+  </Band>
+
+  <!-- 5. Travel guide -->
+  <Band tone="cream" id="guide">
+    <div class="max-w-[720px] mb-10">
+      <div class="eyebrow text-brick-deep mb-3">Guides</div>
+      <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 text-plum">Your Richmond <em>travel guide</em></h2>
+    </div>
+    <ul class="list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        guide.map((g, i) => (
+          <li class="flex">
+            <a href={g.href} class="no-underline w-full bg-white border border-line rounded-[8px] overflow-hidden flex flex-col hover:border-brick-deep transition-colors">
+              {g.image ? (
+                <Img src={g.image} alt="" widths={[320, 480, 600]} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 94vw" class="block w-full aspect-[3/2] object-cover" />
+              ) : (
+                <div class:list={['aspect-[3/2] flex items-center justify-center', tileTones[i % tileTones.length]]} aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="text-brick-deep"><path d={icons.shirt} /></svg>
+                </div>
+              )}
+              <div class="p-6 flex flex-col gap-2 flex-1">
+                <h3 class="font-display text-[22px] leading-[1.2] m-0 text-plum">{g.title}</h3>
+                <p class="m-0 text-[16px] leading-[1.55] text-ink-soft">{g.line}</p>
+                <span class="mt-auto pt-2 font-bold text-brick-deep">Open guide →</span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Band>
+
+  <!-- 6. Getting here -->
+  <Band tone="mint" id="getting-here">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-14 items-start">
+      <div class="max-w-[720px]">
+        <div class="eyebrow text-brick-deep mb-3">Getting here</div>
+        <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 mb-5 text-plum">From the airport <em>to our center</em></h2>
+        <p class="m-0 mb-6 text-[18px] leading-[1.65]">{gettingHere}</p>
+        <div class="flex flex-wrap gap-3">
+          <a href={directions} target="_blank" rel="noopener" class="btn btn-primary">Get directions<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="/airlines/" class="btn border-plum text-plum hover:bg-plum hover:text-cream">Airlines</a>
+          <a href="/car-rentals/" class="btn border-plum text-plum hover:bg-plum hover:text-cream">Car rentals</a>
+        </div>
+      </div>
+      <MapFacade />
+    </div>
+  </Band>
+
+  <!-- 7. Closing coral band -->
+  <CtaBand heading="Plan your visit" />
+</BaseLayout>
