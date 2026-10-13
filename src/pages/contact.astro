@@ -1,46 +1,140 @@
 ---
-// Contact: NAP from site.ts, the same JotForm component as the footer (the footer's copy is turned off here so the
-// form appears once), and the static map card.
-import PageLayout from '../layouts/PageLayout.astro';
+// /contact/ has its own template. NAP comes from site.ts, the form is the same JotForm component as the footer (the
+// footer copy is turned off here so the form appears once), the map loads only on click, and the travel band uses
+// the live /travel/ page's own wording. Office hours are not on the live site, so they are left out (see docs/LAUNCH.md).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import Band from '../components/Band.astro';
 import JotForm from '../components/JotForm.astro';
-import MapCard from '../components/MapCard.astro';
+import MapFacade from '../components/MapFacade.astro';
 import { site } from '../data/site';
 import { pageByPath, metaDescription } from '../lib/content';
 
 const page = (await pageByPath('/contact/'))!;
 const d = page.data;
 const { address } = site;
+const base = site.productionUrl;
+const crumbs = [{ label: 'No Breast Scar', href: '/' }, { label: 'Contact' }];
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${address.street} ${address.suite} ${address.city} ${address.region} ${address.zip}`)}`;
+const network = site.network.filter((n) => n.label !== 'NoBreastScar.com');
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: new URL(c.href ?? d.path, base).href })),
+};
+const clinicLd = {
+  '@context': 'https://schema.org',
+  '@type': ['MedicalClinic', 'LocalBusiness'],
+  '@id': `${base}/#clinic`,
+  name: `${site.name} | ${site.practice}`,
+  url: `${base}/`,
+  telephone: '+1-804-560-5260',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${address.street}, ${address.suite}`,
+    addressLocality: address.city,
+    addressRegion: address.region,
+    postalCode: address.zip,
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: site.geo.latitude, longitude: site.geo.longitude },
+  hasMap: site.mapsUrl,
+  medicalSpecialty: 'https://schema.org/PlasticSurgery',
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', telephone: '+1-804-560-5260' },
+};
+
+const travelFacts = [
+  'Richmond International Airport has daily flights from across the country.',
+  'You may decide to recover in Richmond for the first week.',
+  'It’s always recommended that you have somebody with you for the first 24 hours after your surgery.',
+];
 ---
 
-<PageLayout
-  title={d.title}
-  seoTitle={d.seoTitle}
-  description={metaDescription(d.description, page.body ?? '')}
-  path={d.path}
-  breadcrumb={d.breadcrumb}
-  footerForm={false}
-  noPills
-  noEndCta
->
+<BaseLayout title={d.seoTitle} description={metaDescription(d.description, page.body ?? '')} footerForm={false}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(clinicLd)} />
+  </Fragment>
+
+  <!-- 1. Hero -->
+  <section class="bg-plum text-cream">
+    <div class="container-site pt-10 pb-14 max-md:pb-10">
+      <Breadcrumb crumbs={crumbs} />
+      <div class="mt-8 max-w-[760px]">
+        <div class="eyebrow text-on-plum-pink mb-4">Contact</div>
+        <h1>Get <em>Started</em></h1>
+        <p class="mt-5 mb-0 text-[clamp(1.1rem,1.6vw,1.3rem)] leading-[1.6] text-on-plum">How can we help? Contact our team for a no-cost internet consultation.</p>
+        <a href={site.phoneHref} class="mt-6 inline-block font-display text-[clamp(2.2rem,5.5vw,3.5rem)] leading-none text-cream no-underline hover:text-coral">{site.phone}</a>
+        <div class="mt-7"><a href="#consult" class="btn btn-primary">Online Consultation</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Form and info cards -->
   <Band tone="cream">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-start">
-      <div class="flex flex-col gap-6">
-        <div class="bg-white border border-line rounded-[8px] p-7 max-sm:p-5">
-          <div class="eyebrow text-brick-deep mb-2">NoBreastScar.com</div>
-          <p class="font-display text-[26px] leading-tight m-0 mb-5 text-plum">Medical Director {site.director}</p>
-          <a href={site.phoneHref} class="font-display text-[34px] text-brick-deep no-underline hover:text-brick">{site.phone}</a>
-          <address class="not-italic mt-4 text-[18px] leading-[1.6]">
-            {address.street}<br />{address.suite}, {address.city}, {address.region} {address.zip}
-          </address>
-        </div>
-        <MapCard />
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-10 items-start">
+      <div id="consult" class="scroll-mt-28 bg-white border border-line border-t-[6px] border-t-coral rounded-[8px] p-8 max-sm:p-4">
+        <h2 class="font-display text-[clamp(1.6rem,2.6vw,2rem)] leading-tight m-0 mb-5 text-plum">{site.jotformTitle}</h2>
+        <JotForm />
       </div>
 
-      <div id="consult" class="scroll-mt-28 bg-white border border-line border-t-[6px] border-t-coral rounded-[8px] p-7 max-sm:p-4">
-        <h2 class="font-display text-[26px] mb-4 text-plum">{site.jotformTitle}</h2>
-        <JotForm />
+      <div class="flex flex-col gap-5">
+        <section class="bg-white border border-line rounded-[8px] p-6" aria-labelledby="c-call">
+          <h2 id="c-call" class="eyebrow text-brick-deep mb-3">Call us</h2>
+          <a href={site.phoneHref} class="font-display text-[32px] leading-none text-plum no-underline hover:text-brick-deep">{site.phone}</a>
+          <p class="mt-4 mb-0"><a href="#consult" class="font-bold">Online Consultation →</a></p>
+        </section>
+        <section class="bg-white border border-line rounded-[8px] p-6" aria-labelledby="c-visit">
+          <h2 id="c-visit" class="eyebrow text-brick-deep mb-3">Visit us</h2>
+          <address class="not-italic text-[18px] leading-[1.6] mb-5">
+            {address.street}<br />{address.suite}<br />{address.city}, {address.region} {address.zip}
+          </address>
+          <a href={directions} target="_blank" rel="noopener" class="btn btn-primary">Get directions<span class="sr-only"> (opens in a new tab)</span></a>
+        </section>
+        <section class="bg-white border border-line rounded-[8px] p-6" aria-labelledby="c-dir">
+          <h2 id="c-dir" class="eyebrow text-brick-deep mb-3">Medical Director</h2>
+          <p class="font-display text-[26px] leading-tight m-0 text-plum">{site.director}</p>
+          <p class="mt-3 mb-0"><a href="/about/" class="font-bold">About Dr. Lynam →</a></p>
+        </section>
       </div>
     </div>
   </Band>
-</PageLayout>
+
+  <!-- 3. Map -->
+  <section class="bg-cream pb-14 md:pb-20">
+    <div class="container-site">
+      <h2 class="sr-only">Map</h2>
+      <MapFacade />
+    </div>
+  </section>
+
+  <!-- 4. Travelling to Richmond -->
+  <Band tone="butter" id="travel">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-14 items-start">
+      <div>
+        <div class="eyebrow text-brick-deep mb-3">From out of town</div>
+        <h2 class="text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] m-0 mb-6 text-plum">Travelling to <em>Richmond?</em></h2>
+        <div class="flex flex-wrap gap-3">
+          <a href="/travel/" class="btn btn-primary">Travel guide</a>
+          <a href="/hotels/" class="btn border-plum text-plum hover:bg-plum hover:text-cream">Hotels</a>
+        </div>
+      </div>
+      <ul class="list-none m-0 p-0 flex flex-col gap-4">
+        {
+          travelFacts.map((t) => (
+            <li class="bg-white/70 rounded-[8px] p-5 text-[18px] leading-[1.55] max-w-[720px]">{t}</li>
+          ))
+        }
+      </ul>
+    </div>
+  </Band>
+
+  <!-- 5. Our network -->
+  <Band tone="cream" tight>
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-3">
+      <span class="eyebrow text-brick-deep">Our network</span>
+      {network.map((n) => <a href={n.href} target="_blank" rel="noopener" class="font-bold">{n.label}<span class="sr-only"> (opens in a new tab)</span></a>)}
+    </div>
+  </Band>
+</BaseLayout>

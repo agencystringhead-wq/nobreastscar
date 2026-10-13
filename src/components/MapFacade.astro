@@ -1,0 +1,47 @@
+---
+// Click-to-load Google map. Until the visitor presses "Show map" this is a static styled card (pin and address), so no
+// Google scripts, cookies or requests happen. The embed is the keyless address embed, which puts a pin on the
+// address itself (the live site's old embed had no pin and was centred about 200 m away).
+import { site } from '../data/site';
+
+const { address } = site;
+const q = encodeURIComponent(`${address.street} ${address.suite} ${address.city} ${address.region} ${address.zip}`);
+const embedUrl = `https://www.google.com/maps?q=${q}&output=embed`;
+const title = 'Map to No Breast Scar, Richmond VA';
+---
+
+<div data-map-facade data-src={embedUrl} data-title={title} class="relative h-[300px] md:h-[450px] rounded-[8px] overflow-hidden bg-plum-2 text-cream">
+  <svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" aria-hidden="true" class="absolute inset-0 w-full h-full">
+    <rect width="800" height="450" fill="#35203D"></rect>
+    <path d="M0 330 C160 290 300 350 460 290 S700 210 800 230" fill="none" stroke="#57345F" stroke-width="22"></path>
+    <path d="M250 0 L340 450 M560 0 L520 450 M0 130 L800 85 M0 400 L800 380" fill="none" stroke="#4A2F52" stroke-width="9"></path>
+    <circle cx="580" cy="105" r="46" fill="#EF6B57" opacity="0.28"></circle>
+    <circle cx="580" cy="105" r="14" fill="#EF6B57"></circle>
+  </svg>
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center px-6" data-map-cover>
+    <p class="font-display text-[clamp(1.4rem,3vw,2rem)] leading-tight m-0 text-cream">No Breast Scar</p>
+    <address class="not-italic text-[17px] leading-[1.5] text-on-plum">
+      {address.street}, {address.suite}<br />{address.city}, {address.region} {address.zip}
+    </address>
+    <button type="button" data-map-show class="btn btn-primary">Show map</button>
+    <p class="m-0 text-[14px] text-on-plum-soft">Loads Google Maps when you press the button.</p>
+  </div>
+  <noscript>
+    <a href={site.mapsUrl} target="_blank" rel="noopener" class="absolute inset-0 flex items-center justify-center bg-plum-2 text-cream font-bold">Open the map in Google Maps</a>
+  </noscript>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-map-facade]').forEach((box) => {
+    box.querySelector<HTMLButtonElement>('[data-map-show]')?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.title = box.dataset.title ?? 'Map';
+      frame.loading = 'lazy';
+      frame.referrerPolicy = 'no-referrer-when-downgrade';
+      frame.allowFullscreen = true;
+      frame.className = 'absolute inset-0 w-full h-full border-0';
+      frame.src = box.dataset.src!;
+      box.replaceChildren(frame);
+    });
+  });
+</script>
